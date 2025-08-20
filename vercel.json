@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "functions": {
+    "formanova-api/app/main.py": {
+      "runtime": "@vercel/python"
+    }
+  }
+}

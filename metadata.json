@@ -1,0 +1,5 @@
+{
+  "name": "Questionnaire : Retour sur les Cafés Partenaires",
+  "description": "Une application web pour recueillir le retour des partenaires sur les 'Cafés Partenaires' de CAP Formations et, dans un second temps, pour mieux comprendre les problématiques actuelles des jeunes en rupture à Genève.",
+  "requestFramePermissions": []
+}
