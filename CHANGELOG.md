@@ -19,18 +19,29 @@ Après le déploiement initial réussi, nous avons découvert que l'application 
 - ✅ Domaine gratuit `.pages.dev` inclus
 
 **État Actuel :**
-- ✅ **Problème identifié** et solution validée
-- ✅ **Plan de migration** établi et corrigé (100% interface web)
-- ✅ **Approche sécurisée** : Aucun outil CLI, tout via tableau de bord
-- 🔄 **Migration en cours** vers Pages Functions + D1
-- ⏳ **Prochaine étape** : Création base D1 via interface web
+- ✅ **Migration COMPLÈTE vers architecture serverless Cloudflare**
+- ✅ **Base de données D1** créée et fonctionnelle
+- ✅ **Pages Functions** déployées avec succès  
+- ✅ **Frontend** mis à jour pour utiliser API relative
+- ✅ **Déploiement automatique** Git → Cloudflare configuré
+- ⚠️ **PROBLÈME DÉCOUVERT** : Synthèse IA (Pandas + Gemini) manquante
 
-**Plan Détaillé (22 Étapes) :**
-- 📊 **PHASE 1** : Base D1 via interface web Cloudflare
-- ⚡ **PHASE 2** : Pages Functions via fichiers locaux (sans Wrangler)
-- 🔗 **PHASE 3** : Liaison D1 via Settings Pages
-- 🚀 **PHASE 4** : Déploiement automatique Git
-- ✅ **PHASE 5** : Tests complets interface web
+**✅ PHASES TERMINÉES :**
+- 📊 **PHASE 1** : Base D1 `cafes-partenaires-db` + table `submissions` ✅
+- ⚡ **PHASE 2** : Pages Function `/functions/api/submissions.js` (POST/GET) ✅
+- 🔗 **PHASE 3** : Binding D1 'DB' configuré via interface web ✅
+- 🔄 **PHASE 4** : Frontend `apiService.ts` mis à jour (API relative) ✅
+- 🚀 **PHASE 5** : Déploiement Git réussi (commit `55f66b7`) ✅
+
+**⚠️ PROBLÈME CRITIQUE À RÉSOUDRE :**
+- ❌ **Synthèse IA manquante** : Pandas + Google Gemini non disponibles
+- ❌ **Endpoint `/api/summary`** : Pas encore implémenté en Pages Functions
+- ❌ **Analyses automatiques** : Plus de traitement intelligent des données
+
+**🎯 PROCHAINES ÉTAPES PLANIFIÉES :**
+- 🤖 **Ajouter synthèse IA** : Créer `/functions/api/summary.js` avec Gemini
+- 📊 **Restaurer analyses** : Implémenter traitement des données côté serverless
+- ✅ **Tests complets** : Vérifier fonctionnalité questionnaire + résultats + IA
 
 ---
 
