@@ -1,3 +1,31 @@
+## 2025-01-15 - [EN COURS] Migration vers Architecture Complète Cloudflare
+
+**🚨 DÉCOUVERTE CRITIQUE : Backend Manquant**
+
+Après le déploiement initial réussi, nous avons découvert que l'application frontend était en ligne mais **sans backend fonctionnel**. Les données des questionnaires étaient perdues car :
+- ❌ Cloudflare Pages héberge uniquement des sites statiques
+- ❌ L'API FastAPI Python n'était pas déployée
+- ❌ La base de données SQLite restait locale
+- ❌ URL API pointait vers `localhost:5001` (inexistant en production)
+
+**🎯 SOLUTION CHOISIE : Migration vers Cloudflare Pages Functions + D1**
+
+**Avantages de cette architecture :**
+- ✅ Frontend + Backend + Database sur une seule plateforme
+- ✅ 100% gratuit dans les limites généreuses de Cloudflare
+- ✅ Performance maximale (réseau global Cloudflare)
+- ✅ Aucun serveur à maintenir
+- ✅ Déploiement automatique via Git
+- ✅ Domaine gratuit `.pages.dev` inclus
+
+**État Actuel :**
+- ✅ **Problème identifié** et solution validée
+- ✅ **Plan de migration** établi
+- 🔄 **Migration en cours** vers Pages Functions + D1
+- ⏳ **Prochaine étape** : Création base D1 via interface web
+
+---
+
 ## 2025-01-15 - [SUCCÈS] Déploiement en Production sur Cloudflare Pages
 
 **🎉 MILESTONE MAJEUR : APPLICATION EN LIGNE !**
