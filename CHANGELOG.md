@@ -20,9 +20,17 @@ Après le déploiement initial réussi, nous avons découvert que l'application 
 
 **État Actuel :**
 - ✅ **Problème identifié** et solution validée
-- ✅ **Plan de migration** établi
+- ✅ **Plan de migration** établi et corrigé (100% interface web)
+- ✅ **Approche sécurisée** : Aucun outil CLI, tout via tableau de bord
 - 🔄 **Migration en cours** vers Pages Functions + D1
 - ⏳ **Prochaine étape** : Création base D1 via interface web
+
+**Plan Détaillé (22 Étapes) :**
+- 📊 **PHASE 1** : Base D1 via interface web Cloudflare
+- ⚡ **PHASE 2** : Pages Functions via fichiers locaux (sans Wrangler)
+- 🔗 **PHASE 3** : Liaison D1 via Settings Pages
+- 🚀 **PHASE 4** : Déploiement automatique Git
+- ✅ **PHASE 5** : Tests complets interface web
 
 ---
 
