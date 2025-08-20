@@ -1,7 +1,7 @@
 import { Submission } from '../types';
 
-// Nouvelle URL de base pour l'API dédiée aux Cafés Partenaires
-const API_BASE_URL = import.meta.env.VITE_CAFES_API_URL || "http://localhost:5001/api";
+// URL relative pour les Pages Functions (pas besoin de variable d'environnement)
+const API_BASE_URL = "/api";
 
 export interface ApiResponse {
   submissions: Submission[];
