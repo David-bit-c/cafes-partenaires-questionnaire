@@ -160,10 +160,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, isLoad
       Object.entries(data).map(([name, value]) => ({ name, value })).sort((a,b) => b.value - a.value);
 
     const participatedCafes = processedSubmissions.reduce((acc, s) => {
-        const key = s.participatedInCafes === 'Oui' ? 'Oui' : 'Non';
+        const key = s.participatedInCafes || "Non spécifié";
         acc[key] = (acc[key] || 0) + 1;
         return acc;
-    }, {} as Record<'Oui' | 'Non', number>);
+    }, {} as Record<'Oui' | 'Non' | 'Non spécifié', number>);
 
     const cafesKnowledge = cafeParticipants.reduce((acc, s) => {
         s.cafesKnowledge?.forEach(k => {

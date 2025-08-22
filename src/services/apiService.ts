@@ -38,10 +38,28 @@ export const apiService = {
       };
     });
 
+    // Appel à l'endpoint summary pour récupérer la synthèse IA
+    let summary = '';
+    let summaryError = '';
+    
+    try {
+      const summaryResponse = await fetch(`${API_BASE_URL}/summary`);
+      if (summaryResponse.ok) {
+        const summaryData = await summaryResponse.json();
+        summary = summaryData.summary || '';
+        summaryError = summaryData.summaryError || '';
+      } else {
+        summaryError = 'Erreur lors de la récupération de la synthèse IA.';
+      }
+    } catch (e) {
+      console.error("Erreur lors de l'appel à l'endpoint summary:", e);
+      summaryError = 'Impossible de récupérer la synthèse IA.';
+    }
+
     return {
         submissions: adaptedSubmissions,
-        summary: '', // Synthèse IA non implémentée
-        summaryError: 'La synthèse IA sera bientôt disponible.'
+        summary: summary,
+        summaryError: summaryError
     };
   },
 
