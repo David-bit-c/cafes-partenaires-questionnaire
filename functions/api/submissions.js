@@ -9,7 +9,7 @@ export async function onRequestPost(context) {
     const submissionData = await request.json();
     
     // Validation basique
-    if (!submissionData || !submissionData.data) {
+    if (!submissionData) {
       return new Response(JSON.stringify({ 
         error: "Données de soumission manquantes" 
       }), {
@@ -23,7 +23,7 @@ export async function onRequestPost(context) {
       "INSERT INTO submissions (data) VALUES (?)"
     );
     
-    const result = await stmt.bind(JSON.stringify(submissionData.data)).run();
+    const result = await stmt.bind(JSON.stringify(submissionData)).run();
     
     if (result.success) {
       return new Response(JSON.stringify({
