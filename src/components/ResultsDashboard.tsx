@@ -123,7 +123,7 @@ const TextResponsesCard = ({ title, responses }: { title: string, responses: (st
     );
 };
 
-const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, isLoading, error }) => {
+const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summary, summaryError, isLoading, error }) => {
   // 1. Extraire tous les rôles uniques pour le filtre
   const allRoles = useMemo(() => {
     const roles = new Set<string>();
@@ -342,6 +342,34 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, isLoad
             <TextResponsesCard title="Nouvelles problématiques émergentes signalées" responses={data.textResponses.emergingChallengesDescription} />
             
             <TextResponsesCard title="Obstacles dans l'accompagnement professionnel" responses={data.textResponses.specializationObstacles} />
+            
+            {/* Section Synthèse IA */}
+            <hr className="my-8 border-gray-200"/>
+            <Card>
+              <CardHeader>
+                <CardTitle>Synthèse</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {summaryError ? (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <p className="text-red-700 font-medium">Erreur lors de la génération de la synthèse :</p>
+                    <p className="text-red-600 text-sm mt-1">{summaryError}</p>
+                  </div>
+                ) : summary ? (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
+                      {summary}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <p className="text-gray-600 text-center">
+                      🤖 Génération de la synthèse IA en cours...
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
         </>
       ) : (
         <Card>
