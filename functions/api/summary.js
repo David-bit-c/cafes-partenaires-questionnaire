@@ -216,6 +216,27 @@ function analyzeYouthIssuesData(data) {
     analysis += `- ${challenge}: ${count} mention(s)\n`;
   });
   
+  // Analyse des classements (impact perçu sur échelle 1-7)
+  const rankings = {};
+  let rankingCount = 0;
+  data.forEach(d => {
+    if (d.challengesRanking) {
+      rankingCount++;
+      Object.entries(d.challengesRanking).forEach(([challenge, rating]) => {
+        if (!rankings[challenge]) rankings[challenge] = [];
+        rankings[challenge].push(Number(rating) || 0);
+      });
+    }
+  });
+  
+  if (rankingCount > 0) {
+    analysis += `\nCLASSEMENT IMPACT PERÇU (échelle 1-7, ${rankingCount} réponses):\n`;
+    Object.entries(rankings).forEach(([challenge, ratings]) => {
+      const avg = (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1);
+      analysis += `- ${challenge}: ${avg}/7 (moyenne)\n`;
+    });
+  }
+  
   // Analyse des problématiques en augmentation
   const emergingChallenges = {};
   data.forEach(d => {
