@@ -347,9 +347,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, isLoad
             <hr className="my-8 border-gray-200"/>
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  🤖 Synthèse IA des Réponses
-                </CardTitle>
+                <CardTitle>🤖 Synthèse IA des Réponses</CardTitle>
               </CardHeader>
               <CardContent>
                 {summaryError ? (
@@ -359,16 +357,14 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, isLoad
                   </div>
                 ) : summary ? (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <div className="prose prose-sm max-w-none">
-                      <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
-                        {summary}
-                      </div>
+                    <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
+                      {summary}
                     </div>
                   </div>
                 ) : (
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                     <p className="text-gray-600 text-center">
-                      <span className="animate-pulse">🤖 Génération de la synthèse IA en cours...</span>
+                      🤖 Génération de la synthèse IA en cours...
                     </p>
                   </div>
                 )}
