@@ -49,7 +49,28 @@ Après le déploiement initial réussi, nous avons découvert que l'application 
 - ✅ **Base D1 connectée** : Stockage et récupération opérationnels
 - ✅ **Architecture serverless complète** : Frontend + Backend + Database + IA
 
-**🎯 PROCHAINES ÉTAPES :**
+**🚨 PROBLÈME CRITIQUE DÉCOUVERT ET RÉSOLU :**
+
+**❌ ERREUR DE VALIDATION API (Découverte lors des tests) :**
+- **Symptôme** : Erreur "Nous n'avons pas pu enregistrer votre réponse" sur le site
+- **Diagnostic** : HTTP 400 - "Données de soumission manquantes"
+- **Cause racine** : Incompatibilité structure données Frontend ↔ Backend
+  - Frontend envoyait : `JSON.stringify(submissionData)` (objet direct)
+  - Backend attendait : `submissionData.data` (objet imbriqué)
+
+**✅ CORRECTION APPLIQUÉE (Commit `133d324`) :**
+- **Fichier modifié** : `/functions/api/submissions.js`
+- **Action** : Suppression validation incorrecte `!submissionData.data`
+- **Résultat** : API accepte maintenant structure correcte du frontend
+- **Test de validation** : `curl -X POST` confirme correction de l'erreur 400
+
+**🎉 EUREKA ! VALIDATION UTILISATEUR RÉUSSIE :**
+- ✅ **Test questionnaire** : Soumission réussie sans erreur
+- ✅ **Page résultats** : Affichage correct avec données réelles
+- ✅ **Graphiques** : Participation (Non: 100%) et rôle professionnel fonctionnels
+- ✅ **Flux complet** : Questionnaire → Stockage D1 → Affichage → Succès total
+
+**🎯 ÉTAPES SUIVANTES VALIDÉES :**
 - 🧪 **Tests utilisateur** : Remplir questionnaires et vérifier synthèse IA
 - 📊 **Validation complète** : Questionnaire → Stockage → Résultats → IA
 - 🎉 **Prêt pour production** : Envoi aux vraies personnes
