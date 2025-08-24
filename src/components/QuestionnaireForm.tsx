@@ -50,6 +50,50 @@ const NextButton = ({ onClick, disabled }: { onClick: () => void; disabled?: boo
   </div>
 );
 
+const PreviousButton = ({ onClick }: { onClick: () => void }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors duration-200 font-medium"
+  >
+    <ArrowRightIcon className="h-4 w-4 rotate-180" />
+    <span>Retour</span>
+  </button>
+);
+
+const NavigationButtons = ({ 
+  onNext, 
+  onPrevious, 
+  canGoNext, 
+  canGoPrevious, 
+  isNextDisabled 
+}: { 
+  onNext: () => void; 
+  onPrevious: () => void; 
+  canGoNext: boolean; 
+  canGoPrevious: boolean; 
+  isNextDisabled?: boolean; 
+}) => (
+  <div className="flex justify-between items-center mt-10">
+    <div>
+      {canGoPrevious && <PreviousButton onClick={onPrevious} />}
+    </div>
+    <div>
+      {canGoNext && (
+        <button
+          type="button"
+          onClick={onNext}
+          disabled={isNextDisabled}
+          className="button-primary flex justify-center items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-lg px-8"
+        >
+          <span>Suivant</span>
+          <ArrowRightIcon className="w-5 h-5" />
+        </button>
+      )}
+    </div>
+  </div>
+);
+
 const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   const { register, handleSubmit, watch, control, formState: { errors, isValid }, trigger } = useForm<Submission>({
     mode: 'onChange',
@@ -97,6 +141,13 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
     
     if (isStepValid && !isLastStep) {
         setCurrentStepIndex(prev => prev + 1);
+        window.scrollTo(0, 0); // Scroll to top on step change
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentStepIndex > 0) {
+        setCurrentStepIndex(prev => prev - 1);
         window.scrollTo(0, 0); // Scroll to top on step change
     }
   };
@@ -188,7 +239,13 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         <span>Votre participation est entièrement anonyme. L'e-mail final sert uniquement à valider la soumission.</span>
                     </div>
 
-                    <NextButton onClick={handleNext} disabled={!participated} />
+                    <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={!!participated} 
+                        canGoPrevious={currentStepIndex > 0} 
+                        isNextDisabled={!participated}
+                    />
                 </>
             )}
 
@@ -273,7 +330,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         </div>
                     ))}
 
-                    <NextButton onClick={handleNext} />
+                    <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={true} 
+                        canGoPrevious={currentStepIndex > 0} 
+                    />
                 </>
             )}
 
@@ -320,7 +382,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         {errors.observedChallenges && <p className="text-destructive text-sm mt-4">{errors.observedChallenges.message}</p>}
                       </div>
                     )}
-                     <NextButton onClick={handleNext} />
+                     <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={true} 
+                        canGoPrevious={currentStepIndex > 0} 
+                    />
                 </>
             )}
 
@@ -357,7 +424,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                             ))}
                         </div>
                     )}
-                    <NextButton onClick={handleNext} />
+                    <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={true} 
+                        canGoPrevious={currentStepIndex > 0} 
+                    />
                 </>
             )}
             
@@ -396,7 +468,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         <textarea {...register("emergingChallengesDescription")} rows={4} placeholder="Décrivez ici toute autre tendance ou phénomène émergent..." className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-y" />
                     ))}
 
-                    <NextButton onClick={handleNext} />
+                    <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={true} 
+                        canGoPrevious={currentStepIndex > 0} 
+                    />
                 </>
             )}
             
