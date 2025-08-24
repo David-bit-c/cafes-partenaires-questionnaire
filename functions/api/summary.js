@@ -44,19 +44,31 @@ export async function onRequestGet(context) {
       });
     }
 
-    // Traitement des données (remplace pandas)
-    const allData = [];
+    // Traitement des données - UNIQUEMENT problématiques jeunes
+    const youthIssuesData = [];
     for (const submission of result.results) {
       try {
         const parsedData = JSON.parse(submission.data);
-        allData.push(parsedData);
+        
+        // Ne garder que les données sur les problématiques des jeunes
+        const filteredData = {
+          professionalRole: parsedData.professionalRole,
+          observedChallenges: parsedData.observedChallenges,
+          observedChallengesOther: parsedData.observedChallengesOther,
+          challengesRanking: parsedData.challengesRanking,
+          challengesHasEmerged: parsedData.challengesHasEmerged,
+          emergingChallengesDescription: parsedData.emergingChallengesDescription,
+          specializationObstacles: parsedData.specializationObstacles
+        };
+        
+        youthIssuesData.push(filteredData);
       } catch (e) {
         console.error("Erreur parsing JSON:", submission.id, e);
         continue;
       }
     }
 
-    if (allData.length === 0) {
+    if (youthIssuesData.length === 0) {
       return new Response(JSON.stringify({
         summary: "Aucune donnée valide à analyser.",
         summaryError: ""
@@ -70,26 +82,29 @@ export async function onRequestGet(context) {
     }
 
     // Conversion des données en format analysable (remplace df.to_string())
-    const dataAnalysis = analyzeData(allData);
+    const dataAnalysis = analyzeYouthIssuesData(youthIssuesData);
     
-    // Prompt identique à FastAPI
+    // Prompt focalisé sur les problématiques des jeunes
     const prompt = `
-    Tu es un assistant expert en analyse de données de questionnaires.
-    Voici les résultats bruts d'un questionnaire de satisfaction concernant des "cafés partenaires".
+    Tu es un assistant expert en analyse de données sociales.
+    Voici les résultats d'un questionnaire adressé à des professionnels du social concernant leur perception des problématiques rencontrées par les jeunes.
 
     **Tâche :**
     1. Analyse les données ci-dessous.
     2. Rédige une synthèse claire et concise (environ 150-200 mots).
     3. Met en évidence :
-        - Les attentes principales des participants.
-        - Le niveau de satisfaction général.
-        - Les suggestions d'amélioration les plus fréquentes ou pertinentes.
+        - Les problématiques les plus fréquemment observées par les professionnels.
+        - L'évolution perçue de ces problématiques (augmentation/émergence).
+        - Les obstacles rencontrés dans l'accompagnement professionnel.
+        - Les nouvelles problématiques émergentes signalées.
 
-    **Données Brutes :**
+    **Données à analyser :**
     ${dataAnalysis}
 
+    **Important :** Cette synthèse concerne uniquement les problématiques des jeunes observées par les professionnels, pas les cafés partenaires.
+
     **Format de la réponse attendue :**
-    Une synthèse rédigée sous forme de texte fluide.
+    Une synthèse rédigée sous forme de texte fluide focalisée sur les enjeux sociaux des jeunes.
     `;
 
     // Appel à l'API Gemini
@@ -170,6 +185,72 @@ export async function onRequestGet(context) {
       }
     });
   }
+}
+
+// Fonction d'analyse focalisée sur les problématiques des jeunes
+function analyzeYouthIssuesData(data) {
+  let analysis = `Analyse des problématiques des jeunes - ${data.length} réponses de professionnels\n\n`;
+  
+  // Analyse des rôles professionnels
+  const roles = {};
+  data.forEach(d => {
+    const role = d.professionalRole || 'Non spécifié';
+    roles[role] = (roles[role] || 0) + 1;
+  });
+  analysis += `RÔLES PROFESSIONNELS:\n`;
+  Object.entries(roles).forEach(([role, count]) => {
+    analysis += `- ${role}: ${count} réponse(s)\n`;
+  });
+  
+  // Analyse des défis observés
+  const observedChallenges = {};
+  data.forEach(d => {
+    if (d.observedChallenges) {
+      d.observedChallenges.forEach(challenge => {
+        observedChallenges[challenge] = (observedChallenges[challenge] || 0) + 1;
+      });
+    }
+  });
+  analysis += `\nDÉFIS LES PLUS OBSERVÉS:\n`;
+  Object.entries(observedChallenges).forEach(([challenge, count]) => {
+    analysis += `- ${challenge}: ${count} mention(s)\n`;
+  });
+  
+  // Analyse des problématiques en augmentation
+  const emergingChallenges = {};
+  data.forEach(d => {
+    if (d.challengesHasEmerged) {
+      d.challengesHasEmerged.forEach(challenge => {
+        emergingChallenges[challenge] = (emergingChallenges[challenge] || 0) + 1;
+      });
+    }
+  });
+  analysis += `\nPROBLÉMATIQUES EN AUGMENTATION:\n`;
+  Object.entries(emergingChallenges).forEach(([challenge, count]) => {
+    analysis += `- ${challenge}: ${count} mention(s)\n`;
+  });
+  
+  // Nouvelles problématiques émergentes (commentaires)
+  const newChallenges = data.filter(d => d.emergingChallengesDescription && d.emergingChallengesDescription.trim())
+    .map(d => d.emergingChallengesDescription.trim());
+  if (newChallenges.length > 0) {
+    analysis += `\nNOUVELLES PROBLÉMATIQUES ÉMERGENTES:\n`;
+    newChallenges.forEach((desc, i) => {
+      analysis += `${i + 1}. "${desc}"\n`;
+    });
+  }
+  
+  // Obstacles dans l'accompagnement
+  const obstacles = data.filter(d => d.specializationObstacles && d.specializationObstacles.trim())
+    .map(d => d.specializationObstacles.trim());
+  if (obstacles.length > 0) {
+    analysis += `\nOBSTACLES DANS L'ACCOMPAGNEMENT:\n`;
+    obstacles.forEach((obstacle, i) => {
+      analysis += `${i + 1}. "${obstacle}"\n`;
+    });
+  }
+  
+  return analysis;
 }
 
 // Fonction pour analyser les données (remplace pandas DataFrame.to_string())
