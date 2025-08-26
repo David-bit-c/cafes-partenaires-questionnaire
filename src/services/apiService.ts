@@ -15,7 +15,7 @@ export const apiService = {
     if (!response.ok) {
       throw new Error('Failed to fetch submissions from the new API');
     }
-    const submissionsData = await response.json();
+    const submissionsData: any[] = await response.json();
 
     // Correction cruciale : Parser la chaîne JSON 'data' en objet
     const adaptedSubmissions = submissionsData.map((s: any) => {
@@ -31,10 +31,10 @@ export const apiService = {
         console.error("Erreur de parsing JSON pour la soumission:", s.id, e);
         // Retourner un objet vide pour éviter un crash
       }
-      return {
+              return {
         id: s.id,
-        submittedAt: s.created_at,
-        data: parsedData, // 'data' est maintenant un objet
+        created_at: s.created_at,
+        data: parsedData as any, // 'data' est maintenant un objet
       };
     });
 
@@ -45,7 +45,7 @@ export const apiService = {
     try {
       const summaryResponse = await fetch(`${API_BASE_URL}/summary`);
       if (summaryResponse.ok) {
-        const summaryData = await summaryResponse.json();
+        const summaryData: any = await summaryResponse.json();
         summary = summaryData.summary || '';
         summaryError = summaryData.summaryError || '';
       } else {

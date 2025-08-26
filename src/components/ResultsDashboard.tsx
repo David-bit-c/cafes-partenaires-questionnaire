@@ -12,12 +12,19 @@ interface ResultsDashboardProps {
   error: string | null;
 }
 
-const PIE_COLORS = ['#E11D48', '#22C55E', '#3B82F6', '#F97316', '#8B5CF6'];
-const BAR_COLOR = '#E11D48';
-const RADAR_STROKE_COLOR = '#E11D48';
-const RADAR_FILL_COLOR = 'rgba(225, 29, 72, 0.6)';
+// Palette professionnelle sobre pour crédibilité maximale
+const PIE_COLORS = [
+  '#2563EB', // Bleu royal professionnel
+  '#1E40AF', // Bleu marine foncé
+  '#6B7280', // Gris moyen élégant
+  '#374151', // Gris anthracite
+  '#059669'  // Vert émeraude discret
+];
+const BAR_COLOR = '#2563EB';      // Bleu royal
+const RADAR_STROKE_COLOR = '#2563EB';  // Bleu royal
+const RADAR_FILL_COLOR = 'rgba(37, 99, 235, 0.6)';  // Bleu royal avec transparence
 
-const BAR_COLOR_2 = '#3B82F6';
+const BAR_COLOR_2 = '#1E40AF';   // Bleu marine pour contraste
 
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -44,7 +51,7 @@ const BarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string, data: 
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
             <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
             <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(225, 29, 72, 0.05)' }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
             <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
             <Bar dataKey="value" name="Nombre de réponses" fill={BAR_COLOR} barSize={20} />
           </BarChart>
@@ -62,7 +69,7 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
                     <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
                     <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
-                    <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(225, 29, 72, 0.05)' }} />
+                    <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
                     <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
                     <Bar dataKey="Fréquence" fill={BAR_COLOR} barSize={10} />
                     <Bar dataKey="En augmentation" fill={BAR_COLOR_2} barSize={10} />
