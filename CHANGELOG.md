@@ -57,6 +57,52 @@
 
 ---
 
+## 2025-01-15 - [ANALYSE] Enrichissement Statistiques CAP - Questions Terrain Validées
+
+**📊 OBJECTIF : Enrichir chiffres officiels CAP par expertise terrain professionnels**
+
+### **🔍 PHASE D'ANALYSE TERMINÉE**
+
+#### **📋 ANALYSE RAPPORT OFFICIEL CAP 2024**
+- ✅ **Identification gaps explicatifs** : Durées rupture, maintien formation, facteurs
+- ✅ **Focus retenu** : 86,5% ruptures <3 mois + baisse maintien 81%→73% 
+- ✅ **Opportunités** : Facteurs explicatifs manquants dans données officielles
+
+#### **🎯 CONCEPTION QUESTIONS VALIDÉE**
+- ✅ **Approche mixte** : Facteurs favorables + défavorables
+- ✅ **Format optimisé** : Listes 6 items + "Autre", max 3 choix
+- ✅ **Inclusivité** : Tous professionnels (formateurs, psychologues, AS, etc.)
+- ✅ **Échappatoire élégante** : Option "Passer" pour non-concernés
+
+#### **🎨 DESIGN RÉSULTATS PLANIFIÉ**
+- ✅ **Section dédiée** : "Facteurs rupture et maintien formation"
+- ✅ **Graphiques harmonisés** : Barres horizontales bleus professionnels
+- ✅ **Filtrage intégré** : Compatible système existant par rôle
+- ✅ **Données pures** : Pas de mélange avec chiffres officiels CAP
+
+### **📝 SPÉCIFICATIONS TECHNIQUES FINALISÉES**
+
+#### **Questions retenues :**
+1. **Facteurs favorables reprise** (après rupture → rentrée suivante)
+2. **Facteurs défavorables maintien** (risques sur année complète)
+
+#### **Placement :** Page 5.5 (entre évolution problématiques et obstacles)
+
+#### **Configuration :**
+- Format : Cases à cocher, max 3 choix
+- Échappatoire : "Passer section" si jamais contact jeunes rupture
+- Base calcul : Exclusion non-concernés des statistiques
+
+### **🎯 VALEUR AJOUTÉE IDENTIFIÉE**
+- **Transformation narrative** : Chiffres froids → Leviers d'action
+- **Expertise multidisciplinaire** : Vision 360° professionnels terrain
+- **Complémentarité CAP** : Données quantitatives + facteurs explicatifs
+- **Actionnabilité** : Résultats utilisables pour stratégies intervention
+
+**Statut :** Analyse et conception terminées - Prêt pour implémentation technique
+
+---
+
 ## 2025-01-15 - [EN COURS] Migration vers Architecture Complète Cloudflare
 
 **🚨 DÉCOUVERTE CRITIQUE : Backend Manquant**

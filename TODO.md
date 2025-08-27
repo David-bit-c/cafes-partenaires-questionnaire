@@ -64,34 +64,70 @@
    - Déploiement Cloudflare automatique
    - Version en ligne mise à jour
 
-### 📊 ENRICHISSEMENT STATISTIQUES : Compléter chiffres officiels CAP par retours terrain
-**Contexte** : Utiliser les retours de ~100 professionnels du terrain pour enrichir et clarifier l'interprétation des statistiques officielles annuelles de CAP Formations. L'objectif est de donner du sens aux chiffres grâce aux explications qualitatives des praticiens.
+### ✅ ENRICHISSEMENT STATISTIQUES : CONCEPTION TERMINÉE - PRÊT IMPLÉMENTATION
+**🎉 RÉALISÉ** : Analyse complète et spécifications finalisées pour 2 questions enrichissement
 
-#### Étapes détaillées :
-1. **📊 ANALYSE STATISTIQUES OFFICIELLES CAP**
-   - Identifier les chiffres/tendances nécessitant clarification
-   - Repérer les indicateurs quantitatifs sans explication qualitative
-   - Cartographier les domaines où l'éclairage terrain serait précieux
+#### Accomplissements :
+1. **✅ ANALYSE RAPPORT CAP 2024 TERMINÉE**
+   - Gaps explicatifs identifiés : 86,5% ruptures <3 mois, baisse maintien 81%→73%
+   - Focus validé : Facteurs reprise formation + maintien annuel
+   - Approche retenue : Questions terrain pour éclairer chiffres officiels
 
-2. **📊 LIENS QUESTIONNAIRE ACTUEL VS CHIFFRES OFFICIELS**
-   - Identifier quelles réponses actuelles peuvent déjà éclairer les stats
-   - Repérer les connexions entre perceptions terrain et données CAP
-   - Évaluer la complémentarité existante
+2. **✅ QUESTIONS FINALISÉES ET VALIDÉES**
+   - Question 1 : Facteurs favorables reprise formation (6 choix + autre, max 3)
+   - Question 2 : Facteurs défavorables maintien formation (6 choix + autre, max 3)
+   - Placement : Page 5.5 entre évolution problématiques et obstacles
+   - Échappatoire inclusive : "Passer section" pour non-concernés
 
-3. **📊 ZONES NÉCESSITANT ÉCLAIRAGE TERRAIN**
-   - Chiffres "froids" nécessitant interprétation humaine
-   - Tendances statistiques sans explication causale
-   - Évolutions numériques nécessitant contexte professionnel
+3. **✅ DESIGN RÉSULTATS SPÉCIFIÉ**
+   - Section dédiée : "Facteurs rupture et maintien formation"
+   - 2 graphiques barres horizontales (bleus harmonisés)
+   - Filtrage par rôle intégré, base calcul ajustée
+   - Données pures terrain (pas de mélange chiffres CAP)
 
-4. **📊 AJOUT QUESTIONS D'ENRICHISSEMENT**
-   - Questions spécifiques pour expliquer tendances statistiques
-   - Demandes d'interprétation de chiffres par les professionnels
-   - Questions causales : "Pourquoi selon vous..." / "Comment expliquez-vous..."
+### 🚀 PROCHAINE ÉTAPE : IMPLÉMENTATION TECHNIQUE
 
-5. **📊 SYNTHÈSE CROISÉE STATS + TERRAIN**
-   - Création section "Éclairage terrain des statistiques officielles"
-   - Mise en perspective chiffres CAP vs retours professionnels
-   - Valeur ajoutée : statistiques enrichies par l'expertise de terrain
+#### **PHASE 1 : Modification Backend (Types & Validation)**
+- **ID**: impl-types
+- **Fichier**: `src/types.ts`
+- **Action**: Ajouter champs `ruptureFactorsFavorable[]`, `ruptureFactorsNegative[]`, `skipRuptureSection?`
+- **Validation**: Max 3 choix par question
+
+#### **PHASE 2 : Ajout Questions Formulaire**
+- **ID**: impl-form
+- **Fichier**: `src/components/QuestionnaireForm.tsx`
+- **Actions**:
+  - Nouveau `stepId`: "rupture_factors"
+  - Intégration dans `stepsYes` et `stepsNo` 
+  - UI : Cases à cocher avec limitation 3 choix
+  - Logique "Passer section" avec condition d'affichage
+  - Validation avant navigation suivante
+
+#### **PHASE 3 : Traitement Données Dashboard**
+- **ID**: impl-dashboard
+- **Fichier**: `src/components/ResultsDashboard.tsx`
+- **Actions**:
+  - Calcul pourcentages facteurs favorables/défavorables
+  - Exclusion réponses "Passer section" des statistiques
+  - Création 2 nouveaux composants graphiques
+  - Intégration dans filtrage par rôle existant
+  - Gestion affichage conditionnel (min 5 réponses)
+
+#### **PHASE 4 : Mise à jour Synthèse IA**
+- **ID**: impl-ai
+- **Fichier**: `functions/api/summary.js`
+- **Action**: Intégrer facteurs terrain dans prompt IA pour synthèse enrichie
+
+#### **PHASE 5 : Tests & Déploiement**
+- **ID**: impl-deploy
+- **Actions**:
+  - Tests locaux navigation et validation
+  - Vérification graphiques et filtres
+  - Commit avec message explicite
+  - Push GitHub → déploiement Cloudflare automatique
+  - Validation production
+
+**Estimation**: 3-4h implémentation + 1h tests = Session complète
 
 ---
 
