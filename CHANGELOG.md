@@ -1,3 +1,63 @@
+## 2025-01-15 - [EUREKA] Export Enrichi avec Institutions - Phase 1 Complète
+
+**🎯 FONCTIONNALITÉ MAJEURE : Export Données avec Analyse Institutionnelle**
+
+**Contexte :** Implémentation d'un système d'export enrichi permettant l'analyse par institution basée sur les domaines email, sans ajout de champ au formulaire.
+
+**✅ PHASE 1 IMPLÉMENTÉE AVEC SUCCÈS :**
+
+### **🔧 SYSTÈME D'EXTRACTION INSTITUTIONNELLE**
+- ✅ **Base de données 80+ partenaires** : Tous les partenaires CAP Formations cartographiés
+- ✅ **Catégorisation intelligente** : 
+  - HUG (hug.ch, hcuge.ch) → Santé publique
+  - État de Genève (ge.ch, etat.ge.ch) → Services publics cantonaux
+  - OSEO, Croix-Rouge, ASTURAL → Grandes organisations multi-programmes
+  - Structures spécialisées par secteur (santé mentale, innovation numérique, etc.)
+- ✅ **Système extensible** : Détection automatique nouveaux domaines
+- ✅ **Emails personnels exclus** : gmail.com, hotmail.com → "Email personnel (inconnu)"
+
+### **📊 API D'EXPORT CLOUDFLARE**
+- ✅ **Endpoint `/api/export`** : Support CSV et Excel
+- ✅ **Anonymisation emails** : Seuls les domaines conservés dans l'export
+- ✅ **Enrichissement automatique** : 
+  - `email_domain`, `institution_deduite`, `secteur_activite`
+  - `type_structure`, `programmes`, `statut_institution`
+- ✅ **Données complètes** : Toutes les réponses + métadonnées institutionnelles
+- ✅ **Formats optimisés** : CSV (analyses stats) + Excel (consultation directe)
+
+### **🖥️ INTERFACE UTILISATEUR**
+- ✅ **Bouton export** : Intégré dans ResultsDashboard
+- ✅ **Modal de sélection** : Choix format avec descriptions
+- ✅ **UX professionnelle** : États de chargement, gestion erreurs
+- ✅ **Téléchargement automatique** : Fichiers nommés avec date
+
+### **🔍 COLONNES D'EXPORT GÉNÉRÉES**
+```
+- id, date_soumission, heure_soumission
+- email_domain, institution_deduite, secteur_activite, type_structure
+- participation_cafes, role_professionnel
+- defis_observes, impact_sante_mentale, impact_precarite, etc.
+- facteurs_favorables_reprise, facteurs_risques_abandon
+- obstacles_accompagnement
+```
+
+**🎯 VALEUR AJOUTÉE LIVRÉE :**
+- ✅ **Vision territoriale** : Répartition participation par institution
+- ✅ **Analyse comparative** : Différences perception par secteur/type structure
+- ✅ **Données actionnables** : Export prêt pour analyses externes
+- ✅ **Confidentialité respectée** : Emails anonymisés, domaines préservés
+- ✅ **Extensibilité garantie** : Système évolutif pour nouveaux partenaires
+
+**🔧 ARCHITECTURE TECHNIQUE :**
+- **Frontend** : React + TypeScript (interface export)
+- **Backend** : Cloudflare Pages Functions (traitement et génération)
+- **Base données** : Extraction depuis D1 Database
+- **Sécurité** : Anonymisation côté serveur
+
+**Statut :** ✅ PHASE 1 COMPLÈTE - Export enrichi opérationnel en production
+
+---
+
 ## 2025-01-15 - [EUREKA] Enrichissement Statistiques - Facteurs Rupture et Maintien Formation
 
 **🎯 FONCTIONNALITÉ MAJEURE : Questions Terrain pour Enrichir Statistiques CAP**
