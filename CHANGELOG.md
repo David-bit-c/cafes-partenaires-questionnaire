@@ -56,6 +56,46 @@
 
 **Statut :** ✅ PHASE 1 COMPLÈTE - Export enrichi opérationnel en production
 
+### **🗄️ PHASE 3 : ANALYSES BASE DE DONNÉES PAR INSTITUTION**
+
+**Contexte :** Extension pour analyses par institution directement au niveau base de données, sans interface web (pour le moment).
+
+**✅ OUTILS CRÉÉS :**
+
+#### **📊 VUES SQL ENRICHIES**
+- ✅ **Vue principale** : `submissions_with_institutions` avec 80+ institutions cartographiées
+- ✅ **Vue répartition** : `repartition_institutions` (nombre et pourcentages)
+- ✅ **Vue moyennes** : `moyennes_par_secteur` et `moyennes_par_institution`
+- ✅ **Vue comparaisons** : `comparaison_public_prive`
+
+#### **🔍 CAPACITÉS D'ANALYSE**
+- ✅ **Filtrage par institution** : "Toutes les réponses HUG", "Données OSEO uniquement"
+- ✅ **Comparaisons sectorielles** : HUG vs santé mentale privée, public vs fondations
+- ✅ **Détection automatique** : Nouveaux domaines non répertoriés
+- ✅ **Exclusion intelligente** : Emails personnels automatiquement exclus
+
+#### **📋 GUIDE COMPLET**
+- ✅ **20+ requêtes prêtes** : Analyses comparatives, extractions ciblées, découverte patterns
+- ✅ **Instructions déploiement** : Via interface Cloudflare D1 Console
+- ✅ **Documentation maintenance** : Ajout nouvelles institutions, mise à jour vues
+
+#### **🎯 EXEMPLES D'ANALYSES POSSIBLES**
+```sql
+-- Comparaison HUG vs OSEO
+SELECT institution_deduite, AVG(impact_sante_mentale) 
+FROM submissions_with_institutions 
+WHERE institution_deduite IN ('HUG', 'OSEO') 
+GROUP BY institution_deduite;
+```
+
+**🔧 FICHIERS LIVRÉS :**
+- `database/create_institution_views.sql` : Script création vues complètes
+- `database/queries_guide.md` : Guide 20+ requêtes d'analyse  
+- `database/setup_institution_views.js` : Script automatique optionnel
+- `database/README_INSTITUTIONS.md` : Guide utilisation complet
+
+**Statut :** ✅ PHASE 3 COMPLÈTE - Analyses BDD par institution opérationnelles
+
 ---
 
 ## 2025-01-15 - [EUREKA] Enrichissement Statistiques - Facteurs Rupture et Maintien Formation
