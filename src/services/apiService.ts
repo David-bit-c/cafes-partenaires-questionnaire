@@ -64,12 +64,22 @@ export const apiService = {
   },
 
   addSubmission: async (newSubmission: Omit<Submission, 'id' | 'submittedAt'>): Promise<Response> => {
-    return fetch(`${API_BASE_URL}/submissions`, { // Utilise la nouvelle route /api/submissions
+    const response = await fetch(`${API_BASE_URL}/submissions`, { // Utilise la nouvelle route /api/submissions
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newSubmission),
     });
+
+    // Si erreur d'unicité email, enrichir le message d'erreur
+    if (!response.ok && response.status === 409) {
+      const errorData = await response.json();
+      if (errorData.errorType === 'EMAIL_ALREADY_EXISTS') {
+        throw new Error(errorData.error);
+      }
+    }
+
+    return response;
   },
 };

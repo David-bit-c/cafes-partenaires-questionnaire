@@ -18,6 +18,28 @@ export async function onRequestPost(context) {
       });
     }
 
+    // Validation unicité email pour éviter les doublons
+    if (submissionData.email) {
+      const emailCheckStmt = env.DB.prepare(
+        "SELECT COUNT(*) as count FROM submissions WHERE json_extract(data, '$.email') = ?"
+      );
+      
+      const emailCheckResult = await emailCheckStmt.bind(submissionData.email).first();
+      
+      if (emailCheckResult && emailCheckResult.count > 0) {
+        return new Response(JSON.stringify({ 
+          error: "Cet email a déjà été utilisé pour répondre au questionnaire. Si vous êtes un·e collègue, veuillez utiliser votre propre adresse email professionnelle.",
+          errorType: "EMAIL_ALREADY_EXISTS"
+        }), {
+          status: 409, // Conflict
+          headers: { 
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          }
+        });
+      }
+    }
+
     // Insertion dans la base D1
     const stmt = env.DB.prepare(
       "INSERT INTO submissions (data) VALUES (?)"
