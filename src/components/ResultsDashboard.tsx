@@ -42,7 +42,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const BarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string, data: any[], yAxisWidth?: number }) => (
+const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR }: { title: string, data: any[], yAxisWidth?: number, color?: string }) => (
     <Card>
       <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
       <CardContent>
@@ -53,7 +53,7 @@ const BarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string, data: 
             <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
             <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
-            <Bar dataKey="value" name="Nombre de réponses" fill={BAR_COLOR} barSize={20} />
+            <Bar dataKey="value" name="Nombre de réponses" fill={color} barSize={20} />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
@@ -249,12 +249,58 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         return acc;
     }, {} as Record<string, number>);
 
+    // Traitement des facteurs de rupture - Exclusion des "skip section"
+    const ruptureResponses = processedSubmissions.filter(s => !s.skipRuptureSection);
+    
+    // Labels pour les graphiques
+    const ruptureFactorLabels = {
+        // Facteurs favorables
+        accompagnement_psy: 'Accompagnement psychologique renforcé',
+        soutien_financier: 'Soutien financier adapté',
+        flexibilite_horaires: 'Flexibilité des horaires/modalités',
+        relation_confiance: 'Relation de confiance avec un référent',
+        projet_clarifie: 'Projet professionnel clarifié',
+        resolution_problemes: 'Résolution des problématiques personnelles',
+        // Facteurs défavorables
+        sante_mentale_non_traitee: 'Problèmes de santé mentale non traités',
+        difficultes_financieres: 'Difficultés financières persistantes',
+        manque_motivation: 'Manque de motivation/sens du projet',
+        problemes_familiaux: 'Problèmes familiaux ou sociaux',
+        inadequation_formation: 'Inadéquation formation/profil du jeune',
+        manque_soutien: 'Manque de soutien de l\'entourage'
+    };
+
+    const ruptureFactorsFavorable = ruptureResponses.reduce((acc, s) => {
+        if (s.ruptureFactorsFavorable) {
+            s.ruptureFactorsFavorable.forEach(factor => {
+                if (factor !== 'autre') {
+                    const label = ruptureFactorLabels[factor] || factor;
+                    acc[label] = (acc[label] || 0) + 1;
+                }
+            });
+        }
+        return acc;
+    }, {} as Record<string, number>);
+
+    const ruptureFactorsNegative = ruptureResponses.reduce((acc, s) => {
+        if (s.ruptureFactorsNegative) {
+            s.ruptureFactorsNegative.forEach(factor => {
+                if (factor !== 'autre') {
+                    const label = ruptureFactorLabels[factor] || factor;
+                    acc[label] = (acc[label] || 0) + 1;
+                }
+            });
+        }
+        return acc;
+    }, {} as Record<string, number>);
+
     const textResponses = {
         cafesCommReason: cafeParticipants.map(s => s.cafesCommunicationReason),
         cafesEnjoymentOther: cafeParticipants.map(s => s.cafesEnjoymentOther),
         observedChallengesOther: processedSubmissions.map(s => s.observedChallengesOther),
         specializationObstacles: processedSubmissions.map(s => s.specializationObstacles),
         emergingChallengesDescription: processedSubmissions.map(s => s.emergingChallengesDescription),
+        ruptureFactorsOther: ruptureResponses.map(s => s.ruptureFactorsOther),
     };
 
     return {
@@ -268,7 +314,11 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       textResponses,
       cafeParticipants,
       combinedChallengesData,
-      filteredCount: totalSubmissions, // Renvoyez le nombre de soumissions filtrées
+      filteredCount: totalSubmissions,
+      // Nouvelles données facteurs de rupture
+      ruptureFactorsFavorable: formatChartData(ruptureFactorsFavorable),
+      ruptureFactorsNegative: formatChartData(ruptureFactorsNegative),
+      ruptureResponsesCount: ruptureResponses.length,
     };
   }, [submissions, selectedRoles]);
   
@@ -349,6 +399,52 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             <TextResponsesCard title="Nouvelles problématiques émergentes signalées" responses={data.textResponses.emergingChallengesDescription} />
             
             <TextResponsesCard title="Obstacles dans l'accompagnement professionnel" responses={data.textResponses.specializationObstacles} />
+            
+            {/* Section Facteurs de Rupture et Maintien en Formation */}
+            {data.ruptureResponsesCount >= 5 && (
+                <>
+                    <hr className="my-8 border-gray-200"/>
+                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+                        Facteurs de Rupture et Maintien en Formation 
+                        <span className="text-lg font-normal text-gray-600 block mt-1">
+                            Expertise terrain de {data.ruptureResponsesCount} professionnel(s)
+                        </span>
+                    </h2>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {data.ruptureFactorsFavorable && data.ruptureFactorsFavorable.length > 0 && (
+                            <BarChartCard 
+                                title="Facteurs favorisant la reprise de formation" 
+                                data={data.ruptureFactorsFavorable.slice(0, 6)} 
+                                yAxisWidth={250}
+                                color="#059669"
+                            />
+                        )}
+                        {data.ruptureFactorsNegative && data.ruptureFactorsNegative.length > 0 && (
+                            <BarChartCard 
+                                title="Facteurs augmentant les risques d'abandon" 
+                                data={data.ruptureFactorsNegative.slice(0, 6)} 
+                                yAxisWidth={250}
+                                color="#DC2626"
+                            />
+                        )}
+                    </div>
+                    
+                    {data.textResponses.ruptureFactorsOther && (
+                        <TextResponsesCard 
+                            title="Autres facteurs identifiés" 
+                            responses={data.textResponses.ruptureFactorsOther} 
+                        />
+                    )}
+                    
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                        <p className="text-blue-800 text-sm">
+                            💡 <strong>Note méthodologique :</strong> Ces résultats reflètent l'expertise terrain des professionnels 
+                            et viennent enrichir les statistiques officielles CAP avec des facteurs explicatifs concrets.
+                        </p>
+                    </div>
+                </>
+            )}
             
             {/* Section Synthèse IA */}
             <hr className="my-8 border-gray-200"/>

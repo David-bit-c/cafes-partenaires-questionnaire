@@ -1,3 +1,72 @@
+## 2025-01-15 - [EUREKA] Enrichissement Statistiques - Facteurs Rupture et Maintien Formation
+
+**🎯 FONCTIONNALITÉ MAJEURE : Questions Terrain pour Enrichir Statistiques CAP**
+
+**Contexte :** Suite à l'analyse du rapport CAP 2024 (86,5% ruptures <3 mois, baisse maintien 81%→73%), implémentation de 2 questions terrain pour transformer les chiffres froids en leviers d'action concrets.
+
+**✅ IMPLÉMENTATION COMPLÈTE EN 5 PHASES :**
+
+### **PHASE 1 - Types TypeScript ✅**
+- ✅ **Nouveaux champs ajoutés à `SubmissionData`** :
+  - `ruptureFactorsFavorable[]` : Facteurs favorisant reprise formation (max 3)
+  - `ruptureFactorsNegative[]` : Facteurs augmentant risques abandon (max 3)
+  - `ruptureFactorsOther` : Champ libre pour autres facteurs
+  - `skipRuptureSection` : Option pour non-concernés
+- ✅ **Compilation TypeScript validée** : Aucune erreur, types cohérents
+
+### **PHASE 2 - Formulaire Interactif ✅**
+- ✅ **Nouveau stepId "rupture_factors"** intégré dans navigation
+- ✅ **Position stratégique** : Page 5.5 entre évolution problématiques et finalisation
+- ✅ **Interface utilisateur optimisée** :
+  - Cases à cocher avec limitation intelligente (max 3 choix)
+  - Option "Passer section" pour inclusivité professionnelle
+  - Validation conditionnelle (obligatoire sauf si skip activé)
+  - Design harmonisé avec palette bleue professionnelle
+- ✅ **Navigation bidirectionnelle** : Intégration complète dans flux existant
+
+### **PHASE 3 - Dashboard et Visualisations ✅**
+- ✅ **Traitement données avancé** :
+  - Exclusion automatique des "skip section" des statistiques
+  - Calculs pourcentages avec base ajustée aux réponses valides
+  - Labels explicites pour lisibilité maximale
+- ✅ **Graphiques professionnels** :
+  - 2 graphiques barres horizontales (vert/rouge pour distinction visuelle)
+  - Affichage conditionnel (minimum 5 réponses pour fiabilité)
+  - Intégration dans système de filtrage par rôle existant
+- ✅ **Section dédiée "Facteurs Rupture et Maintien en Formation"**
+- ✅ **Note méthodologique** : Contexte explicatif pour utilisateurs
+
+### **PHASE 4 - Synthèse IA Enrichie ✅**
+- ✅ **Prompt Gemini mis à jour** :
+  - Intégration facteurs favorable/défavorables dans analyse
+  - Focus sur transformation insights → leviers d'action
+  - Synthèse étendue (200-250 mots) incluant recommandations
+- ✅ **Analyse enrichie** : Facteurs terrain + problématiques jeunes
+- ✅ **Fonction d'analyse étendue** : Traitement complet nouvelles données
+
+### **PHASE 5 - Tests et Validation ✅**
+- ✅ **Compilation sans erreur** : Build production réussi
+- ✅ **Navigation fluide** : Tests formulaire complets
+- ✅ **Affichage cohérent** : Graphiques et interface harmonisés
+- ✅ **Architecture stable** : Aucune régression fonctionnelle
+
+**🎉 VALEUR AJOUTÉE RÉALISÉE :**
+- ✅ **Transformation narrative** : Chiffres CAP → Leviers action concrets
+- ✅ **Expertise multidisciplinaire** : Vision 360° professionnels terrain
+- ✅ **Complémentarité données** : Quantitatif officiel + Facteurs explicatifs
+- ✅ **Résultats actionnables** : Insights utilisables pour stratégies intervention
+
+**🔧 DÉTAILS TECHNIQUES :**
+- **Questions** : 2 questions à choix multiples (6 options + autre, max 3)
+- **Options favorables** : Accompagnement psy, soutien financier, flexibilité, relation confiance, projet clarifié, résolution problèmes
+- **Options défavorables** : Santé mentale non traitée, difficultés financières, manque motivation, problèmes familiaux, inadéquation formation, manque soutien
+- **Validation** : Max 3 choix par question, échappatoire inclusive
+- **Affichage** : Minimum 5 réponses pour statistiques fiables
+
+**Statut :** ✅ FONCTIONNALITÉ COMPLÈTE - Prête pour déploiement production
+
+---
+
 ## 2025-01-15 - [EUREKA] Optimisation Palette Couleurs Professionnelle
 
 **🎨 AMÉLIORATION DESIGN : Palette Plus Sobre et Crédible**

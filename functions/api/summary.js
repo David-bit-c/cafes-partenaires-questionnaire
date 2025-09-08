@@ -50,7 +50,7 @@ export async function onRequestGet(context) {
       try {
         const parsedData = JSON.parse(submission.data);
         
-        // Ne garder que les données sur les problématiques des jeunes
+        // Ne garder que les données sur les problématiques des jeunes + facteurs rupture
         const filteredData = {
           professionalRole: parsedData.professionalRole,
           observedChallenges: parsedData.observedChallenges,
@@ -58,7 +58,12 @@ export async function onRequestGet(context) {
           challengesRanking: parsedData.challengesRanking,
           challengesHasEmerged: parsedData.challengesHasEmerged,
           emergingChallengesDescription: parsedData.emergingChallengesDescription,
-          specializationObstacles: parsedData.specializationObstacles
+          specializationObstacles: parsedData.specializationObstacles,
+          // Nouvelles données facteurs de rupture
+          ruptureFactorsFavorable: parsedData.ruptureFactorsFavorable,
+          ruptureFactorsNegative: parsedData.ruptureFactorsNegative,
+          ruptureFactorsOther: parsedData.ruptureFactorsOther,
+          skipRuptureSection: parsedData.skipRuptureSection
         };
         
         youthIssuesData.push(filteredData);
@@ -84,27 +89,32 @@ export async function onRequestGet(context) {
     // Conversion des données en format analysable (remplace df.to_string())
     const dataAnalysis = analyzeYouthIssuesData(youthIssuesData);
     
-    // Prompt focalisé sur les problématiques des jeunes
+    // Prompt enrichi avec facteurs de rupture et maintien
     const prompt = `
     Tu es un assistant expert en analyse de données sociales.
-    Voici les résultats d'un questionnaire adressé à des professionnels du social concernant leur perception des problématiques rencontrées par les jeunes.
+    Voici les résultats d'un questionnaire adressé à des professionnels du social concernant leur perception des problématiques rencontrées par les jeunes et les facteurs influençant la rupture/maintien en formation.
 
     **Tâche :**
     1. Analyse les données ci-dessous.
-    2. Rédige une synthèse claire et concise (environ 150-200 mots).
+    2. Rédige une synthèse claire et concise (environ 200-250 mots).
     3. Met en évidence :
         - Les problématiques les plus fréquemment observées par les professionnels.
         - L'évolution perçue de ces problématiques (augmentation/émergence).
         - Les obstacles rencontrés dans l'accompagnement professionnel.
         - Les nouvelles problématiques émergentes signalées.
+        - **NOUVEAU** : Les facteurs favorisant la reprise de formation après rupture.
+        - **NOUVEAU** : Les facteurs augmentant les risques d'abandon en cours de formation.
 
     **Données à analyser :**
     ${dataAnalysis}
 
-    **Important :** Cette synthèse concerne uniquement les problématiques des jeunes observées par les professionnels, pas les cafés partenaires.
+    **Important :** Cette synthèse concerne les problématiques des jeunes ET l'expertise terrain sur les facteurs de rupture/maintien en formation. Ces insights viennent enrichir les statistiques officielles CAP avec des éléments explicatifs concrets.
 
     **Format de la réponse attendue :**
-    Une synthèse rédigée sous forme de texte fluide focalisée sur les enjeux sociaux des jeunes.
+    Une synthèse rédigée sous forme de texte fluide qui combine :
+    1. Les enjeux sociaux des jeunes identifiés
+    2. Les leviers d'action pour favoriser le maintien en formation (facteurs favorable/défavorables)
+    3. Les recommandations pratiques issues de l'expertise terrain
     `;
 
     // Appel à l'API Gemini
@@ -269,6 +279,80 @@ function analyzeYouthIssuesData(data) {
     obstacles.forEach((obstacle, i) => {
       analysis += `${i + 1}. "${obstacle}"\n`;
     });
+  }
+  
+  // Analyse des facteurs de rupture et maintien en formation
+  const ruptureResponses = data.filter(d => !d.skipRuptureSection);
+  if (ruptureResponses.length > 0) {
+    analysis += `\nFACTEURS DE RUPTURE ET MAINTIEN EN FORMATION (${ruptureResponses.length} réponses):\n`;
+    
+    // Labels pour conversion
+    const factorLabels = {
+      // Facteurs favorables
+      accompagnement_psy: 'Accompagnement psychologique renforcé',
+      soutien_financier: 'Soutien financier adapté',
+      flexibilite_horaires: 'Flexibilité des horaires/modalités',
+      relation_confiance: 'Relation de confiance avec un référent',
+      projet_clarifie: 'Projet professionnel clarifié',
+      resolution_problemes: 'Résolution des problématiques personnelles',
+      // Facteurs défavorables
+      sante_mentale_non_traitee: 'Problèmes de santé mentale non traités',
+      difficultes_financieres: 'Difficultés financières persistantes',
+      manque_motivation: 'Manque de motivation/sens du projet',
+      problemes_familiaux: 'Problèmes familiaux ou sociaux',
+      inadequation_formation: 'Inadéquation formation/profil du jeune',
+      manque_soutien: 'Manque de soutien de l\'entourage'
+    };
+    
+    // Facteurs favorables reprise
+    const favorableFactors = {};
+    ruptureResponses.forEach(d => {
+      if (d.ruptureFactorsFavorable) {
+        d.ruptureFactorsFavorable.forEach(factor => {
+          if (factor !== 'autre') {
+            const label = factorLabels[factor] || factor;
+            favorableFactors[label] = (favorableFactors[label] || 0) + 1;
+          }
+        });
+      }
+    });
+    
+    if (Object.keys(favorableFactors).length > 0) {
+      analysis += `\nFacteurs favorisant la reprise de formation:\n`;
+      Object.entries(favorableFactors).forEach(([factor, count]) => {
+        analysis += `- ${factor}: ${count} mention(s)\n`;
+      });
+    }
+    
+    // Facteurs défavorables maintien
+    const negativeFactors = {};
+    ruptureResponses.forEach(d => {
+      if (d.ruptureFactorsNegative) {
+        d.ruptureFactorsNegative.forEach(factor => {
+          if (factor !== 'autre') {
+            const label = factorLabels[factor] || factor;
+            negativeFactors[label] = (negativeFactors[label] || 0) + 1;
+          }
+        });
+      }
+    });
+    
+    if (Object.keys(negativeFactors).length > 0) {
+      analysis += `\nFacteurs augmentant les risques d'abandon:\n`;
+      Object.entries(negativeFactors).forEach(([factor, count]) => {
+        analysis += `- ${factor}: ${count} mention(s)\n`;
+      });
+    }
+    
+    // Autres facteurs identifiés
+    const otherFactors = ruptureResponses.filter(d => d.ruptureFactorsOther && d.ruptureFactorsOther.trim())
+      .map(d => d.ruptureFactorsOther.trim());
+    if (otherFactors.length > 0) {
+      analysis += `\nAutres facteurs identifiés par les professionnels:\n`;
+      otherFactors.forEach((factor, i) => {
+        analysis += `${i + 1}. "${factor}"\n`;
+      });
+    }
   }
   
   return analysis;

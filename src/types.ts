@@ -27,9 +27,15 @@ export interface SubmissionData {
     conflits: number;
   };
 
-  // Page 5 - Nouvelle section
+  // Page 5 - Évolution des problématiques
   challengesHasEmerged?: ('sante_mentale' | 'precarite' | 'decrochage' | 'migration' | 'addictions' | 'conflits')[];
   emergingChallengesDescription?: string;
+  
+  // Page 5.5 - Facteurs rupture et maintien formation
+  ruptureFactorsFavorable?: ('accompagnement_psy' | 'soutien_financier' | 'flexibilite_horaires' | 'relation_confiance' | 'projet_clarifie' | 'resolution_problemes' | 'autre')[];
+  ruptureFactorsNegative?: ('sante_mentale_non_traitee' | 'difficultes_financieres' | 'manque_motivation' | 'problemes_familiaux' | 'inadequation_formation' | 'manque_soutien' | 'autre')[];
+  ruptureFactorsOther?: string;
+  skipRuptureSection?: boolean;
   
   // Page 6 (Anciennement 5)
   specializationObstacles: string;

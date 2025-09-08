@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Submission } from '../types';
 import { ArrowRightIcon, CheckIcon, SpinnerIcon, LockIcon } from './icons';
 
-type StepID = 'participation' | 'feedback' | 'challenges_observed' | 'challenges_ranking' | 'challenges_evolution' | 'final_details';
+type StepID = 'participation' | 'feedback' | 'challenges_observed' | 'challenges_ranking' | 'challenges_evolution' | 'rupture_factors' | 'final_details';
 
 interface QuestionnaireFormProps {
   onSubmit: (submission: Omit<Submission, 'id' | 'submittedAt'>) => void;
@@ -22,6 +22,26 @@ const challengesOptions = [
     {id: 'sante_mentale', label: 'Santé mentale'}, {id: 'precarite', label: 'Précarité économique et sociale'}, 
     {id: 'decrochage', label: 'Décrochage scolaire'}, {id: 'migration', label: 'Migration et intégration culturelle'}, 
     {id: 'addictions', label: 'Addictions'}, {id: 'conflits', label: 'Conflits familiaux'}, {id: 'autre', label: 'Autre'}
+];
+
+const ruptureFactorsFavorableOptions = [
+    {id: 'accompagnement_psy', label: 'Accompagnement psychologique renforcé'},
+    {id: 'soutien_financier', label: 'Soutien financier adapté'},
+    {id: 'flexibilite_horaires', label: 'Flexibilité des horaires/modalités'},
+    {id: 'relation_confiance', label: 'Relation de confiance avec un référent'},
+    {id: 'projet_clarifie', label: 'Projet professionnel clarifié'},
+    {id: 'resolution_problemes', label: 'Résolution des problématiques personnelles'},
+    {id: 'autre', label: 'Autre'}
+];
+
+const ruptureFactorsNegativeOptions = [
+    {id: 'sante_mentale_non_traitee', label: 'Problèmes de santé mentale non traités'},
+    {id: 'difficultes_financieres', label: 'Difficultés financières persistantes'},
+    {id: 'manque_motivation', label: 'Manque de motivation/sens du projet'},
+    {id: 'problemes_familiaux', label: 'Problèmes familiaux ou sociaux'},
+    {id: 'inadequation_formation', label: 'Inadéquation formation/profil du jeune'},
+    {id: 'manque_soutien', label: 'Manque de soutien de l\'entourage'},
+    {id: 'autre', label: 'Autre'}
 ];
 
 const renderQuestion = (title: string, children: React.ReactNode, subtitle?: string) => (
@@ -108,8 +128,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
-  const stepsYes: StepID[] = ['participation', 'feedback', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'final_details'];
-  const stepsNo: StepID[] = ['participation', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'final_details'];
+  const stepsYes: StepID[] = ['participation', 'feedback', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'rupture_factors', 'final_details'];
+  const stepsNo: StepID[] = ['participation', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'rupture_factors', 'final_details'];
 
   const currentPath = useMemo(() => {
     if (participated === 'Oui') return stepsYes;
@@ -134,6 +154,14 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
             break;
         case 'challenges_observed':
             fieldsToValidate.push('observedChallenges');
+            break;
+        case 'rupture_factors':
+            // Validation conditionnelle : pas obligatoire si skip section activé
+            const skipSection = watch('skipRuptureSection');
+            if (!skipSection) {
+                fieldsToValidate.push('ruptureFactorsFavorable');
+                fieldsToValidate.push('ruptureFactorsNegative');
+            }
             break;
     }
 
@@ -473,6 +501,149 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         onPrevious={handlePrevious}
                         canGoNext={true} 
                         canGoPrevious={currentStepIndex > 0} 
+                    />
+                </>
+            )}
+            
+            {currentStepId === 'rupture_factors' && (
+                <>
+                    {renderSectionHeader("Facteurs de Rupture et Maintien en Formation", "Votre expertise terrain pour éclairer les statistiques officielles.")}
+                    
+                    {/* Option pour passer la section */}
+                    <div className="mb-8 p-6 bg-muted/50 rounded-lg border border-border">
+                        <Controller
+                            name="skipRuptureSection"
+                            control={control}
+                            render={({ field }) => (
+                                <label className="flex items-center cursor-pointer">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={field.value || false}
+                                        onChange={(e) => field.onChange(e.target.checked)}
+                                        className="mr-3 h-4 w-4 text-primary border-border rounded focus:ring-primary"
+                                    />
+                                    <span className="text-muted-foreground">
+                                        Je n'ai pas assez d'expérience avec des jeunes en rupture de formation pour répondre à cette section
+                                    </span>
+                                </label>
+                            )}
+                        />
+                    </div>
+
+                    {!watch('skipRuptureSection') && (
+                        <>
+                            {renderQuestion("Selon votre expérience, quels sont les facteurs qui favorisent le plus la reprise de formation chez un·e jeune après une rupture ?", (
+                                <div className="space-y-2">
+                                    <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 facteurs</p>
+                                    <div className="space-y-4">
+                                        {ruptureFactorsFavorableOptions.filter(opt => opt.id !== 'autre').map(opt => (
+                                            <Controller
+                                                key={opt.id}
+                                                name="ruptureFactorsFavorable"
+                                                control={control}
+                                                render={({ field }) => {
+                                                    const currentValues = field.value || [];
+                                                    const isChecked = currentValues.includes(opt.id);
+                                                    const canCheck = currentValues.length < 3 || isChecked;
+                                                    
+                                                    return (
+                                                        <label className={`flex items-center p-4 rounded-lg border transition-all ${
+                                                            canCheck ? 'bg-card/80 hover:bg-card cursor-pointer border-border' : 'bg-muted/30 cursor-not-allowed border-muted'
+                                                        }`}>
+                                                            <input 
+                                                                type="checkbox" 
+                                                                className="peer sr-only" 
+                                                                value={opt.id} 
+                                                                checked={isChecked}
+                                                                disabled={!canCheck}
+                                                                onChange={e => {
+                                                                    const newValues = e.target.checked 
+                                                                        ? [...currentValues, opt.id]
+                                                                        : currentValues.filter(v => v !== opt.id);
+                                                                    field.onChange(newValues);
+                                                                }}
+                                                            />
+                                                            <div className="w-6 h-6 rounded-md border-2 border-border peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all duration-200">
+                                                                <CheckIcon className="w-4 h-4 text-primary-foreground transform scale-0 peer-checked:scale-100 transition-transform duration-200" />
+                                                            </div>
+                                                            <span className={`ml-4 font-medium ${canCheck ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                                                {opt.label}
+                                                            </span>
+                                                        </label>
+                                                    );
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            ), "Maximum 3 choix")}
+
+                            {renderQuestion("D'après votre observation, quels facteurs augmentent le plus les risques d'abandon en cours de formation ?", (
+                                <div className="space-y-2">
+                                    <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 facteurs</p>
+                                    <div className="space-y-4">
+                                        {ruptureFactorsNegativeOptions.filter(opt => opt.id !== 'autre').map(opt => (
+                                            <Controller
+                                                key={opt.id}
+                                                name="ruptureFactorsNegative"
+                                                control={control}
+                                                render={({ field }) => {
+                                                    const currentValues = field.value || [];
+                                                    const isChecked = currentValues.includes(opt.id);
+                                                    const canCheck = currentValues.length < 3 || isChecked;
+                                                    
+                                                    return (
+                                                        <label className={`flex items-center p-4 rounded-lg border transition-all ${
+                                                            canCheck ? 'bg-card/80 hover:bg-card cursor-pointer border-border' : 'bg-muted/30 cursor-not-allowed border-muted'
+                                                        }`}>
+                                                            <input 
+                                                                type="checkbox" 
+                                                                className="peer sr-only" 
+                                                                value={opt.id} 
+                                                                checked={isChecked}
+                                                                disabled={!canCheck}
+                                                                onChange={e => {
+                                                                    const newValues = e.target.checked 
+                                                                        ? [...currentValues, opt.id]
+                                                                        : currentValues.filter(v => v !== opt.id);
+                                                                    field.onChange(newValues);
+                                                                }}
+                                                            />
+                                                            <div className="w-6 h-6 rounded-md border-2 border-border peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all duration-200">
+                                                                <CheckIcon className="w-4 h-4 text-primary-foreground transform scale-0 peer-checked:scale-100 transition-transform duration-200" />
+                                                            </div>
+                                                            <span className={`ml-4 font-medium ${canCheck ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                                                {opt.label}
+                                                            </span>
+                                                        </label>
+                                                    );
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+
+                                    {/* Option "Autre" avec champ texte pour les deux questions */}
+                                    {(watch('ruptureFactorsFavorable')?.includes('autre') || watch('ruptureFactorsNegative')?.includes('autre')) && (
+                                        <div className="mt-4">
+                                            <textarea 
+                                                {...register("ruptureFactorsOther")} 
+                                                rows={3} 
+                                                placeholder="Précisez le(s) autre(s) facteur(s)..." 
+                                                className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-y" 
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            ), "Maximum 3 choix")}
+                        </>
+                    )}
+
+                    <NavigationButtons 
+                        onNext={handleNext} 
+                        onPrevious={handlePrevious}
+                        canGoNext={true} 
+                        canGoPrevious={currentStepIndex > 0}
+                        isNextDisabled={!watch('skipRuptureSection') && (!watch('ruptureFactorsFavorable')?.length || !watch('ruptureFactorsNegative')?.length)}
                     />
                 </>
             )}
