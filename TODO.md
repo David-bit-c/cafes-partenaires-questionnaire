@@ -10,10 +10,22 @@
 - ✅ **TESTS COMPLETS** : 5 questionnaires test, graphiques fonctionnels
 - ✅ **GRAPHIQUES DIVERSIFIÉS** : Camemberts, barres, radar, filtrage interactif
 - 🎨 **DESIGN PROFESSIONNEL** : Palette bleue harmonisée, interface moderne
-- 📊 **ENRICHISSEMENT STATISTIQUES** : Questions facteurs rupture/maintien formation
-- 🏢 **EXPORT PAR INSTITUTION** : Analyse domaines email, CSV/Excel enrichi
-- 📈 **VUES SQL AVANCÉES** : Analyses base de données par secteur/institution
-- 🔒 **SÉCURISATION COMPLÈTE** : Backup automatique, monitoring, plan urgence
+- 📊 **[EUREKA] ENRICHISSEMENT STATISTIQUES** : Questions facteurs rupture/maintien formation
+  - 2 nouvelles questions terrain avec limitation 3 choix max
+  - Graphiques dédiés (vert/rouge) + synthèse IA enrichie
+  - Option "passer section" pour professionnels non-concernés
+- 🏢 **[EUREKA] EXPORT PAR INSTITUTION** : Analyse domaines email, CSV/Excel enrichi
+  - 80+ partenaires CAP cartographiés automatiquement
+  - Anonymisation emails + enrichissement métadonnées sectorielles
+  - Système extensible pour nouveaux partenaires
+- 📈 **[EUREKA] VUES SQL AVANCÉES** : Analyses base de données par secteur/institution
+  - 5 vues SQL pour analyses comparatives directes
+  - Guide 20+ requêtes prêtes pour extractions ciblées
+  - Déploiement via Cloudflare D1 Console
+- 🔒 **[EUREKA] SÉCURISATION COMPLÈTE** : Backup automatique, monitoring, plan urgence
+  - Système sauvegarde + monitoring temps réel + plan récupération
+  - Validation unicité email + protection injection SQL
+  - 6 guides opérationnels pour autonomie totale
 
 ---
 
