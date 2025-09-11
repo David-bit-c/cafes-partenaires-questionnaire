@@ -32,8 +32,8 @@ export interface SubmissionData {
   emergingChallengesDescription?: string;
   
   // Page 5.5 - Facteurs rupture et maintien formation
-  ruptureFactorsFavorable?: ('accompagnement_psy' | 'soutien_financier' | 'flexibilite_horaires' | 'relation_confiance' | 'projet_clarifie' | 'resolution_problemes' | 'autre')[];
-  ruptureFactorsNegative?: ('sante_mentale_non_traitee' | 'difficultes_financieres' | 'manque_motivation' | 'problemes_familiaux' | 'inadequation_formation' | 'manque_soutien' | 'autre')[];
+  ruptureFactorsFavorable?: ('accompagnement_individualise' | 'soutien_competences_base' | 'stabilisation_situation' | 'adaptation_pedagogique' | 'soutien_financier_materiel' | 'orientation_adaptee')[];
+  ruptureFactorsNegative?: ('lacunes_scolaires' | 'instabilite_psycho_sociale' | 'inadequation_orientation' | 'isolement_social' | 'difficultes_integration' | 'demotivation_perte_sens')[];
   ruptureFactorsOther?: string;
   skipRuptureSection?: boolean;
   

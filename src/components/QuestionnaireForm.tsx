@@ -25,23 +25,21 @@ const challengesOptions = [
 ];
 
 const ruptureFactorsFavorableOptions = [
-    {id: 'accompagnement_psy', label: 'Accompagnement psychologique renforcé'},
-    {id: 'soutien_financier', label: 'Soutien financier adapté'},
-    {id: 'flexibilite_horaires', label: 'Flexibilité des horaires/modalités'},
-    {id: 'relation_confiance', label: 'Relation de confiance avec un référent'},
-    {id: 'projet_clarifie', label: 'Projet professionnel clarifié'},
-    {id: 'resolution_problemes', label: 'Résolution des problématiques personnelles'},
-    {id: 'autre', label: 'Autre'}
+    {id: 'accompagnement_individualise', label: 'Accompagnement individualisé renforcé'},
+    {id: 'soutien_competences_base', label: 'Soutien aux compétences de base'},
+    {id: 'stabilisation_situation', label: 'Stabilisation situation personnelle'},
+    {id: 'adaptation_pedagogique', label: 'Adaptation pédagogique'},
+    {id: 'soutien_financier_materiel', label: 'Soutien financier et matériel'},
+    {id: 'orientation_adaptee', label: 'Orientation et projet adaptés'}
 ];
 
 const ruptureFactorsNegativeOptions = [
-    {id: 'sante_mentale_non_traitee', label: 'Problèmes de santé mentale non traités'},
-    {id: 'difficultes_financieres', label: 'Difficultés financières persistantes'},
-    {id: 'manque_motivation', label: 'Manque de motivation/sens du projet'},
-    {id: 'problemes_familiaux', label: 'Problèmes familiaux ou sociaux'},
-    {id: 'inadequation_formation', label: 'Inadéquation formation/profil du jeune'},
-    {id: 'manque_soutien', label: 'Manque de soutien de l\'entourage'},
-    {id: 'autre', label: 'Autre'}
+    {id: 'lacunes_scolaires', label: 'Lacunes scolaires importantes'},
+    {id: 'instabilite_psycho_sociale', label: 'Instabilité psycho-sociale'},
+    {id: 'inadequation_orientation', label: 'Inadéquation orientation initiale'},
+    {id: 'isolement_social', label: 'Isolement social et manque de pairs'},
+    {id: 'difficultes_integration', label: 'Difficultés d\'intégration'},
+    {id: 'demotivation_perte_sens', label: 'Démotivation et perte de sens'}
 ];
 
 const renderQuestion = (title: string, children: React.ReactNode, subtitle?: string) => (
@@ -532,11 +530,11 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
                     {!watch('skipRuptureSection') && (
                         <>
-                            {renderQuestion("Selon votre expérience, quels sont les facteurs qui favorisent le plus la reprise de formation chez un·e jeune après une rupture ?", (
+                            {renderQuestion("Selon votre expérience, quels facteurs facilitent le mieux la réussite du parcours de formation des jeunes en difficulté ?", (
                                 <div className="space-y-2">
                                     <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 facteurs</p>
                                     <div className="space-y-4">
-                                        {ruptureFactorsFavorableOptions.filter(opt => opt.id !== 'autre').map(opt => (
+                                        {ruptureFactorsFavorableOptions.map(opt => (
                                             <Controller
                                                 key={opt.id}
                                                 name="ruptureFactorsFavorable"
@@ -578,11 +576,11 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                 </div>
                             ), "Maximum 3 choix")}
 
-                            {renderQuestion("D'après votre observation, quels facteurs augmentent le plus les risques d'abandon en cours de formation ?", (
+                            {renderQuestion("D'après votre observation, quels facteurs compromettent le plus la réussite d'un parcours de formation ?", (
                                 <div className="space-y-2">
                                     <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 facteurs</p>
                                     <div className="space-y-4">
-                                        {ruptureFactorsNegativeOptions.filter(opt => opt.id !== 'autre').map(opt => (
+                                        {ruptureFactorsNegativeOptions.map(opt => (
                                             <Controller
                                                 key={opt.id}
                                                 name="ruptureFactorsNegative"
@@ -622,17 +620,19 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                         ))}
                                     </div>
 
-                                    {/* Option "Autre" avec champ texte pour les deux questions */}
-                                    {(watch('ruptureFactorsFavorable')?.includes('autre') || watch('ruptureFactorsNegative')?.includes('autre')) && (
-                                        <div className="mt-4">
-                                            <textarea 
-                                                {...register("ruptureFactorsOther")} 
-                                                rows={3} 
-                                                placeholder="Précisez le(s) autre(s) facteur(s)..." 
-                                                className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-y" 
-                                            />
-                                        </div>
-                                    )}
+                                    {/* Champ libre unique pour facteurs supplémentaires */}
+                                    <div className="mt-6 pt-4 border-t border-border">
+                                        <label className="block text-sm font-medium text-foreground mb-2">
+                                            Souhaitez-vous mentionner d'autres facteurs importants concernant la rupture/maintien en formation ?
+                                        </label>
+                                        <textarea 
+                                            {...register("ruptureFactorsOther")} 
+                                            rows={3} 
+                                            placeholder="Facteurs supplémentaires (optionnel - max 200 caractères)..." 
+                                            maxLength={200}
+                                            className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-y" 
+                                        />
+                                    </div>
                                 </div>
                             ), "Maximum 3 choix")}
                         </>

@@ -289,19 +289,19 @@ function analyzeYouthIssuesData(data) {
     // Labels pour conversion
     const factorLabels = {
       // Facteurs favorables
-      accompagnement_psy: 'Accompagnement psychologique renforcé',
-      soutien_financier: 'Soutien financier adapté',
-      flexibilite_horaires: 'Flexibilité des horaires/modalités',
-      relation_confiance: 'Relation de confiance avec un référent',
-      projet_clarifie: 'Projet professionnel clarifié',
-      resolution_problemes: 'Résolution des problématiques personnelles',
+      accompagnement_individualise: 'Accompagnement individualisé renforcé',
+      soutien_competences_base: 'Soutien aux compétences de base',
+      stabilisation_situation: 'Stabilisation situation personnelle',
+      adaptation_pedagogique: 'Adaptation pédagogique',
+      soutien_financier_materiel: 'Soutien financier et matériel',
+      orientation_adaptee: 'Orientation et projet adaptés',
       // Facteurs défavorables
-      sante_mentale_non_traitee: 'Problèmes de santé mentale non traités',
-      difficultes_financieres: 'Difficultés financières persistantes',
-      manque_motivation: 'Manque de motivation/sens du projet',
-      problemes_familiaux: 'Problèmes familiaux ou sociaux',
-      inadequation_formation: 'Inadéquation formation/profil du jeune',
-      manque_soutien: 'Manque de soutien de l\'entourage'
+      lacunes_scolaires: 'Lacunes scolaires importantes',
+      instabilite_psycho_sociale: 'Instabilité psycho-sociale',
+      inadequation_orientation: 'Inadéquation orientation initiale',
+      isolement_social: 'Isolement social et manque de pairs',
+      difficultes_integration: 'Difficultés d\'intégration',
+      demotivation_perte_sens: 'Démotivation et perte de sens'
     };
     
     // Facteurs favorables reprise
@@ -309,10 +309,8 @@ function analyzeYouthIssuesData(data) {
     ruptureResponses.forEach(d => {
       if (d.ruptureFactorsFavorable) {
         d.ruptureFactorsFavorable.forEach(factor => {
-          if (factor !== 'autre') {
-            const label = factorLabels[factor] || factor;
-            favorableFactors[label] = (favorableFactors[label] || 0) + 1;
-          }
+          const label = factorLabels[factor] || factor;
+          favorableFactors[label] = (favorableFactors[label] || 0) + 1;
         });
       }
     });
@@ -329,10 +327,8 @@ function analyzeYouthIssuesData(data) {
     ruptureResponses.forEach(d => {
       if (d.ruptureFactorsNegative) {
         d.ruptureFactorsNegative.forEach(factor => {
-          if (factor !== 'autre') {
-            const label = factorLabels[factor] || factor;
-            negativeFactors[label] = (negativeFactors[label] || 0) + 1;
-          }
+          const label = factorLabels[factor] || factor;
+          negativeFactors[label] = (negativeFactors[label] || 0) + 1;
         });
       }
     });
