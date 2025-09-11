@@ -1,3 +1,51 @@
+## 2025-01-15 - [EUREKA] OPTIMISATION QUESTIONS RUPTURE FORMATION 🎯
+
+**🚀 OPTIMISATION MAJEURE - Pertinence terrain suisse renforcée**
+
+**Contexte :** Suite à analyse de pertinence, refonte complète des questions facteurs rupture/maintien pour adaptation optimale au contexte suisse d'insertion professionnelle et enquête 1000+ professionnels.
+
+### **📋 QUESTIONS RÉVISÉES - Plus précises et actionnables**
+- ✅ **Question 1** : "Quels facteurs facilitent le mieux la réussite du parcours de formation des jeunes en difficulté ?"
+- ✅ **Question 2** : "Quels facteurs compromettent le plus la réussite d'un parcours de formation ?"
+- ✅ **Formulation optimisée** : Focus "réussite parcours" vs "reprise après rupture"
+
+### **✨ NOUVEAUX FACTEURS FAVORABLES (6 options)**
+1. **Accompagnement individualisé renforcé** (mentor, référent unique)
+2. **Soutien aux compétences de base** ⭐ *NOUVEAU* (niveau scolaire, remise à niveau)
+3. **Stabilisation situation personnelle** (logement, santé, famille)
+4. **Adaptation pédagogique** (rythme, modalités, aménagements)
+5. **Soutien financier et matériel** (bourses, transport, équipement)
+6. **Orientation et projet adaptés** (adéquation formation/profil)
+
+### **⚠️ NOUVEAUX FACTEURS DÉFAVORABLES (6 options)**
+1. **Lacunes scolaires importantes** ⭐ *NOUVEAU* (niveau insuffisant, troubles apprentissage)
+2. **Instabilité psycho-sociale** (santé mentale, précarité, conflits familiaux)
+3. **Inadéquation orientation initiale** (mauvais choix formation/métier)
+4. **Isolement social et manque de pairs** ⭐ *NOUVEAU* (pas d'amis, pas de modèles positifs)
+5. **Difficultés d'intégration** (entreprise, classe, barrières culturelles)
+6. **Démotivation et perte de sens** (projet flou, échecs répétés)
+
+### **💡 INNOVATION ERGONOMIQUE**
+- ✅ **Champ libre unique** : "Autres facteurs importants concernant rupture/maintien formation ?"
+- ✅ **Limite optimisée** : 200 caractères maximum pour focus
+- ✅ **Suppression redondance** : Plus d'options "Autre" multiples
+- ✅ **Cohérence visuelle** : 6 facteurs max (contraintes graphiques respectées)
+
+### **🔧 IMPACTS TECHNIQUES**
+- ✅ **Types TypeScript** : IDs facteurs optimisés (accompagnement_individualise, lacunes_scolaires, etc.)
+- ✅ **Dashboard** : Labels graphiques mis à jour, calculs simplifiés
+- ✅ **Synthèse IA** : Intégration nouveaux facteurs dans analyse Gemini
+- ✅ **Validation form** : Logique "autre" supprimée, champ libre toujours visible
+
+### **📊 GAINS QUALITATIFS**
+- 🎯 **Pertinence accrue** : Facteurs terrain suisse contextualisés
+- 🧠 **Niveau scolaire** : Facteur critique enfin pris en compte
+- 🤝 **Isolement social** : Dimension relationnelle valorisée
+- 📈 **Analyse riche** : Données plus exploitables pour expliquer chiffres CAP
+- 🎨 **UX optimisée** : Interface plus fluide, moins de friction
+
+---
+
 ## 2025-01-15 - [EUREKA] PROJET SÉCURISÉ ET PRODUCTION-READY 🔒
 
 **🛡️ SÉCURISATION COMPLÈTE POUR 1000+ QUESTIONNAIRES**
