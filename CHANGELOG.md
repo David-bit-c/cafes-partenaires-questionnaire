@@ -1,3 +1,61 @@
+## 2025-01-15 - ⚠️ IMPORTANT: NETTOYAGE BASE REQUIS AVANT PRODUCTION
+
+**🧹 ACTION REQUISE AVANT LANCEMENT**
+
+**Contexte :** Détection de 6 questionnaires test présents dans la base de données de production qui doivent être supprimés avant envoi aux vrais professionnels.
+
+### **📊 DONNÉES TEST DÉTECTÉES**
+- ✅ **6 soumissions test** confirmées via `/api/backup`
+- ✅ **Emails test** : formats `@icloud.com` et autres domaines test
+- ✅ **Contenu développement** : Données de validation technique
+
+### **🛠️ PROCÉDURE NETTOYAGE OBLIGATOIRE**
+1. **Connexion Cloudflare** : https://dash.cloudflare.com
+2. **Workers & Pages** → **D1** → `cafes_partenaires`
+3. **Console SQL** → Exécuter : `DELETE FROM submissions;`
+4. **Vérification** : `/api/backup` doit retourner `"total_records": 0`
+
+### **⚠️ CRITICITÉ**
+- 🔴 **BLOQUANT** : Empêche lancement production propre
+- 📊 **IMPACT** : Pollution données réelles par données test
+- ✅ **SOLUTION** : Nettoyage simple via interface Cloudflare
+- 🎯 **RÉSULTAT** : Base vide prête pour vraies soumissions
+
+**💡 NOTE** : Procédure reportée à prochaine session selon demande utilisateur.
+
+---
+
+## 2025-01-15 - [EUREKA] ENRICHISSEMENT RÔLES PROFESSIONNELS 👥
+
+**🎯 EXTENSION CIBLÉE - Couverture professionnels élargie**
+
+**Contexte :** Suite à analyse des manques dans la liste des rôles professionnels, ajout de 3 nouveaux rôles stratégiques pour meilleure représentativité des acteurs terrain genevois.
+
+### **👥 NOUVEAUX RÔLES AJOUTÉS (19 → 22 rôles)**
+1. **"Enseignant·e"** → Contact direct décrochage scolaire, facteur clé identifié
+2. **"Infirmier·ère"** → Santé mentale terrain, enjeu majeur problématiques jeunes
+3. **"Représentant·e d'association professionnelle"** → Spécifique cafés partenaires CAP
+
+### **🎯 LOGIQUE D'AJOUT**
+- ✅ **Secteur éducation** : Enseignants en première ligne décrochage scolaire
+- ✅ **Secteur santé** : Infirmiers contact crucial santé mentale jeunes
+- ✅ **Secteur associatif** : Représentants invités aux cafés partenaires
+- ✅ **Généricité maintenue** : Éviter liste trop détaillée (pas "infirmier psychiatrie")
+
+### **🔧 IMPACTS TECHNIQUES**
+- ✅ **Array professionalRoles** : Extension avec ordre alphabétique respecté
+- ✅ **Type TypeScript** : Simplification `professionalRole: string` (plus souple)
+- ✅ **Cohérence interface** : Intégration harmonieuse dans sélecteur existant
+- ✅ **Build + déploiement** : Validation compilation réussie
+
+### **📊 BÉNÉFICES TERRAIN**
+- 🎯 **Couverture élargie** : Secteurs clés santé/éducation/associatif inclus
+- 📈 **Représentativité** : Meilleure correspondance acteurs terrain genevois
+- 🔄 **Flexibilité** : Type string permet évolutions futures faciles
+- ✅ **Prêt enquête** : Liste complète pour 1000+ professionnels
+
+---
+
 ## 2025-01-15 - [EUREKA] OPTIMISATION QUESTIONS RUPTURE FORMATION 🎯
 
 **🚀 OPTIMISATION MAJEURE - Pertinence terrain suisse renforcée**
