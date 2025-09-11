@@ -13,9 +13,10 @@ const professionalRoles = [
     "Animateur·trice socioculturel·le", "Assistant·e social·e", "Chargé·e d'accompagnement / d'insertion professionnelle",
     "Coach en insertion", "Conseiller·ère en formation", "Conseiller·ère en orientation", "Coordinateur·trice de projet",
     "Curateur·trice / Tuteur·trice professionnel·le", "Directeur·trice / Responsable de service", "Éducateur·trice social·e",
-    "Formateur·trice (en entreprise, atelier, etc.)", "Intervenant·e socio-éducatif·ve", "Logopédiste / Spécialiste en troubles d'apprentissage",
-    "Maître·sse socioprofessionnel·le", "Mentor·e en entreprise", "Psychologue", "Psychopédagogue",
-    "Travailleur·euse social·e", "Travailleur·euse social·e hors murs (TSHM)", "Autre"
+    "Enseignant·e", "Formateur·trice (en entreprise, atelier, etc.)", "Infirmier·ère", "Intervenant·e socio-éducatif·ve", 
+    "Logopédiste / Spécialiste en troubles d'apprentissage", "Maître·sse socioprofessionnel·le", "Mentor·e en entreprise", 
+    "Psychologue", "Psychopédagogue", "Représentant·e d'association professionnelle", "Travailleur·euse social·e", 
+    "Travailleur·euse social·e hors murs (TSHM)", "Autre"
 ];
 
 const challengesOptions = [

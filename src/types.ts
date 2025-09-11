@@ -39,7 +39,7 @@ export interface SubmissionData {
   
   // Page 6 (Anciennement 5)
   specializationObstacles: string;
-  professionalRole: 'Coach en insertion' | 'Assistant social' | 'Psychologue' | 'Éducateur' | 'Conseiller ORP' | 'Job-coach' | 'Autre';
+  professionalRole: string;
   professionalRoleOther?: string;
   email: string;
 }
