@@ -523,7 +523,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                         className="mr-3 h-4 w-4 text-primary border-border rounded focus:ring-primary"
                                     />
                                     <span className="text-muted-foreground">
-                                        Passer cette section
+                                        Je n'ai pas de contact direct avec des jeunes en rupture de formation
                                     </span>
                                 </label>
                             )}
