@@ -15,7 +15,7 @@ const professionalRoles = [
     "Curateur·trice / Tuteur·trice professionnel·le", "Directeur·trice / Responsable de service", "Éducateur·trice social·e",
     "Formateur·trice (en entreprise, atelier, etc.)", "Intervenant·e socio-éducatif·ve", "Logopédiste / Spécialiste en troubles d'apprentissage",
     "Maître·sse socioprofessionnel·le", "Mentor·e en entreprise", "Psychologue", "Psychopédagogue",
-    "Travailleur·euse social·e (HES)", "Travailleur·euse social·e hors murs (TSHM)", "Autre"
+    "Travailleur·euse social·e", "Travailleur·euse social·e hors murs (TSHM)", "Autre"
 ];
 
 const challengesOptions = [
@@ -523,7 +523,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                         className="mr-3 h-4 w-4 text-primary border-border rounded focus:ring-primary"
                                     />
                                     <span className="text-muted-foreground">
-                                        Je n'ai pas assez d'expérience avec des jeunes en rupture de formation pour répondre à cette section
+                                        Passer cette section
                                     </span>
                                 </label>
                             )}
