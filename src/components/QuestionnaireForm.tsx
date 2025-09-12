@@ -370,35 +370,48 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                 <>
                     {renderSectionHeader("Perception des problématiques des jeunes", "Votre expertise nous est précieuse pour affiner notre compréhension.")}
                     {renderQuestion("Parmi ces défis, lesquels observez-vous le plus souvent ?", 
-                        <div className="space-y-4">
+                        <div className="space-y-2">
+                            <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 défis</p>
+                            <div className="space-y-4">
                         {challengesOptions.map(opt => (
                           <div key={opt.id}>
-                            <label className="flex items-center p-4 rounded-lg bg-card/80 hover:bg-card cursor-pointer border border-border transition-all">
+                            <label className={`flex items-center p-4 rounded-lg border transition-all ${
+                                (watch('observedChallenges')?.length || 0) < 3 || watch('observedChallenges')?.includes(opt.id)
+                                    ? 'bg-card/80 hover:bg-card cursor-pointer border-border' 
+                                    : 'bg-muted/30 cursor-not-allowed border-muted'
+                            }`}>
                                <Controller
                                 name="observedChallenges"
                                 control={control}
                                 rules={{ required: "Veuillez sélectionner au moins un défi." }}
-                                render={({ field }) => (
+                                render={({ field }) => {
+                                    const currentValues = field.value || [];
+                                    const isChecked = currentValues.includes(opt.id);
+                                    const canCheck = currentValues.length < 3 || isChecked;
+                                    
+                                    return (
                                   <div className="relative flex items-center">
                                     <input 
                                       type="checkbox" 
                                       id={`challenge-${opt.id}`}
                                       className="peer sr-only"
                                       value={opt.id}
-                                      checked={field.value?.includes(opt.id)}
+                                      checked={isChecked}
+                                      disabled={!canCheck}
                                       onChange={e => {
                                         const newValues = e.target.checked
-                                          ? [...(field.value || []), opt.id]
-                                          : field.value?.filter(v => v !== opt.id);
+                                          ? [...currentValues, opt.id]
+                                          : currentValues.filter(v => v !== opt.id);
                                         field.onChange(newValues);
                                       }}
                                     />
                                     <div className="w-6 h-6 rounded-md border-2 border-border peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all duration-200">
                                        <CheckIcon className="w-4 h-4 text-primary-foreground transform scale-0 peer-checked:scale-100 transition-transform duration-200" />
                                     </div>
-                                    <span className="ml-4 text-foreground font-medium">{opt.label}</span>
+                                    <span className={`ml-4 font-medium ${canCheck ? 'text-foreground' : 'text-muted-foreground'}`}>{opt.label}</span>
                                   </div>
-                                )}
+                                );
+                                }}
                               />
                             </label>
                             {opt.id === 'autre' && watch('observedChallenges')?.includes('autre') && (
@@ -406,8 +419,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                             )}
                           </div>
                         ))}
-                        {errors.observedChallenges && <p className="text-destructive text-sm mt-4">{errors.observedChallenges.message}</p>}
-                      </div>
+                            </div>
+                        </div>, "Maximum 3 choix"
                     )}
                      <NavigationButtons 
                         onNext={handleNext} 
@@ -465,30 +478,44 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                     {renderSectionHeader("Évolution des Problématiques", "Votre perspective sur les tendances est essentielle.")}
                     
                     {renderQuestion("Sur les 3-5 dernières années, quelles problématiques avez-vous perçues comme ayant nettement augmenté ou émergé ?", (
-                        <div className="space-y-4">
+                        <div className="space-y-2">
+                            <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 problématiques</p>
+                            <div className="space-y-4">
                             {challengesOptions.filter(opt => opt.id !== 'autre').map(opt => (
-                                <label key={opt.id} className="flex items-center p-4 rounded-lg bg-card/80 hover:bg-card cursor-pointer border border-border transition-all">
+                                <label key={opt.id} className={`flex items-center p-4 rounded-lg border transition-all ${
+                                    (watch('challengesHasEmerged')?.length || 0) < 3 || watch('challengesHasEmerged')?.includes(opt.id)
+                                        ? 'bg-card/80 hover:bg-card cursor-pointer border-border' 
+                                        : 'bg-muted/30 cursor-not-allowed border-muted'
+                                }`}>
                                     <Controller
                                         name="challengesHasEmerged"
                                         control={control}
-                                        render={({ field }) => (
+                                        render={({ field }) => {
+                                            const currentValues = field.value || [];
+                                            const isChecked = currentValues.includes(opt.id);
+                                            const canCheck = currentValues.length < 3 || isChecked;
+                                            
+                                            return (
                                             <div className="relative flex items-center">
-                                                <input type="checkbox" id={`emerged-${opt.id}`} className="peer sr-only" value={opt.id} checked={field.value?.includes(opt.id)}
+                                                <input type="checkbox" id={`emerged-${opt.id}`} className="peer sr-only" value={opt.id} checked={isChecked}
+                                                    disabled={!canCheck}
                                                     onChange={e => {
-                                                        const newValues = e.target.checked ? [...(field.value || []), opt.id] : field.value?.filter(v => v !== opt.id);
+                                                        const newValues = e.target.checked ? [...currentValues, opt.id] : currentValues.filter(v => v !== opt.id);
                                                         field.onChange(newValues);
                                                     }}
                                                 />
                                                 <div className="w-6 h-6 rounded-md border-2 border-border peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all duration-200">
                                                     <CheckIcon className="w-4 h-4 text-primary-foreground transform scale-0 peer-checked:scale-100 transition-transform duration-200" />
                                                 </div>
-                                                <span className="ml-4 text-foreground font-medium">{opt.label}</span>
+                                                <span className={`ml-4 font-medium ${canCheck ? 'text-foreground' : 'text-muted-foreground'}`}>{opt.label}</span>
                                             </div>
-                                        )}
+                                            );
+                                        }}
                                     />
                                 </label>
                             ))}
-                        </div>
+                            </div>
+                        </div>, "Maximum 3 choix"
                     ))}
 
                     {renderQuestion("Au-delà de cette liste, y a-t-il une nouvelle problématique majeure ou un phénomène nouveau que vous observez et qui vous semble important de signaler ?", (
