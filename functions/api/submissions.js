@@ -28,7 +28,7 @@ export async function onRequestPost(context) {
       
       if (emailCheckResult && emailCheckResult.count > 0) {
         return new Response(JSON.stringify({ 
-          error: "Cette adresse email a déjà été utilisée pour répondre au questionnaire. Pour garantir la qualité et la fiabilité de notre étude, chaque professionnel ne peut répondre qu'une seule fois avec sa propre adresse email. Si vous êtes un·e collègue, merci d'utiliser votre propre adresse email.",
+          error: "Cette adresse email a déjà été utilisée pour répondre au questionnaire. Pour garantir la qualité et la fiabilité de notre questionnaire, chaque professionnel ne peut répondre qu'une seule fois avec sa propre adresse email. Si vous êtes un·e collègue, merci d'utiliser votre propre adresse email.",
           errorType: "EMAIL_ALREADY_EXISTS"
         }), {
           status: 409, // Conflict
