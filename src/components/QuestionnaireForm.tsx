@@ -369,7 +369,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
             {currentStepId === 'challenges_observed' && (
                 <>
                     {renderSectionHeader("Perception des problématiques des jeunes", "Votre expertise nous est précieuse pour affiner notre compréhension.")}
-                    {renderQuestion("Parmi ces défis, lesquels observez-vous le plus souvent ?", 
+                    {renderQuestion("Parmi ces défis, lesquels observez-vous le plus souvent ?", (
                         <div className="space-y-2">
                             <p className="text-sm text-muted-foreground mb-4">Sélectionnez maximum 3 défis</p>
                             <div className="space-y-4">
@@ -420,8 +420,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                           </div>
                         ))}
                             </div>
-                        </div>, "Maximum 3 choix"
-                    )}
+                        </div>
+                    ), "Maximum 3 choix")}
                      <NavigationButtons 
                         onNext={handleNext} 
                         onPrevious={handlePrevious}
@@ -515,8 +515,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                 </label>
                             ))}
                             </div>
-                        </div>, "Maximum 3 choix"
-                    ))}
+                        </div>
+                    ), "Maximum 3 choix")}
 
                     {renderQuestion("Au-delà de cette liste, y a-t-il une nouvelle problématique majeure ou un phénomène nouveau que vous observez et qui vous semble important de signaler ?", (
                         <textarea {...register("emergingChallengesDescription")} rows={4} placeholder="Décrivez ici toute autre tendance ou phénomène émergent..." className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-y" />
