@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [formKey, setFormKey] = useState(Date.now());
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle'); // Initialiser le nouvel état
+  const [submissionError, setSubmissionError] = useState<string | null>(null); // Message d'erreur spécifique
 
   const fetchSubmissions = useCallback(async () => {
     try {
@@ -45,10 +46,17 @@ const App: React.FC = () => {
           throw new Error('La soumission a échoué');
         }
         setSubmissionStatus('submitted'); // Mettre à jour le statut en cas de succès
+        setSubmissionError(null); // Réinitialiser l'erreur en cas de succès
         window.scrollTo(0, 0);
 
     } catch (err) {
         setSubmissionStatus('error'); // Mettre à jour le statut en cas d'erreur
+        // Capturer le message d'erreur spécifique
+        if (err instanceof Error) {
+          setSubmissionError(err.message);
+        } else {
+          setSubmissionError('Nous n\'avons pas pu enregistrer votre réponse. Veuillez réessayer plus tard.');
+        }
         console.error(err);
     }
   }, []);
@@ -56,6 +64,7 @@ const App: React.FC = () => {
   // Fonction pour réinitialiser le formulaire depuis la page de confirmation
   const handleResetForm = () => {
     setSubmissionStatus('idle');
+    setSubmissionError(null); // Réinitialiser l'erreur
     setFormKey(Date.now()); // Changer la clé pour remonter un nouveau formulaire
   };
 
@@ -117,7 +126,9 @@ const App: React.FC = () => {
         return (
           <div className="text-center p-8 bg-red-50 rounded-lg">
             <h2 className="text-2xl font-bold text-red-700">Erreur de soumission</h2>
-            <p className="text-red-600 mt-2">Nous n'avons pas pu enregistrer votre réponse. Veuillez réessayer plus tard.</p>
+            <p className="text-red-600 mt-2 max-w-2xl mx-auto">
+              {submissionError || 'Nous n\'avons pas pu enregistrer votre réponse. Veuillez réessayer plus tard.'}
+            </p>
             <button onClick={handleResetForm} className="mt-4 bg-red-600 text-white font-bold py-2 px-4 rounded-lg">
               Réessayer
             </button>

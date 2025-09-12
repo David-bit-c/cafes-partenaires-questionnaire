@@ -27,6 +27,7 @@ export async function onRequestPost(context) {
       const emailCheckResult = await emailCheckStmt.bind(submissionData.email).first();
       
       if (emailCheckResult && emailCheckResult.count > 0) {
+        // Email déjà utilisé - message explicite pour qualité questionnaire
         return new Response(JSON.stringify({ 
           error: "Cette adresse email a déjà été utilisée pour répondre au questionnaire. Pour garantir la qualité et la fiabilité de notre questionnaire, chaque professionnel ne peut répondre qu'une seule fois avec sa propre adresse email. Si vous êtes un·e collègue, merci d'utiliser votre propre adresse email.",
           errorType: "EMAIL_ALREADY_EXISTS"
