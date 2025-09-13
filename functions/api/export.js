@@ -245,38 +245,54 @@ function generateCSVExport(data) {
 }
 
 /**
- * Génère un export Excel (format TSV pour compatibilité)
+ * Génère un export Excel (format TSV pour compatibilité Excel native)
+ * Format .xls avec Tab Separated Values pour ouverture directe Excel
  */
 function generateExcelExport(data) {
+  console.log("🔧 Génération export Excel - VERSION CORRIGÉE");
+  
   if (data.length === 0) {
     return new Response("Aucune donnée à exporter", {
       status: 404,
-      headers: { "Content-Type": "text/plain" }
+      headers: { 
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
-  // En-têtes TSV (Tab Separated Values - compatible Excel)
+  // En-têtes TSV (Tab Separated Values - format natif Excel)
   const headers = Object.keys(data[0]);
   let tsvContent = headers.join('\t') + '\n';
   
-  // Données
+  // Données avec nettoyage pour Excel
   data.forEach(row => {
     const tsvRow = headers.map(header => {
       const value = row[header];
       if (value === null || value === undefined) return '';
-      return String(value).replace(/\t/g, ' ').replace(/\n/g, ' ');
+      // Nettoyage spécial Excel : tabs, retours ligne, guillemets
+      return String(value)
+        .replace(/\t/g, ' ')
+        .replace(/\n/g, ' ')
+        .replace(/\r/g, ' ')
+        .replace(/"/g, '""');
     }).join('\t');
     tsvContent += tsvRow + '\n';
   });
 
-  const filename = `export_questionnaire_cafes_${new Date().toISOString().split('T')[0]}.xls`;
+  // Nom fichier avec timestamp pour éviter cache
+  const timestamp = new Date().toISOString().split('T')[0];
+  const filename = `questionnaire_cap_formations_${timestamp}.xls`;
   
   return new Response(tsvContent, {
     status: 200,
     headers: {
       "Content-Type": "application/vnd.ms-excel",
       "Content-Disposition": `attachment; filename="${filename}"`,
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0"
     }
   });
 }
