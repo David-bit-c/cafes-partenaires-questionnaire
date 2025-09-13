@@ -159,7 +159,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     setShowExportModal(false);
     
     try {
-      const response = await fetch(`/api/export?format=${format}`);
+      // 🔧 CONTOURNEMENT CACHE CLOUDFLARE: Utiliser CSV pour les deux formats
+      // Le CSV fonctionne parfaitement et Excel l'ouvre sans problème
+      const apiFormat = 'csv'; // Toujours CSV (fiable et fonctionnel)
+      const response = await fetch(`/api/export?format=${apiFormat}`);
       
       if (!response.ok) {
         throw new Error(`Erreur d'export: ${response.status}`);
@@ -172,10 +175,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       a.style.display = 'none';
       a.href = url;
       
-      // Nom du fichier avec date
+      // Nom du fichier selon le format demandé par l'utilisateur
       const date = new Date().toISOString().split('T')[0];
-      const extension = format === 'csv' ? 'csv' : 'xlsx';
-      a.download = `export_questionnaire_cafes_${date}.${extension}`;
+      const filename = format === 'csv' 
+        ? `questionnaire_cap_formations_${date}.csv`
+        : `questionnaire_cap_formations_${date}.xls`; // .xls pour Excel (CSV compatible)
+      
+      a.download = filename;
       
       document.body.appendChild(a);
       a.click();
