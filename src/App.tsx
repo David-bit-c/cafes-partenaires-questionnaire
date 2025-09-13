@@ -122,15 +122,24 @@ const App: React.FC = () => {
       case 'submitted':
         return <Confirmation onReset={handleResetForm} />;
       case 'error':
-         // Vous pourriez créer un composant d'erreur dédié ici
+         // Composant d'information adaptatif selon le type d'erreur
+        const isEmailDuplicate = submissionError?.includes('Cette adresse email a déjà été utilisée');
+        
         return (
-          <div className="text-center p-8 bg-red-50 rounded-lg">
-            <h2 className="text-2xl font-bold text-red-700">Erreur de soumission</h2>
-            <p className="text-red-600 mt-2 max-w-2xl mx-auto">
+          <div className={`text-center p-8 rounded-lg ${isEmailDuplicate ? 'bg-blue-50' : 'bg-red-50'}`}>
+            <h2 className={`text-2xl font-bold ${isEmailDuplicate ? 'text-blue-700' : 'text-red-700'}`}>
+              {isEmailDuplicate ? 'Email déjà utilisé' : 'Erreur de soumission'}
+            </h2>
+            <p className={`mt-2 max-w-2xl mx-auto ${isEmailDuplicate ? 'text-blue-600' : 'text-red-600'}`}>
               {submissionError || 'Nous n\'avons pas pu enregistrer votre réponse. Veuillez réessayer plus tard.'}
             </p>
-            <button onClick={handleResetForm} className="mt-4 bg-red-600 text-white font-bold py-2 px-4 rounded-lg">
-              Réessayer
+            <button 
+              onClick={handleResetForm} 
+              className={`mt-4 font-bold py-2 px-4 rounded-lg text-white ${
+                isEmailDuplicate ? 'bg-blue-600 hover:bg-blue-700' : 'bg-red-600 hover:bg-red-700'
+              }`}
+            >
+              {isEmailDuplicate ? 'Utiliser une autre adresse' : 'Réessayer'}
             </button>
           </div>
         );
