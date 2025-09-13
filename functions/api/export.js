@@ -269,12 +269,12 @@ function generateExcelExport(data) {
     tsvContent += tsvRow + '\n';
   });
 
-  const filename = `export_questionnaire_cafes_${new Date().toISOString().split('T')[0]}.xlsx`;
+  const filename = `export_questionnaire_cafes_${new Date().toISOString().split('T')[0]}.xls`;
   
   return new Response(tsvContent, {
     status: 200,
     headers: {
-      "Content-Type": "application/vnd.ms-excel; charset=utf-8",
+      "Content-Type": "application/vnd.ms-excel",
       "Content-Disposition": `attachment; filename="${filename}"`,
       "Access-Control-Allow-Origin": "*"
     }
