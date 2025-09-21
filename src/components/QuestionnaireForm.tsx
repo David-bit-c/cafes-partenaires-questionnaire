@@ -361,7 +361,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         onNext={handleNext} 
                         onPrevious={handlePrevious}
                         canGoNext={true} 
-                        canGoPrevious={currentStepIndex > 0} 
+                        canGoPrevious={currentStepIndex > 0}
+                        isNextDisabled={!watch('cafesKnowledge')?.length || !watch('cafesCommunication') || !watch('cafesEnjoyment')?.length}
                     />
                 </>
             )}
@@ -426,7 +427,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         onNext={handleNext} 
                         onPrevious={handlePrevious}
                         canGoNext={true} 
-                        canGoPrevious={currentStepIndex > 0} 
+                        canGoPrevious={currentStepIndex > 0}
+                        isNextDisabled={!watch('observedChallenges')?.length}
                     />
                 </>
             )}
@@ -468,7 +470,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         onNext={handleNext} 
                         onPrevious={handlePrevious}
                         canGoNext={true} 
-                        canGoPrevious={currentStepIndex > 0} 
+                        canGoPrevious={currentStepIndex > 0}
+                        isNextDisabled={false}
                     />
                 </>
             )}
@@ -526,7 +529,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         onNext={handleNext} 
                         onPrevious={handlePrevious}
                         canGoNext={true} 
-                        canGoPrevious={currentStepIndex > 0} 
+                        canGoPrevious={currentStepIndex > 0}
+                        isNextDisabled={!watch('challengesHasEmerged')?.length}
                     />
                 </>
             )}
