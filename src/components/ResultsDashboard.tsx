@@ -160,8 +160,9 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   const handleAdminAuth = () => {
     if (adminPassword === 'CAP_EXPORT_2025') {
       setIsAdminAuthenticated(true);
-      setShowAdminModal(false);
       setAdminPassword('');
+      setShowPassword(false);
+      // Modal reste ouverte mais passe en mode export
     } else {
       alert('Code incorrect');
       setAdminPassword('');
@@ -409,15 +410,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
           <CardTitle className="flex items-center text-xl font-bold">
             Synthèse des Réponses
           </CardTitle>
-          {isAdminAuthenticated && (
-            <button
-              onClick={handleExport}
-              disabled={isExporting || submissions.length === 0}
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
-            >
-              {isExporting ? 'Export en cours...' : 'Exporter en CSV'}
-            </button>
-          )}
         </CardHeader>
         <CardContent>
             {/* Afficher le nombre total et le nombre filtré */}
@@ -581,66 +573,131 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         </div>
       </div>
 
-      {/* Modal Admin */}
+      {/* Modal Admin - Centrage parfait + Export intégré */}
       {showAdminModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
-            <h3 className="text-lg font-bold mb-4 text-center">🔐 Accès Administrateur</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0}}>
+          <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl transform">
+            <h3 className="text-xl font-bold mb-2 text-center text-gray-800">🔐 Administration</h3>
             <p className="text-gray-600 mb-6 text-center text-sm">
-              Code requis pour exporter les données complètes avec informations institutionnelles.
+              Accès sécurisé pour l'export des données avec informations institutionnelles
             </p>
             
-            <div className="mb-6">
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={adminPassword}
-                  onChange={(e) => setAdminPassword(e.target.value)}
-                  placeholder="Code d'accès"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                      handleAdminAuth();
-                    }
-                  }}
-                  autoFocus
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showPassword ? (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M18.364 5.636L5.636 18.364" />
+            {!isAdminAuthenticated ? (
+              <>
+                {/* Phase 1: Authentification */}
+                <div className="mb-6">
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={adminPassword}
+                      onChange={(e) => setAdminPassword(e.target.value)}
+                      placeholder="Code d'accès administrateur"
+                      className="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          handleAdminAuth();
+                        }
+                      }}
+                      autoFocus
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      {showPassword ? (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M18.364 5.636L5.636 18.364" />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="flex justify-end space-x-3">
+                  <button
+                    onClick={() => {
+                      setShowAdminModal(false);
+                      setAdminPassword('');
+                      setShowPassword(false);
+                    }}
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors rounded-lg"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    onClick={handleAdminAuth}
+                    disabled={!adminPassword.trim()}
+                    className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Phase 2: Export disponible */}
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-            </div>
-            
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={() => {
-                  setShowAdminModal(false);
-                  setAdminPassword('');
-                }}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={handleAdminAuth}
-                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Valider
-              </button>
-            </div>
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-800 mb-2">Accès autorisé</h4>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {submissions.length} questionnaire(s) disponible(s) pour export
+                  </p>
+                </div>
+                
+                <div className="space-y-3 mb-6">
+                  <button
+                    onClick={handleExport}
+                    disabled={isExporting || submissions.length === 0}
+                    className="w-full flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm font-medium"
+                  >
+                    {isExporting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Export en cours...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Télécharger CSV complet
+                      </>
+                    )}
+                  </button>
+                  
+                  <div className="text-xs text-gray-500 text-center">
+                    🔒 Données anonymisées • 🏢 Enrichissement institutionnel
+                  </div>
+                </div>
+                
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => {
+                      setShowAdminModal(false);
+                      setIsAdminAuthenticated(false);
+                      setAdminPassword('');
+                      setShowPassword(false);
+                    }}
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-sm"
+                  >
+                    Fermer
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
