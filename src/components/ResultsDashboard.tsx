@@ -146,6 +146,9 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   
   // 3. État pour l'export des données
   const [isExporting, setIsExporting] = useState(false);
+  const [showAdminModal, setShowAdminModal] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [adminPassword, setAdminPassword] = useState('');
     
   // Mettre à jour les filtres lorsque les rôles changent
   React.useEffect(() => {
@@ -153,6 +156,17 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   }, [allRoles]);
 
   // Fonctions d'export
+  const handleAdminAuth = () => {
+    if (adminPassword === 'CAP_EXPORT_2025') {
+      setIsAdminAuthenticated(true);
+      setShowAdminModal(false);
+      setAdminPassword('');
+    } else {
+      alert('Code incorrect');
+      setAdminPassword('');
+    }
+  };
+
   const handleExport = async () => {
     setIsExporting(true);
     
@@ -380,13 +394,15 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
           <CardTitle className="flex items-center text-xl font-bold">
             Synthèse des Réponses
           </CardTitle>
-          <button
-            onClick={handleExport}
-            disabled={isExporting || submissions.length === 0}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
-          >
-            {isExporting ? 'Export en cours...' : 'Exporter en CSV'}
-          </button>
+          {isAdminAuthenticated && (
+            <button
+              onClick={handleExport}
+              disabled={isExporting || submissions.length === 0}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+            >
+              {isExporting ? 'Export en cours...' : 'Exporter en CSV'}
+            </button>
+          )}
         </CardHeader>
         <CardContent>
             {/* Afficher le nombre total et le nombre filtré */}
@@ -534,6 +550,67 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         </CardContent>
       </Card>
 
+      {/* Footer Admin - Zone discrète en bas */}
+      <div className="mt-16 pt-8 border-t border-gray-200">
+        <div className="flex items-center justify-center text-sm text-gray-400 space-x-4">
+          <span>CAP Formations</span>
+          <span>•</span>
+          <span>Questionnaire 2025</span>
+          <span>•</span>
+          <button
+            onClick={() => setShowAdminModal(true)}
+            className="text-gray-400 hover:text-gray-600 transition-colors text-sm underline"
+          >
+            🔓 Admin
+          </button>
+        </div>
+      </div>
+
+      {/* Modal Admin */}
+      {showAdminModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <h3 className="text-lg font-bold mb-4 text-center">🔐 Accès Administrateur</h3>
+            <p className="text-gray-600 mb-6 text-center text-sm">
+              Code requis pour exporter les données complètes avec informations institutionnelles.
+            </p>
+            
+            <div className="mb-6">
+              <input
+                type="password"
+                value={adminPassword}
+                onChange={(e) => setAdminPassword(e.target.value)}
+                placeholder="Code d'accès"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleAdminAuth();
+                  }
+                }}
+                autoFocus
+              />
+            </div>
+            
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => {
+                  setShowAdminModal(false);
+                  setAdminPassword('');
+                }}
+                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={handleAdminAuth}
+                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Valider
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
