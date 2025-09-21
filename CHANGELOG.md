@@ -1,4 +1,83 @@
-## 2025-01-15 - 🔧 SESSION FINALISATION TECHNIQUE : EXPORT EXCEL & PRODUCTION
+## 2025-09-21 - 📝 SESSION COMMUNICATION : FORMULATIONS DIPLOMATIQUES
+
+**🎯 OBJECTIF SESSION - Optimisation communication et formulations diplomatiques**
+
+**Contexte :** Session dédiée à l'amélioration des formulations pour un ton plus collaboratif et diplomatique, adaptée au contexte professionnel genevois. Focus sur l'esprit de co-construction des Cafés Partenaires.
+
+---
+
+### **🚀 CHRONOLOGIE SESSION COMMUNICATION (21 septembre 2025)**
+
+#### **1️⃣ RETOUR APRÈS 8 JOURS - VÉRIFICATION ÉTAT**
+- ✅ **Écart temporel** : Session précédente 13 septembre → 21 septembre (8 jours)
+- ✅ **Export Excel** : Problème persiste malgré délai cache (problème plus profond)
+- ✅ **Fonctionnalités** : Questionnaire 100% opérationnel sauf export Excel
+
+#### **2️⃣ OPTIMISATION PHRASES EXPLICATIVES [DIPLOMATIE]**
+- ✅ **Problème identifié** : Mentions "statistiques officielles" potentiellement présomptueuses
+- ✅ **Solution collaborative** : Formulations valorisant expertise collective vs hiérarchique
+- ✅ **Questionnaire** : "Votre expertise terrain..." → "Votre regard professionnel pour approfondir l'analyse des problématiques des jeunes en rupture"
+- ✅ **Résultats** : "enrichir statistiques officielles..." → "Cette synthèse valorise l'expérience collective et identifie les leviers d'action pour optimiser l'accompagnement des jeunes en rupture"
+
+#### **3️⃣ PHRASE INTRODUCTION - ESPRIT CO-CONSTRUCTION [EUREKA]**
+- ✅ **Analyse fine** : "pour nous aider" crée hiérarchie CAP/professionnels
+- ✅ **Solutions évaluées** : 4 options analysées pour esprit collaboratif optimal
+- ✅ **Choix stratégique** : "construire ensemble des réponses adaptées" (co-construction authentique)
+- ✅ **Transformation** : "pour nous aider à mieux accompagner" → "participent à construire ensemble des réponses adaptées pour les jeunes en rupture"
+
+#### **4️⃣ DIAGNOSTIC EXPORT EXCEL - PROBLÈME PERSISTANT**
+- 🚨 **Constat** : 8 jours écoulés, cache purgé mais problème Excel persiste
+- 🔍 **Analyse** : Solution contournement non propagée ou problème plus profond
+- 📊 **CSV fonctionnel** : Export CSV parfaitement opérationnel avec toutes données
+- 🎯 **Décision requise** : Lancement production avec CSV ou attente correction Excel
+
+---
+
+### **🎯 ACCOMPLISSEMENTS SESSION COMMUNICATION**
+
+#### **📊 MÉTRIQUES IMPACT**
+- **2 commits** déployés avec succès
+- **2 fichiers modifiés** (QuestionnaireForm.tsx, ResultsDashboard.tsx)
+- **3 phrases optimisées** pour communication diplomatique
+- **100% cohérence** esprit collaboratif Cafés Partenaires
+
+#### **🎨 INNOVATIONS COMMUNICATION**
+- **Ton diplomatique** : Élimination références hiérarchiques
+- **Esprit co-construction** : Valorisation partenariat égalitaire
+- **Terminologie précise** : "jeunes en rupture" vs "jeunes" générique
+- **Communication inclusive** : Messages adaptés contexte professionnel suisse
+
+#### **📈 QUALITÉ RELATIONNELLE**
+- **Respect expertise** : Valorisation expérience collective professionnels
+- **Collaboration authentique** : "Construire ensemble" vs "nous aider"
+- **Orientation action** : "Réponses adaptées" vs "accompagnement" générique
+- **Partenariat égalitaire** : Élimination ton descendant
+
+---
+
+### **🚀 STATUT SESSION COMMUNICATION**
+
+**✅ COMMUNICATION 100% OPTIMISÉE ET DIPLOMATIQUE**
+- Formulations respectueuses de l'expertise terrain
+- Esprit collaboratif authentique des Cafés Partenaires
+- Terminologie précise et inclusive
+- Ton professionnel adapté contexte genevois
+
+**🚨 PROBLÈME TECHNIQUE PERSISTANT**
+- Export Excel non résolu malgré 8 jours délai
+- Solution contournement inefficace
+- CSV fonctionnel avec toutes données
+
+**📋 PROCHAINES ACTIONS**
+1. Résolution définitive export Excel OU lancement avec CSV
+2. Nettoyage base données test
+3. Lancement production finale
+
+**🌟 INNOVATION MAJEURE : Communication diplomatique optimale pour engagement professionnel !**
+
+---
+
+## 2025-09-13 - 🔧 SESSION FINALISATION TECHNIQUE : EXPORT EXCEL & PRODUCTION
 
 **🎯 OBJECTIF SESSION - Résolution problème Excel + préparation lancement production**
 
