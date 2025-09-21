@@ -261,10 +261,10 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                     </div>
                     )}
 
-                    <div className="text-center mt-8 text-xs text-muted-foreground flex items-center justify-center gap-2 italic">
-                        <LockIcon className="w-4 h-4" />
-                        <span>Votre participation est entièrement anonyme. L'e-mail final sert uniquement à valider la soumission.</span>
-                    </div>
+          <div className="text-center mt-8 text-xs text-muted-foreground flex items-center justify-center gap-2 italic">
+            <LockIcon className="w-4 h-4" />
+            <span>Votre participation est confidentielle. L'e-mail sert uniquement à éviter les doublons et n'apparaît pas dans les résultats.</span>
+          </div>
 
                     <NavigationButtons 
                         onNext={handleNext} 
