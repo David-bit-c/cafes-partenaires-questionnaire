@@ -489,8 +489,8 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                     
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
                         <p className="text-blue-800 text-sm">
-                            💡 <strong>Note méthodologique :</strong> Ces résultats reflètent l'expertise terrain des professionnels 
-                            et viennent enrichir les statistiques officielles CAP avec des facteurs explicatifs concrets.
+                            💡 <strong>Note méthodologique :</strong> Cette synthèse valorise l'expérience collective des professionnels 
+                            et identifie les leviers d'action pour optimiser l'accompagnement des jeunes en rupture.
                         </p>
                     </div>
                 </>

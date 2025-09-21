@@ -533,7 +533,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
             
             {currentStepId === 'rupture_factors' && (
                 <>
-                    {renderSectionHeader("Facteurs de Rupture et Maintien en Formation", "Votre expertise terrain pour éclairer les statistiques officielles.")}
+                    {renderSectionHeader("Facteurs de Rupture et Maintien en Formation", "Votre regard professionnel pour approfondir l'analyse des problématiques des jeunes en rupture.")}
                     
                     {/* Option pour passer la section */}
                     <div className="mb-8 p-6 bg-muted/50 rounded-lg border border-border">
