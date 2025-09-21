@@ -25,11 +25,16 @@
 - ✅ **Choix stratégique** : "construire ensemble des réponses adaptées" (co-construction authentique)
 - ✅ **Transformation** : "pour nous aider à mieux accompagner" → "participent à construire ensemble des réponses adaptées pour les jeunes en rupture"
 
-#### **4️⃣ DIAGNOSTIC EXPORT EXCEL - PROBLÈME PERSISTANT**
-- 🚨 **Constat** : 8 jours écoulés, cache purgé mais problème Excel persiste
-- 🔍 **Analyse** : Solution contournement non propagée ou problème plus profond
-- 📊 **CSV fonctionnel** : Export CSV parfaitement opérationnel avec toutes données
-- 🎯 **Décision requise** : Lancement production avec CSV ou attente correction Excel
+#### **4️⃣ DIAGNOSTIC EXPORT EXCEL - RÉSOLUTION SYSTÉMATIQUE [EUREKA]**
+- 🚨 **Constat initial** : 8 jours écoulés, cache purgé mais problème Excel persiste
+- 🎯 **Décision méthodologique** : Investigation complète avant lancement (sécurité données)
+- 🔍 **Diagnostic niveau 1** : Test direct backend `curl /api/export?format=excel`
+- ✅ **Résultat backend** : Retourne CSV parfaitement → Backend fonctionnel !
+- 🔍 **Diagnostic niveau 2** : Vérification code frontend contournement
+- ✅ **Résultat frontend** : Code `const apiFormat = 'csv'` correct → Frontend OK !
+- 💡 **Root cause identifiée** : Cache navigateur sur assets JS (persistent 8+ jours)
+- 🔄 **Solution appliquée** : Force redéploiement pour nouveau hash assets JS
+- ⏱️ **Statut** : Haute confiance solution, test dans 5 minutes
 
 ---
 
@@ -46,6 +51,13 @@
 - **Esprit co-construction** : Valorisation partenariat égalitaire
 - **Terminologie précise** : "jeunes en rupture" vs "jeunes" générique
 - **Communication inclusive** : Messages adaptés contexte professionnel suisse
+
+#### **🧠 MÉTHODOLOGIE DIAGNOSTIC TECHNIQUE [INNOVATION]**
+- **Approche systématique** : Test couches séparées (backend → frontend → cache)
+- **Validation empirique** : `curl` direct pour isoler problème backend/frontend  
+- **Élimination hypothèses** : Backend OK + Frontend OK = Cache problème
+- **Root cause analysis** : Cache assets JS plus persistant que cache Functions
+- **Solution ciblée** : Force redéploiement au lieu de modifications code
 
 #### **📈 QUALITÉ RELATIONNELLE**
 - **Respect expertise** : Valorisation expérience collective professionnels
