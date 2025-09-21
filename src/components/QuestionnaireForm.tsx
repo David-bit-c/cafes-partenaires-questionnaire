@@ -218,7 +218,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
             <span className="bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">Partagez votre expertise</span>
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed text-balance max-w-3xl mx-auto">
-            Votre retour sur les "Cafés Partenaires" et votre vision des défis actuels sont essentiels pour nous aider à mieux accompagner les jeunes en rupture.
+            Votre retour sur les "Cafés Partenaires" et votre vision des défis actuels participent à construire ensemble des réponses adaptées pour les jeunes en rupture.
         </p>
       </div>
 
