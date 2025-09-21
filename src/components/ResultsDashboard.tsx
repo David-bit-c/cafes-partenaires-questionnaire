@@ -146,7 +146,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   
   // 3. État pour l'export des données
   const [isExporting, setIsExporting] = useState(false);
-  const [showExportModal, setShowExportModal] = useState(false);
     
   // Mettre à jour les filtres lorsque les rôles changent
   React.useEffect(() => {
@@ -154,15 +153,11 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   }, [allRoles]);
 
   // Fonctions d'export
-  const handleExport = async (format: 'csv' | 'excel') => {
+  const handleExport = async () => {
     setIsExporting(true);
-    setShowExportModal(false);
     
     try {
-      // 🔧 CONTOURNEMENT CACHE CLOUDFLARE: Utiliser CSV pour les deux formats
-      // Le CSV fonctionne parfaitement et Excel l'ouvre sans problème
-      const apiFormat = 'csv'; // Toujours CSV (fiable et fonctionnel)
-      const response = await fetch(`/api/export?format=${apiFormat}`);
+      const response = await fetch('/api/export?format=csv');
       
       if (!response.ok) {
         throw new Error(`Erreur d'export: ${response.status}`);
@@ -175,13 +170,9 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       a.style.display = 'none';
       a.href = url;
       
-      // Nom du fichier selon le format demandé par l'utilisateur
+      // Nom du fichier CSV
       const date = new Date().toISOString().split('T')[0];
-      const filename = format === 'csv' 
-        ? `questionnaire_cap_formations_${date}.csv`
-        : `questionnaire_cap_formations_${date}.xls`; // .xls pour Excel (CSV compatible)
-      
-      a.download = filename;
+      a.download = `questionnaire_cap_formations_${date}.csv`;
       
       document.body.appendChild(a);
       a.click();
@@ -390,11 +381,11 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             Synthèse des Réponses
           </CardTitle>
           <button
-            onClick={() => setShowExportModal(true)}
+            onClick={handleExport}
             disabled={isExporting || submissions.length === 0}
             className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
           >
-            {isExporting ? 'Export en cours...' : 'Exporter les données'}
+            {isExporting ? 'Export en cours...' : 'Exporter en CSV'}
           </button>
         </CardHeader>
         <CardContent>
@@ -543,49 +534,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         </CardContent>
       </Card>
 
-      {/* Modal d'export */}
-      {showExportModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
-            <h3 className="text-lg font-bold mb-4">Exporter les données</h3>
-            <p className="text-gray-600 mb-6">
-              Choisissez le format d'export souhaité. Les emails seront anonymisés 
-              et les données enrichies avec les informations institutionnelles.
-            </p>
-            
-            <div className="space-y-3 mb-6">
-              <button
-                onClick={() => handleExport('csv')}
-                className="w-full p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
-              >
-                <div className="font-medium">Format CSV</div>
-                <div className="text-sm text-gray-500">
-                  Compatible avec Excel, Google Sheets, analyses statistiques
-                </div>
-              </button>
-              
-              <button
-                onClick={() => handleExport('excel')}
-                className="w-full p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
-              >
-                <div className="font-medium">Format Excel</div>
-                <div className="text-sm text-gray-500">
-                  Ouverture directe dans Microsoft Excel
-                </div>
-              </button>
-            </div>
-            
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={() => setShowExportModal(false)}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Annuler
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
