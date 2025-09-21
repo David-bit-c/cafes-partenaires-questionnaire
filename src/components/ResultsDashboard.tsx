@@ -169,17 +169,23 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   };
 
   const handleExport = async () => {
+    console.log('🔧 DÉBUT handleExport');
     setIsExporting(true);
     
     try {
+      console.log('🔧 Appel API export...');
       const response = await fetch('/api/export?format=csv');
+      console.log('🔧 Réponse API:', response.status, response.statusText);
       
       if (!response.ok) {
         throw new Error(`Erreur d'export: ${response.status}`);
       }
       
       // Créer un lien de téléchargement
+      console.log('🔧 Création blob...');
       const blob = await response.blob();
+      console.log('🔧 Blob créé, taille:', blob.size);
+      
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.style.display = 'none';
@@ -189,16 +195,24 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       const date = new Date().toISOString().split('T')[0];
       a.download = `questionnaire_cap_formations_${date}.csv`;
       
+      console.log('🔧 Téléchargement:', a.download);
       document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      console.log('🔧 Click déclenché');
+      
+      // Cleanup
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        console.log('🔧 Cleanup terminé');
+      }, 100);
       
     } catch (error) {
-      console.error('Erreur lors de l\'export:', error);
+      console.error('❌ Erreur lors de l\'export:', error);
       alert(`Erreur lors de l'export: ${error.message}`);
     } finally {
       setIsExporting(false);
+      console.log('🔧 FIN handleExport');
     }
   };
 
