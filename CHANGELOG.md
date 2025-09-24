@@ -70,6 +70,8 @@
 - Activation/désactivation instantanée sans redéploiement
 - UX cohérente avec la protection admin existante
 
+**✅ VALIDATION :** Fonctionnalité testée et opérationnelle avec le code admin `CAP_EXPORT_2025`
+
 ---
 
 ## 2025-09-21 - [EUREKA] 🚀 LANCEMENT PRODUCTION OFFICIEL : PROJET TERMINÉ
