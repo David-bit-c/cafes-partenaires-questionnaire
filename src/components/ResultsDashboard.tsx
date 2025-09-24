@@ -150,11 +150,25 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [adminPassword, setAdminPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showSynthesis, setShowSynthesis] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('showSynthesis') === 'true';
+    } catch {
+      return false;
+    }
+  });
     
   // Mettre à jour les filtres lorsque les rôles changent
   React.useEffect(() => {
     setSelectedRoles(allRoles);
   }, [allRoles]);
+
+  // Persistance de l'état d'affichage de la synthèse (admin toggle)
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('showSynthesis', String(showSynthesis));
+    } catch {}
+  }, [showSynthesis]);
 
   // Fonctions d'export
   const handleAdminAuth = () => {
@@ -510,33 +524,37 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 </>
             )}
             
-            {/* Section Synthèse IA */}
-            <hr className="my-8 border-gray-200"/>
-            <Card>
-              <CardHeader>
-                <CardTitle>Synthèse</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {summaryError ? (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-700 font-medium">Erreur lors de la génération de la synthèse :</p>
-                    <p className="text-red-600 text-sm mt-1">{summaryError}</p>
-                  </div>
-                ) : summary ? (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
-                      {summary}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <p className="text-gray-600 text-center">
-                      🤖 Génération de la synthèse IA en cours...
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            {/* Section Synthèse IA (affichage conditionné par le toggle admin) */}
+            {showSynthesis && (
+              <>
+                <hr className="my-8 border-gray-200"/>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Synthèse</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {summaryError ? (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <p className="text-red-700 font-medium">Erreur lors de la génération de la synthèse :</p>
+                        <p className="text-red-600 text-sm mt-1">{summaryError}</p>
+                      </div>
+                    ) : summary ? (
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
+                          {summary}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <p className="text-gray-600 text-center">
+                          🤖 Génération de la synthèse IA en cours...
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </>
+            )}
         </>
       ) : (
         <Card>
@@ -641,7 +659,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
               </>
             ) : (
               <>
-                {/* Phase 2: Export disponible */}
+                {/* Phase 2: Export + Toggle Synthèse */}
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -655,6 +673,16 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 </div>
                 
                 <div className="space-y-3 mb-6">
+                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <label htmlFor="toggle-synthesis" className="text-sm text-gray-700">Afficher la synthèse (bloc IA)</label>
+                    <input
+                      id="toggle-synthesis"
+                      type="checkbox"
+                      checked={showSynthesis}
+                      onChange={(e) => setShowSynthesis(e.target.checked)}
+                      className="h-4 w-4"
+                    />
+                  </div>
                   <button
                     onClick={handleExport}
                     disabled={isExporting || submissions.length === 0}

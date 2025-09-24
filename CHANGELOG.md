@@ -27,6 +27,49 @@
 - **Cohérence totale** : Pattern unique appliqué partout
 - **Prêt 1000+ utilisateurs** : Expérience fluide garantie
 
+## 2025-09-21 - [EUREKA] 📧 COMMUNICATION PARFAITE : EMAILS FINALISÉS
+
+### 🎯 STRATÉGIE COMMUNICATION COMPLÈTE
+
+**📧 EMAIL PARTENAIRES INSTITUTIONNELS :**
+- **Objet optimisé** : "Questionnaire Cafés Partenaires - Votre expertise pour enrichir l'accompagnement des jeunes en rupture"
+- **Message inclusif** : participants passés ET futurs Cafés Partenaires
+- **Durée réaliste** : 5-10 minutes (ajustée après tests)
+- **Ton diplomatique** : collaboration, pas "aide" hiérarchique
+
+**📧 EMAIL ASSOCIATIONS PROFESSIONNELLES :**
+- **Approche hybride validée** : double participation possible
+- **Rôles clarifiés** : représentants + formateurs entreprise
+- **Cohérence tonale** : même esprit que email institutionnel
+- **Diffusion optimisée** : relais vers entreprises membres
+
+**💡 INNOVATIONS COMMUNICATION :**
+- **Anonymat vs confidentialité** : terminologie corrigée
+- **"Cafés Partenaires" dans objet** : identification immédiate
+- **Messages courts et directs** : efficacité professionnelle
+- **Inclusion maximale** : tous partenaires concernés
+
+**🎉 RÉSULTAT COMMUNICATION :**
+- **2 emails finalisés et validés** : prêts diffusion
+- **Stratégie claire** : institutionnels + associations professionnelles  
+- **Cohérence parfaite** : ton, durée, objectifs alignés
+- **Projet 100% prêt lancement** : communication + technique finalisés
+
+## 2025-09-21 - [EUREKA] 🔒 TOGGLE ADMIN SYNTHÈSE (MASQUER / AFFICHER)
+
+**Objectif :** contrôler l'affichage du bloc de synthèse IA pendant la collecte.
+
+**Implémentation :**
+- Ajout d'un toggle dans le modal admin (après authentification)
+- Persistance locale via `localStorage.showSynthesis` (par défaut: masqué)
+- Rendu conditionnel du bloc synthèse dans `ResultsDashboard.tsx`
+- Aucune incidence sur l'export ou les graphiques
+
+**Bénéfices :**
+- Évite une synthèse changeante pendant la collecte
+- Activation/désactivation instantanée sans redéploiement
+- UX cohérente avec la protection admin existante
+
 ---
 
 ## 2025-09-21 - [EUREKA] 🚀 LANCEMENT PRODUCTION OFFICIEL : PROJET TERMINÉ
