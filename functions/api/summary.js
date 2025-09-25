@@ -215,17 +215,29 @@ export async function onRequestGet(context) {
         summary = await callGemini();
         usedModel = "Google Gemini 1.5 Flash";
       } else {
-        // Mode auto : essayer Gemini puis fallback OpenAI
+        // Mode auto : essayer OpenAI d'abord (plus fiable pour usage public)
         try {
-          summary = await callGemini();
-          usedModel = "Google Gemini 1.5 Flash";
-        } catch (geminiError) {
-          console.log("Gemini échoué, fallback vers OpenAI:", geminiError.message);
           if (openaiKey) {
             summary = await callOpenAI();
-            usedModel = "OpenAI GPT-4o-mini (fallback)";
+            usedModel = "OpenAI GPT-4o-mini";
+          } else if (geminiKey) {
+            summary = await callGemini();
+            usedModel = "Google Gemini 1.5 Flash";
           } else {
-            throw new Error("Gemini échoué et OpenAI non disponible");
+            throw new Error("Aucune clé API disponible");
+          }
+        } catch (primaryError) {
+          console.log("API primaire échoué, fallback:", primaryError.message);
+          if (openaiKey && geminiKey) {
+            // Fallback vers l'autre API
+            try {
+              summary = await callGemini();
+              usedModel = "Google Gemini 1.5 Flash (fallback)";
+            } catch (fallbackError) {
+              throw new Error("Toutes les API ont échoué");
+            }
+          } else {
+            throw new Error("API primaire échoué et pas de fallback disponible");
           }
         }
       }
