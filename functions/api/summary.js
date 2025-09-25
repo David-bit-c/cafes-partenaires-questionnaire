@@ -12,14 +12,16 @@ export async function onRequestGet(context) {
     // Vérification des clés API disponibles
     const geminiKey = env.GEMINI_API_KEY;
     const openaiKey = env.OPENAI_API_KEY;
+    const claudeKey = env.CLAUDE_API_KEY;
     
     console.log("🔑 Clés API - Gemini:", geminiKey ? "✅ Configurée" : "❌ Manquante");
     console.log("🔑 Clés API - OpenAI:", openaiKey ? "✅ Configurée" : "❌ Manquante");
+    console.log("🔑 Clés API - Claude:", claudeKey ? "✅ Configurée" : "❌ Manquante");
     
-    if (!geminiKey && !openaiKey) {
+    if (!geminiKey && !openaiKey && !claudeKey) {
       return new Response(JSON.stringify({
         summary: "",
-        summaryError: "Aucune clé API IA trouvée (GEMINI_API_KEY ou OPENAI_API_KEY requis)."
+        summaryError: "Aucune clé API IA trouvée (GEMINI_API_KEY, OPENAI_API_KEY ou CLAUDE_API_KEY requis)."
       }), {
         status: 200,
         headers: { 
@@ -206,6 +208,44 @@ export async function onRequestGet(context) {
       return openaiData.choices?.[0]?.message?.content || "Erreur lors de la génération de la synthèse.";
     }
 
+    // Fonction pour appeler Claude
+    async function callClaude() {
+      if (!claudeKey) throw new Error("Clé Claude non disponible");
+      
+      console.log("🤖 Tentative appel Claude avec modèle claude-3-5-sonnet-20241022...");
+      const claudeResponse = await fetch(
+        "https://api.anthropic.com/v1/messages",
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': claudeKey,
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 1000,
+            messages: [
+              {
+                role: "user",
+                content: prompt
+              }
+            ]
+          })
+        }
+      );
+
+      if (!claudeResponse.ok) {
+        const errorText = await claudeResponse.text();
+        console.log("❌ Erreur Claude:", claudeResponse.status, errorText);
+        throw new Error(`Claude API error: ${claudeResponse.status} ${errorText}`);
+      }
+
+      console.log("✅ Claude réussi");
+      const claudeData = await claudeResponse.json();
+      return claudeData.content?.[0]?.text || "Erreur lors de la génération de la synthèse.";
+    }
+
     // Logique de choix selon la préférence admin
     try {
       if (adminPreference === 'openai' && openaiKey) {
@@ -216,12 +256,19 @@ export async function onRequestGet(context) {
         // Choix forcé Gemini
         summary = await callGemini();
         usedModel = "Google Gemini 1.5 Flash";
+      } else if (adminPreference === 'claude' && claudeKey) {
+        // Choix forcé Claude
+        summary = await callClaude();
+        usedModel = "Anthropic Claude 3.5 Sonnet";
       } else {
         // Mode auto : essayer OpenAI d'abord (plus fiable pour usage public)
         try {
           if (openaiKey) {
             summary = await callOpenAI();
             usedModel = "OpenAI GPT-4o-mini";
+          } else if (claudeKey) {
+            summary = await callClaude();
+            usedModel = "Anthropic Claude 3.5 Sonnet";
           } else if (geminiKey) {
             summary = await callGemini();
             usedModel = "Google Gemini 1.5 Flash";
@@ -230,8 +277,26 @@ export async function onRequestGet(context) {
           }
         } catch (primaryError) {
           console.log("API primaire échoué, fallback:", primaryError.message);
-          if (openaiKey && geminiKey) {
-            // Fallback vers l'autre API
+          if (openaiKey && claudeKey) {
+            // Fallback vers Claude
+            try {
+              summary = await callClaude();
+              usedModel = "Anthropic Claude 3.5 Sonnet (fallback)";
+            } catch (fallbackError) {
+              // Dernier recours : Gemini si disponible
+              if (geminiKey) {
+                try {
+                  summary = await callGemini();
+                  usedModel = "Google Gemini 1.5 Flash (fallback)";
+                } catch (geminiError) {
+                  throw new Error("Toutes les API ont échoué");
+                }
+              } else {
+                throw new Error("Toutes les API ont échoué");
+              }
+            }
+          } else if (openaiKey && geminiKey) {
+            // Fallback vers Gemini
             try {
               summary = await callGemini();
               usedModel = "Google Gemini 1.5 Flash (fallback)";

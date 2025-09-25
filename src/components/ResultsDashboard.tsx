@@ -722,12 +722,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                       onChange={(e) => setAiModelPreference(e.target.value)}
                       className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                     >
-                      <option value="auto">Auto (OpenAI → Gemini fallback)</option>
+                      <option value="auto">Auto (OpenAI → Claude → Gemini fallback)</option>
                       <option value="openai">Forcer OpenAI uniquement</option>
+                      <option value="claude">Forcer Claude uniquement</option>
                       <option value="gemini">Forcer Gemini uniquement</option>
                     </select>
                     <p className="text-xs text-gray-500 mt-1">
-                      Auto : essaie OpenAI puis bascule sur Gemini si échec
+                      Auto : essaie OpenAI → Claude → Gemini si échec
                     </p>
                   </div>
                   <button
