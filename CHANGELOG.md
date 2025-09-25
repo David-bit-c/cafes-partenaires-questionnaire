@@ -78,6 +78,36 @@
 - Décision : maintien configuration actuelle (variations minimes et non problématiques)
 - Toggle admin suffisant pour contrôle affichage pendant collecte
 
+## 2025-09-21 - [EUREKA] 🤖 FALLBACK IA GEMINI → OPENAI : Double sécurité synthèse
+
+### 🎯 PROBLÈME RÉSOLU
+- **Erreur Gemini 404** : Modèle non trouvé ou accès refusé
+- **Solution robuste** : Fallback automatique vers OpenAI GPT-4o-mini
+- **Choix admin** : Contrôle total du modèle via interface admin
+
+### ✅ IMPLÉMENTATION COMPLÈTE
+- **Fallback automatique** : Gemini → OpenAI si échec Gemini
+- **Choix forcé** : Admin peut forcer Gemini ou OpenAI uniquement
+- **Mode auto** : Essaie Gemini puis bascule sur OpenAI
+- **Affichage modèle** : Indication du modèle utilisé dans la synthèse
+
+### 🔧 FONCTIONNALITÉS TECHNIQUES
+- **API summary.js** : Logique de choix avec paramètre `ai_model`
+- **Interface admin** : Selecteur "Auto/Gemini/OpenAI" dans modal admin
+- **Persistance** : Préférence sauvegardée dans localStorage
+- **Refresh automatique** : Synthèse régénérée au changement de modèle
+
+### 📊 CONFIGURATION
+- **Variables d'environnement** : `GEMINI_API_KEY` + `OPENAI_API_KEY`
+- **Documentation** : `ENVIRONMENT_VARIABLES.md` créé
+- **Sécurité** : Clés API protégées côté serveur uniquement
+
+### 🎉 RÉSULTAT
+- **Fiabilité maximale** : Double sécurité avec deux fournisseurs IA
+- **Flexibilité admin** : Contrôle total du modèle utilisé
+- **UX transparente** : Fallback invisible pour l'utilisateur final
+- **Production ready** : Solution robuste pour 1000+ questionnaires
+
 ---
 
 ## 2025-09-21 - [EUREKA] 🚀 LANCEMENT PRODUCTION OFFICIEL : PROJET TERMINÉ

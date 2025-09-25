@@ -7,10 +7,11 @@ export interface ApiResponse {
   submissions: Submission[];
   summary: string;
   summaryError: string;
+  usedModel?: string;
 }
 
 export const apiService = {
-  getSubmissions: async (): Promise<ApiResponse> => {
+  getSubmissions: async (aiModelPreference?: string): Promise<ApiResponse> => {
     const response = await fetch(`${API_BASE_URL}/submissions`);
     if (!response.ok) {
       throw new Error('Failed to fetch submissions from the new API');
@@ -41,13 +42,20 @@ export const apiService = {
     // Appel à l'endpoint summary pour récupérer la synthèse IA
     let summary = '';
     let summaryError = '';
+    let usedModel = '';
     
     try {
-      const summaryResponse = await fetch(`${API_BASE_URL}/summary`);
+      // Construire l'URL avec le paramètre du modèle si fourni
+      const summaryUrl = aiModelPreference 
+        ? `${API_BASE_URL}/summary?ai_model=${aiModelPreference}`
+        : `${API_BASE_URL}/summary`;
+        
+      const summaryResponse = await fetch(summaryUrl);
       if (summaryResponse.ok) {
         const summaryData: any = await summaryResponse.json();
         summary = summaryData.summary || '';
         summaryError = summaryData.summaryError || '';
+        usedModel = summaryData.usedModel || '';
       } else {
         summaryError = 'Erreur lors de la récupération de la synthèse IA.';
       }
@@ -59,7 +67,8 @@ export const apiService = {
     return {
         submissions: adaptedSubmissions,
         summary: summary,
-        summaryError: summaryError
+        summaryError: summaryError,
+        usedModel: usedModel
     };
   },
 
@@ -74,7 +83,7 @@ export const apiService = {
 
     // Si erreur d'unicité email, enrichir le message d'erreur
     if (!response.ok && response.status === 409) {
-      const errorData = await response.json();
+      const errorData: any = await response.json();
       if (errorData.errorType === 'EMAIL_ALREADY_EXISTS') {
         throw new Error(errorData.error);
       }

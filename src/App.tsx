@@ -11,7 +11,7 @@ type SubmissionStatus = 'idle' | 'submitted' | 'error'; // Nouvel état pour gé
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('questionnaire');
-  const [apiData, setApiData] = useState<ApiResponse>({ submissions: [], summary: '', summaryError: '' });
+  const [apiData, setApiData] = useState<ApiResponse>({ submissions: [], summary: '', summaryError: '', usedModel: '' });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -19,11 +19,11 @@ const App: React.FC = () => {
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle'); // Initialiser le nouvel état
   const [submissionError, setSubmissionError] = useState<string | null>(null); // Message d'erreur spécifique
 
-  const fetchSubmissions = useCallback(async () => {
+  const fetchSubmissions = useCallback(async (aiModelPreference?: string) => {
     try {
       setIsLoading(true);
       setError(null);
-      const data = await apiService.getSubmissions();
+      const data = await apiService.getSubmissions(aiModelPreference);
       setApiData(data);
     } catch (err) {
       setError('Impossible de charger les résultats.');
@@ -112,6 +112,8 @@ const App: React.FC = () => {
             summaryError={apiData.summaryError}
             isLoading={isLoading}
             error={error}
+            usedModel={apiData.usedModel}
+            onRefreshSummary={fetchSubmissions}
           />
         </div>
       );

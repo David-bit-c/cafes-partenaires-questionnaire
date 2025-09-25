@@ -10,6 +10,8 @@ interface ResultsDashboardProps {
   summaryError: string;
   isLoading: boolean;
   error: string | null;
+  usedModel?: string;
+  onRefreshSummary?: (aiModelPreference: string) => void;
 }
 
 // Palette professionnelle sobre pour crédibilité maximale
@@ -130,7 +132,7 @@ const TextResponsesCard = ({ title, responses }: { title: string, responses: (st
     );
 };
 
-const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summary, summaryError, isLoading, error }) => {
+const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summary, summaryError, isLoading, error, usedModel, onRefreshSummary }) => {
   // 1. Extraire tous les rôles uniques pour le filtre
   const allRoles = useMemo(() => {
     const roles = new Set<string>();
@@ -157,6 +159,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       return false;
     }
   });
+  const [aiModelPreference, setAiModelPreference] = useState<string>(() => {
+    try {
+      return localStorage.getItem('aiModelPreference') || 'auto';
+    } catch {
+      return 'auto';
+    }
+  });
     
   // Mettre à jour les filtres lorsque les rôles changent
   React.useEffect(() => {
@@ -169,6 +178,20 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       localStorage.setItem('showSynthesis', String(showSynthesis));
     } catch {}
   }, [showSynthesis]);
+
+  // Persistance de la préférence modèle IA (admin toggle)
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('aiModelPreference', aiModelPreference);
+    } catch {}
+  }, [aiModelPreference]);
+
+  // Rafraîchir la synthèse quand le modèle change
+  React.useEffect(() => {
+    if (onRefreshSummary && aiModelPreference) {
+      onRefreshSummary(aiModelPreference);
+    }
+  }, [aiModelPreference, onRefreshSummary]);
 
   // Fonctions d'export
   const handleAdminAuth = () => {
@@ -530,7 +553,14 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 <hr className="my-8 border-gray-200"/>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Synthèse</CardTitle>
+                    <CardTitle className="flex items-center justify-between">
+                      Synthèse
+                      {usedModel && (
+                        <span className="text-xs text-gray-500 font-normal">
+                          via {usedModel}
+                        </span>
+                      )}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     {summaryError ? (
@@ -682,6 +712,23 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                       onChange={(e) => setShowSynthesis(e.target.checked)}
                       className="h-4 w-4"
                     />
+                  </div>
+                  
+                  <div className="p-3 border border-gray-200 rounded-lg">
+                    <label htmlFor="ai-model-select" className="text-sm text-gray-700 block mb-2">Modèle IA pour synthèse</label>
+                    <select
+                      id="ai-model-select"
+                      value={aiModelPreference}
+                      onChange={(e) => setAiModelPreference(e.target.value)}
+                      className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                    >
+                      <option value="auto">Auto (Gemini → OpenAI fallback)</option>
+                      <option value="gemini">Forcer Gemini uniquement</option>
+                      <option value="openai">Forcer OpenAI uniquement</option>
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Auto : essaie Gemini puis bascule sur OpenAI si échec
+                    </p>
                   </div>
                   <button
                     onClick={handleExport}

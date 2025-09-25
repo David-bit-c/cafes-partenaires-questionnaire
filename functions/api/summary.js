@@ -1,16 +1,22 @@
-// Cloudflare Pages Function pour la synthèse IA avec Google Gemini
+// Cloudflare Pages Function pour la synthèse IA avec Google Gemini + OpenAI fallback
 // Reproduit la logique de l'endpoint FastAPI /summary
 
 export async function onRequestGet(context) {
   try {
-    const { env } = context;
+    const { env, request } = context;
     
-    // Vérification de la clé API Gemini
-    const apiKey = env.GEMINI_API_KEY;
-    if (!apiKey) {
+    // Récupération de la préférence admin depuis les paramètres URL
+    const url = new URL(request.url);
+    const adminPreference = url.searchParams.get('ai_model') || 'auto';
+    
+    // Vérification des clés API disponibles
+    const geminiKey = env.GEMINI_API_KEY;
+    const openaiKey = env.OPENAI_API_KEY;
+    
+    if (!geminiKey && !openaiKey) {
       return new Response(JSON.stringify({
         summary: "",
-        summaryError: "Aucune clé GEMINI_API_KEY trouvée dans l'environnement."
+        summaryError: "Aucune clé API IA trouvée (GEMINI_API_KEY ou OPENAI_API_KEY requis)."
       }), {
         status: 200,
         headers: { 
@@ -117,10 +123,17 @@ export async function onRequestGet(context) {
     3. Les recommandations pratiques issues de l'expertise terrain
     `;
 
-    // Appel à l'API Gemini
-    try {
+    // Logique de choix du modèle IA avec fallback
+    let summary = "";
+    let summaryError = "";
+    let usedModel = "";
+
+    // Fonction pour appeler Gemini
+    async function callGemini() {
+      if (!geminiKey) throw new Error("Clé Gemini non disponible");
+      
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -138,48 +151,93 @@ export async function onRequestGet(context) {
 
       if (!geminiResponse.ok) {
         const errorText = await geminiResponse.text();
-        if (errorText.includes("API key not valid")) {
-          return new Response(JSON.stringify({
-            summary: "",
-            summaryError: "Erreur de l'API Gemini : La clé fournie n'est pas valide ou a expiré. Veuillez vérifier la clé et les autorisations sur Google Cloud Console."
-          }), {
-            status: 200,
-            headers: { 
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*"
-            }
-          });
-        }
         throw new Error(`Gemini API error: ${geminiResponse.status} ${errorText}`);
       }
 
       const geminiData = await geminiResponse.json();
-      const summary = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Erreur lors de la génération de la synthèse.";
-
-      return new Response(JSON.stringify({
-        summary: summary,
-        summaryError: ""
-      }), {
-        status: 200,
-        headers: { 
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      });
-
-    } catch (geminiError) {
-      console.error("Erreur Gemini API:", geminiError);
-      return new Response(JSON.stringify({
-        summary: "",
-        summaryError: `Une erreur est survenue lors de la communication avec l'API Gemini : ${geminiError.message}`
-      }), {
-        status: 200,
-        headers: { 
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      });
+      return geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Erreur lors de la génération de la synthèse.";
     }
+
+    // Fonction pour appeler OpenAI
+    async function callOpenAI() {
+      if (!openaiKey) throw new Error("Clé OpenAI non disponible");
+      
+      const openaiResponse = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${openaiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [
+              {
+                role: "system",
+                content: "Tu es un assistant expert en analyse de données sociales. Réponds en français de manière claire et concise."
+              },
+              {
+                role: "user",
+                content: prompt
+              }
+            ],
+            temperature: 0.7,
+            max_tokens: 1000
+          })
+        }
+      );
+
+      if (!openaiResponse.ok) {
+        const errorText = await openaiResponse.text();
+        throw new Error(`OpenAI API error: ${openaiResponse.status} ${errorText}`);
+      }
+
+      const openaiData = await openaiResponse.json();
+      return openaiData.choices?.[0]?.message?.content || "Erreur lors de la génération de la synthèse.";
+    }
+
+    // Logique de choix selon la préférence admin
+    try {
+      if (adminPreference === 'openai' && openaiKey) {
+        // Choix forcé OpenAI
+        summary = await callOpenAI();
+        usedModel = "OpenAI GPT-4o-mini";
+      } else if (adminPreference === 'gemini' && geminiKey) {
+        // Choix forcé Gemini
+        summary = await callGemini();
+        usedModel = "Google Gemini 1.5 Flash";
+      } else {
+        // Mode auto : essayer Gemini puis fallback OpenAI
+        try {
+          summary = await callGemini();
+          usedModel = "Google Gemini 1.5 Flash";
+        } catch (geminiError) {
+          console.log("Gemini échoué, fallback vers OpenAI:", geminiError.message);
+          if (openaiKey) {
+            summary = await callOpenAI();
+            usedModel = "OpenAI GPT-4o-mini (fallback)";
+          } else {
+            throw new Error("Gemini échoué et OpenAI non disponible");
+          }
+        }
+      }
+    } catch (aiError) {
+      console.error("Erreur IA:", aiError);
+      summaryError = `Erreur lors de la génération de la synthèse (${usedModel || 'modèle IA'}): ${aiError.message}`;
+    }
+
+    return new Response(JSON.stringify({
+      summary: summary,
+      summaryError: summaryError,
+      usedModel: usedModel
+    }), {
+      status: 200,
+      headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    });
 
   } catch (error) {
     console.error("Erreur lors de la génération de la synthèse:", error);
