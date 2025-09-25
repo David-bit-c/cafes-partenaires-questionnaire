@@ -553,13 +553,8 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 <hr className="my-8 border-gray-200"/>
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
+                    <CardTitle>
                       Synthèse
-                      {usedModel && (
-                        <span className="text-xs text-gray-500 font-normal">
-                          via {usedModel}
-                        </span>
-                      )}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
