@@ -133,7 +133,7 @@ export async function onRequestGet(context) {
       if (!geminiKey) throw new Error("Clé Gemini non disponible");
       
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
