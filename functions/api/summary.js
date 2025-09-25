@@ -13,6 +13,9 @@ export async function onRequestGet(context) {
     const geminiKey = env.GEMINI_API_KEY;
     const openaiKey = env.OPENAI_API_KEY;
     
+    console.log("🔑 Clés API - Gemini:", geminiKey ? "✅ Configurée" : "❌ Manquante");
+    console.log("🔑 Clés API - OpenAI:", openaiKey ? "✅ Configurée" : "❌ Manquante");
+    
     if (!geminiKey && !openaiKey) {
       return new Response(JSON.stringify({
         summary: "",
@@ -132,8 +135,9 @@ export async function onRequestGet(context) {
     async function callGemini() {
       if (!geminiKey) throw new Error("Clé Gemini non disponible");
       
+      console.log("🤖 Tentative appel Gemini...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -151,8 +155,11 @@ export async function onRequestGet(context) {
 
       if (!geminiResponse.ok) {
         const errorText = await geminiResponse.text();
+        console.log("❌ Erreur Gemini:", geminiResponse.status, errorText);
         throw new Error(`Gemini API error: ${geminiResponse.status} ${errorText}`);
       }
+      
+      console.log("✅ Gemini réussi");
 
       const geminiData = await geminiResponse.json();
       return geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Erreur lors de la génération de la synthèse.";
