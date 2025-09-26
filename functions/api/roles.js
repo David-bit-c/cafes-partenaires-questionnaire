@@ -68,7 +68,7 @@ export async function onRequestPost(context) {
       "SELECT COUNT(*) as count FROM dynamic_roles WHERE role_name = ?"
     );
     
-    const checkResult = await checkStmt.first(trimmedRoleName);
+    const checkResult = await checkStmt.bind(trimmedRoleName).first();
     
     if (checkResult.count > 0) {
       return new Response(JSON.stringify({
@@ -89,7 +89,7 @@ export async function onRequestPost(context) {
       "INSERT INTO dynamic_roles (role_name, created_at) VALUES (?, datetime('now'))"
     );
     
-    const insertResult = await insertStmt.run(trimmedRoleName);
+    const insertResult = await insertStmt.bind(trimmedRoleName).run();
     
     if (!insertResult.success) {
       throw new Error("Échec de l'ajout du rôle");
