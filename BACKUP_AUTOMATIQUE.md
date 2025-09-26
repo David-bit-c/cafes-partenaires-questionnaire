@@ -2,13 +2,12 @@
 
 ## 📋 OVERVIEW
 
-Système de backup automatique robuste pour protéger les données du questionnaire CAP Formations.
+Système de backup automatique simplifié pour protéger les données du questionnaire CAP Formations.
 
 ## 🎯 FONCTIONNALITÉS
 
 ### ✅ BACKUP AUTOMATIQUE
 - **Backup quotidien** : Tous les jours à 2h du matin (UTC)
-- **Backup avant soumission** : Avant chaque nouvelle réponse
 - **Stockage R2** : Sauvegarde dans Cloudflare R2
 - **Notifications** : Email en cas de succès/échec
 
@@ -46,9 +45,8 @@ bucket_name = "cafes-partenaires-backups"
 ## 📁 FICHIERS
 
 ### 🔄 BACKUP AUTOMATIQUE
-- `functions/api/backup-automatic.js` : Backup avant soumission
 - `functions/api/backup-cron.js` : Backup quotidien
-- `functions/api/submissions.js` : Intégration backup avant soumission
+- `functions/api/submissions.js` : Soumissions (sans backup intégré)
 
 ### 📋 CONFIGURATION
 - `wrangler.toml` : Configuration cron job et R2
@@ -58,7 +56,6 @@ bucket_name = "cafes-partenaires-backups"
 
 ### 1️⃣ DÉPLOIEMENT DES FONCTIONS
 ```bash
-git add functions/api/backup-automatic.js
 git add functions/api/backup-cron.js
 git add functions/api/submissions.js
 git add wrangler.toml
@@ -73,11 +70,8 @@ git push origin main
 
 ### 3️⃣ TEST
 ```bash
-# Test backup manuel
+# Test backup quotidien
 curl -X GET "https://cafes-partenaires-questionnaire.pages.dev/api/backup-cron"
-
-# Test backup avant soumission (automatique)
-# Remplir le questionnaire
 ```
 
 ## 📊 MONITORING
@@ -100,13 +94,7 @@ curl -X GET "https://cafes-partenaires-questionnaire.pages.dev/api/backup-cron"
 # Cloudflare Dashboard > Pages > Functions > Logs
 ```
 
-### 2️⃣ BACKUP AVANT SOUMISSION
-```bash
-# Remplir le questionnaire
-# Vérifier les logs de soumission
-```
-
-### 3️⃣ STOCKAGE R2
+### 2️⃣ STOCKAGE R2
 ```bash
 # Cloudflare Dashboard > R2 > Buckets > cafes-partenaires-backups
 ```
@@ -114,8 +102,7 @@ curl -X GET "https://cafes-partenaires-questionnaire.pages.dev/api/backup-cron"
 ## 🛠️ MAINTENANCE
 
 ### 📅 FRÉQUENCE
-- **Backup quotidien** : Automatique
-- **Backup avant soumission** : Automatique
+- **Backup quotidien** : Automatique à 2h du matin
 - **Vérification** : Hebdomadaire
 
 ### 🧹 NETTOYAGE
@@ -154,11 +141,11 @@ curl -X GET "https://cafes-partenaires-questionnaire.pages.dev/api/backup-cron"
 
 ## 🎯 RÉSULTAT
 
-**Système de backup automatique opérationnel :**
+**Système de backup automatique simplifié :**
 - ✅ **Backup quotidien** à 2h du matin
-- ✅ **Backup avant soumission** automatique
 - ✅ **Stockage R2** sécurisé
 - ✅ **Notifications** par email
 - ✅ **Monitoring** complet
+- ✅ **Coûts optimisés**
 
-**Vos données sont maintenant protégées automatiquement !** 🛡️
+**Vos données sont protégées quotidiennement !** 🛡️

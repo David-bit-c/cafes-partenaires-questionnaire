@@ -49,23 +49,6 @@ export async function onRequestPost(context) {
     const result = await stmt.bind(JSON.stringify(submissionData)).run();
     
     if (result.success) {
-      // BACKUP AUTOMATIQUE AVANT CHAQUE SOUMISSION
-      try {
-        console.log("🔄 Déclenchement backup automatique avant soumission...");
-        await fetch(`${new URL(request.url).origin}/api/backup-automatic`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            trigger: "before_submission",
-            reason: `Nouvelle soumission ID ${result.meta.last_row_id}`
-          })
-        });
-        console.log("✅ Backup automatique réussi avant soumission");
-      } catch (backupError) {
-        console.error("⚠️ Erreur backup automatique (non bloquant):", backupError);
-        // Continue même si backup échoue
-      }
-
       return new Response(JSON.stringify({
         status: "success",
         id: result.meta.last_row_id
