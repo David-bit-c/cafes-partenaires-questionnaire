@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Submission } from '../types';
 import { ArrowRightIcon, CheckIcon, SpinnerIcon, LockIcon } from './icons';
+import { apiService } from '../services/apiService';
 
 type StepID = 'participation' | 'feedback' | 'challenges_observed' | 'challenges_ranking' | 'challenges_evolution' | 'rupture_factors' | 'final_details';
 
@@ -126,6 +127,10 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   const participated = watch('participatedInCafes');
   
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  
+  // États pour les rôles dynamiques
+  const [dynamicRoles, setDynamicRoles] = useState<string[]>([]);
+  const [isLoadingRoles, setIsLoadingRoles] = useState(true);
 
   const stepsYes: StepID[] = ['participation', 'feedback', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'rupture_factors', 'final_details'];
   const stepsNo: StepID[] = ['participation', 'challenges_observed', 'challenges_ranking', 'challenges_evolution', 'rupture_factors', 'final_details'];
@@ -138,6 +143,34 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
   const currentStepId = currentPath[currentStepIndex];
   const isLastStep = currentStepIndex === currentPath.length - 1;
+
+  // Charger les rôles dynamiques au montage du composant
+  useEffect(() => {
+    const loadDynamicRoles = async () => {
+      try {
+        setIsLoadingRoles(true);
+        const roles = await apiService.getDynamicRoles();
+        setDynamicRoles(roles);
+      } catch (error) {
+        console.error('Erreur chargement rôles dynamiques:', error);
+        // En cas d'erreur, on continue avec les rôles statiques
+      } finally {
+        setIsLoadingRoles(false);
+      }
+    };
+
+    loadDynamicRoles();
+  }, []);
+
+  // Combiner les rôles statiques et dynamiques
+  const allRoles = useMemo(() => {
+    // Rôles statiques (sans "Autre")
+    const staticRoles = professionalRoles.filter(role => role !== 'Autre');
+    // Rôles dynamiques
+    const dynamicRolesList = dynamicRoles;
+    // Combiner et trier
+    return [...staticRoles, ...dynamicRolesList, 'Autre'].sort();
+  }, [dynamicRoles]);
 
   const handleNext = async () => {
     const fieldsToValidate: (keyof Submission | `challengesRanking.${string}` | `observedChallenges`)[] = [];
@@ -182,6 +215,17 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   const onFormSubmit = async (data: Submission) => {
     setIsSubmitting(true);
     try {
+        // Si l'utilisateur a sélectionné "Autre" et saisi un rôle, l'ajouter aux rôles dynamiques
+        if (data.professionalRole === 'Autre' && data.professionalRoleOther) {
+            try {
+                await apiService.addDynamicRole(data.professionalRoleOther);
+                console.log('Nouveau rôle ajouté:', data.professionalRoleOther);
+            } catch (error) {
+                console.error('Erreur ajout rôle dynamique:', error);
+                // Continue même si l'ajout échoue
+            }
+        }
+
         const submissionData: Omit<Submission, 'id' | 'submittedAt'> = {
             ...data,
             observedChallengesOther: data.observedChallenges?.includes('autre') ? data.observedChallengesOther : undefined,
@@ -693,7 +737,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         <>
                         <select {...register("professionalRole", { required: "Veuillez sélectionner votre rôle." })} className="w-full p-4 border border-border rounded-lg bg-card/80 focus:ring-2 focus:ring-primary/50 focus:border-primary/50">
                             <option value="">-- Sélectionnez votre rôle --</option>
-                            {professionalRoles.map(role => <option key={role} value={role}>{role}</option>)}
+                            {allRoles.map(role => <option key={role} value={role}>{role}</option>)}
                         </select>
                         {errors.professionalRole && <p className="text-destructive mt-2 text-sm">{errors.professionalRole.message}</p>}
                         {watch('professionalRole') === 'Autre' && (
