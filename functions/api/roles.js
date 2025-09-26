@@ -42,6 +42,47 @@ export async function onRequestGet(context) {
   }
 }
 
+// Fonction de normalisation pour l'écriture inclusive (même logique que frontend)
+function normalizeToInclusive(roleName) {
+  if (!roleName || typeof roleName !== 'string') return roleName;
+  
+  const patterns = {
+    'Référent': 'Référent·e',
+    'Coordinateur': 'Coordinateur·trice',
+    'Formateur': 'Formateur·trice',
+    'Conseiller': 'Conseiller·ère',
+    'Animateur': 'Animateur·trice',
+    'Assistant': 'Assistant·e',
+    'Chargé': 'Chargé·e',
+    'Directeur': 'Directeur·trice',
+    'Éducateur': 'Éducateur·trice',
+    'Enseignant': 'Enseignant·e',
+    'Infirmier': 'Infirmier·ère',
+    'Intervenant': 'Intervenant·e',
+    'Maître': 'Maître·sse',
+    'Mentor': 'Mentor·e',
+    'Représentant': 'Représentant·e',
+    'Travailleur': 'Travailleur·euse',
+    'Curateur': 'Curateur·trice',
+    'Tuteur': 'Tuteur·trice',
+    'Responsable': 'Responsable·e',
+    'Spécialiste': 'Spécialiste·e',
+    'Psychologue': 'Psychologue·e',
+    'Psychopédagogue': 'Psychopédagogue·e'
+  };
+  
+  let normalizedRole = roleName.trim();
+  
+  for (const [masculin, inclusif] of Object.entries(patterns)) {
+    if (normalizedRole.startsWith(masculin + ' ')) {
+      normalizedRole = normalizedRole.replace(masculin, inclusif);
+      break;
+    }
+  }
+  
+  return normalizedRole;
+}
+
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
@@ -61,20 +102,21 @@ export async function onRequestPost(context) {
       });
     }
 
-    const trimmedRoleName = roleName.trim();
-    
-    // Vérifier si le rôle existe déjà
+    // Normaliser le rôle en écriture inclusive
+    const normalizedRoleName = normalizeToInclusive(roleName.trim());
+
+    // Vérifier si le rôle existe déjà (avec le nom normalisé)
     const checkStmt = env.DB.prepare(
       "SELECT COUNT(*) as count FROM dynamic_roles WHERE role_name = ?"
     );
     
-    const checkResult = await checkStmt.bind(trimmedRoleName).first();
+    const checkResult = await checkStmt.bind(normalizedRoleName).first();
     
     if (checkResult.count > 0) {
       return new Response(JSON.stringify({
         success: true,
         message: "Rôle déjà existant",
-        role: trimmedRoleName
+        role: normalizedRoleName
       }), {
         status: 200,
         headers: { 
@@ -89,7 +131,7 @@ export async function onRequestPost(context) {
       "INSERT INTO dynamic_roles (role_name, created_at) VALUES (?, datetime('now'))"
     );
     
-    const insertResult = await insertStmt.bind(trimmedRoleName).run();
+    const insertResult = await insertStmt.bind(normalizedRoleName).run();
     
     if (!insertResult.success) {
       throw new Error("Échec de l'ajout du rôle");
@@ -98,7 +140,7 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({
       success: true,
       message: "Rôle ajouté avec succès",
-      role: trimmedRoleName
+      role: normalizedRoleName
     }), {
       status: 200,
       headers: { 
