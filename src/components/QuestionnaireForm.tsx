@@ -212,8 +212,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
     const staticRoles = professionalRoles.filter(role => role !== 'Autre');
     // Rôles dynamiques
     const dynamicRolesList = dynamicRoles;
-    // Combiner et trier
-    return [...staticRoles, ...dynamicRolesList, 'Autre'].sort();
+    // Combiner et trier (avec "Autre" toujours en fin)
+    const combinedRoles = [...staticRoles, ...dynamicRolesList];
+    combinedRoles.sort();
+    // Ajouter "Autre" en fin de liste
+    combinedRoles.push('Autre');
+    return combinedRoles;
   }, [dynamicRoles]);
 
   const handleNext = async () => {
