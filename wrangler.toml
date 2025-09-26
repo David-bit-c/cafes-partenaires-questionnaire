@@ -1,0 +1,22 @@
+# Configuration Cloudflare Workers/Pages
+# Pour le backup automatique quotidien
+
+[env.production]
+name = "cafes-partenaires-questionnaire"
+
+# Configuration du cron job pour backup quotidien
+# Tous les jours à 2h du matin (UTC)
+[[triggers]]
+crons = ["0 2 * * *"]
+
+# Configuration des variables d'environnement
+[vars]
+# Variables pour le backup automatique
+R2_BUCKET_NAME = "cafes-partenaires-backups"
+EMAIL_API_KEY = "your_emailjs_api_key"
+ADMIN_EMAIL = "your_admin_email@domain.com"
+
+# Configuration R2 pour stockage des backups
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "cafes-partenaires-backups"
