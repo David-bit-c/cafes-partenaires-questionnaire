@@ -4,6 +4,50 @@ import { Submission } from '../types';
 import { ArrowRightIcon, CheckIcon, SpinnerIcon, LockIcon } from './icons';
 import { apiService } from '../services/apiService';
 
+// Fonction de normalisation pour l'écriture inclusive
+function normalizeToInclusive(roleName: string): string {
+  if (!roleName || typeof roleName !== 'string') return roleName;
+  
+  const patterns = {
+    // Patterns masculins → inclusifs
+    'Référent': 'Référent·e',
+    'Coordinateur': 'Coordinateur·trice',
+    'Formateur': 'Formateur·trice',
+    'Conseiller': 'Conseiller·ère',
+    'Animateur': 'Animateur·trice',
+    'Assistant': 'Assistant·e',
+    'Chargé': 'Chargé·e',
+    'Directeur': 'Directeur·trice',
+    'Éducateur': 'Éducateur·trice',
+    'Enseignant': 'Enseignant·e',
+    'Infirmier': 'Infirmier·ère',
+    'Intervenant': 'Intervenant·e',
+    'Maître': 'Maître·sse',
+    'Mentor': 'Mentor·e',
+    'Représentant': 'Représentant·e',
+    'Travailleur': 'Travailleur·euse',
+    'Curateur': 'Curateur·trice',
+    'Tuteur': 'Tuteur·trice',
+    'Responsable': 'Responsable·e',
+    'Spécialiste': 'Spécialiste·e',
+    'Psychologue': 'Psychologue·e',
+    'Psychopédagogue': 'Psychopédagogue·e'
+  };
+  
+  let normalizedRole = roleName.trim();
+  
+  // Appliquer les patterns de normalisation
+  for (const [masculin, inclusif] of Object.entries(patterns)) {
+    // Vérifier si le rôle commence par le pattern masculin
+    if (normalizedRole.startsWith(masculin + ' ')) {
+      normalizedRole = normalizedRole.replace(masculin, inclusif);
+      break; // Appliquer seulement le premier pattern trouvé
+    }
+  }
+  
+  return normalizedRole;
+}
+
 type StepID = 'participation' | 'feedback' | 'challenges_observed' | 'challenges_ranking' | 'challenges_evolution' | 'rupture_factors' | 'final_details';
 
 interface QuestionnaireFormProps {
@@ -218,8 +262,10 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
         // Si l'utilisateur a sélectionné "Autre" et saisi un rôle, l'ajouter aux rôles dynamiques
         if (data.professionalRole === 'Autre' && data.professionalRoleOther) {
             try {
-                await apiService.addDynamicRole(data.professionalRoleOther);
-                console.log('Nouveau rôle ajouté:', data.professionalRoleOther);
+                // Normaliser le rôle en écriture inclusive avant l'ajout
+                const normalizedRole = normalizeToInclusive(data.professionalRoleOther);
+                await apiService.addDynamicRole(normalizedRole);
+                console.log('Nouveau rôle normalisé ajouté:', normalizedRole);
             } catch (error) {
                 console.error('Erreur ajout rôle dynamique:', error);
                 // Continue même si l'ajout échoue
