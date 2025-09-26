@@ -208,11 +208,11 @@ export async function onRequestGet(context) {
       return openaiData.choices?.[0]?.message?.content || "Erreur lors de la génération de la synthèse.";
     }
 
-    // Fonction pour appeler Claude
-    async function callClaude() {
+    // Fonction pour appeler Claude Sonnet 4
+    async function callClaudeSonnet4() {
       if (!claudeKey) throw new Error("Clé Claude non disponible");
       
-      console.log("🤖 Tentative appel Claude avec modèle claude-3-5-sonnet-20241022...");
+      console.log("🚀 Tentative appel Claude Sonnet 4 avec modèle claude-3-5-sonnet-20241022...");
       const claudeResponse = await fetch(
         "https://api.anthropic.com/v1/messages",
         {
@@ -237,11 +237,49 @@ export async function onRequestGet(context) {
 
       if (!claudeResponse.ok) {
         const errorText = await claudeResponse.text();
-        console.log("❌ Erreur Claude:", claudeResponse.status, errorText);
-        throw new Error(`Claude API error: ${claudeResponse.status} ${errorText}`);
+        console.log("❌ Erreur Claude Sonnet 4:", claudeResponse.status, errorText);
+        throw new Error(`Claude Sonnet 4 API error: ${claudeResponse.status} ${errorText}`);
       }
 
-      console.log("✅ Claude réussi");
+      console.log("✅ Claude Sonnet 4 réussi");
+      const claudeData = await claudeResponse.json();
+      return claudeData.content?.[0]?.text || "Erreur lors de la génération de la synthèse.";
+    }
+
+    // Fonction pour appeler Claude 3.5 Sonnet (fallback)
+    async function callClaude() {
+      if (!claudeKey) throw new Error("Clé Claude non disponible");
+      
+      console.log("🤖 Tentative appel Claude 3.5 Sonnet avec modèle claude-3-5-sonnet-20241022...");
+      const claudeResponse = await fetch(
+        "https://api.anthropic.com/v1/messages",
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': claudeKey,
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 1000,
+            messages: [
+              {
+                role: "user",
+                content: prompt
+              }
+            ]
+          })
+        }
+      );
+
+      if (!claudeResponse.ok) {
+        const errorText = await claudeResponse.text();
+        console.log("❌ Erreur Claude 3.5:", claudeResponse.status, errorText);
+        throw new Error(`Claude 3.5 API error: ${claudeResponse.status} ${errorText}`);
+      }
+
+      console.log("✅ Claude 3.5 réussi");
       const claudeData = await claudeResponse.json();
       return claudeData.content?.[0]?.text || "Erreur lors de la génération de la synthèse.";
     }
@@ -251,24 +289,28 @@ export async function onRequestGet(context) {
       if (adminPreference === 'openai' && openaiKey) {
         // Choix forcé OpenAI
         summary = await callOpenAI();
-        usedModel = "OpenAI GPT-4o-mini";
+        usedModel = "OpenAI GPT-5";
+      } else if (adminPreference === 'claude-sonnet4' && claudeKey) {
+        // Choix forcé Claude Sonnet 4
+        summary = await callClaudeSonnet4();
+        usedModel = "Anthropic Claude Sonnet 4";
+      } else if (adminPreference === 'claude' && claudeKey) {
+        // Choix forcé Claude 3.5 Sonnet
+        summary = await callClaude();
+        usedModel = "Anthropic Claude 3.5 Sonnet";
       } else if (adminPreference === 'gemini' && geminiKey) {
         // Choix forcé Gemini
         summary = await callGemini();
         usedModel = "Google Gemini 1.5 Flash";
-      } else if (adminPreference === 'claude' && claudeKey) {
-        // Choix forcé Claude
-        summary = await callClaude();
-        usedModel = "Anthropic Claude 3.5 Sonnet";
       } else {
-        // Mode auto : essayer OpenAI d'abord (plus fiable pour usage public)
+        // Mode auto : essayer GPT-5 d'abord, puis Claude Sonnet 4, puis Claude 3.5, puis Gemini
         try {
           if (openaiKey) {
             summary = await callOpenAI();
-            usedModel = "OpenAI GPT-4o-mini";
+            usedModel = "OpenAI GPT-5";
           } else if (claudeKey) {
-            summary = await callClaude();
-            usedModel = "Anthropic Claude 3.5 Sonnet";
+            summary = await callClaudeSonnet4();
+            usedModel = "Anthropic Claude Sonnet 4";
           } else if (geminiKey) {
             summary = await callGemini();
             usedModel = "Google Gemini 1.5 Flash";
@@ -278,21 +320,27 @@ export async function onRequestGet(context) {
         } catch (primaryError) {
           console.log("API primaire échoué, fallback:", primaryError.message);
           if (openaiKey && claudeKey) {
-            // Fallback vers Claude
+            // Fallback vers Claude Sonnet 4
             try {
-              summary = await callClaude();
-              usedModel = "Anthropic Claude 3.5 Sonnet (fallback)";
-            } catch (fallbackError) {
-              // Dernier recours : Gemini si disponible
-              if (geminiKey) {
-                try {
-                  summary = await callGemini();
-                  usedModel = "Google Gemini 1.5 Flash (fallback)";
-                } catch (geminiError) {
+              summary = await callClaudeSonnet4();
+              usedModel = "Anthropic Claude Sonnet 4 (fallback)";
+            } catch (claudeSonnet4Error) {
+              // Fallback vers Claude 3.5 Sonnet
+              try {
+                summary = await callClaude();
+                usedModel = "Anthropic Claude 3.5 Sonnet (fallback)";
+              } catch (claudeError) {
+                // Dernier recours : Gemini si disponible
+                if (geminiKey) {
+                  try {
+                    summary = await callGemini();
+                    usedModel = "Google Gemini 1.5 Flash (fallback)";
+                  } catch (geminiError) {
+                    throw new Error("Toutes les API ont échoué");
+                  }
+                } else {
                   throw new Error("Toutes les API ont échoué");
                 }
-              } else {
-                throw new Error("Toutes les API ont échoué");
               }
             }
           } else if (openaiKey && geminiKey) {
