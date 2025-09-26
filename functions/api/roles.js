@@ -68,7 +68,7 @@ export async function onRequestPost(context) {
       "SELECT COUNT(*) as count FROM dynamic_roles WHERE role_name = ?"
     );
     
-    const checkResult = await checkStmt.get(trimmedRoleName);
+    const checkResult = await checkStmt.first(trimmedRoleName);
     
     if (checkResult.count > 0) {
       return new Response(JSON.stringify({

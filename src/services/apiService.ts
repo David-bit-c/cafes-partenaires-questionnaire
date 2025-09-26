@@ -11,6 +11,44 @@ export interface ApiResponse {
 }
 
 export const apiService = {
+  // Récupérer les rôles dynamiques
+  getDynamicRoles: async (): Promise<string[]> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/roles`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch dynamic roles');
+      }
+      const data = await response.json();
+      return data.success ? data.roles : [];
+    } catch (error) {
+      console.error('Erreur récupération rôles dynamiques:', error);
+      return [];
+    }
+  },
+
+  // Ajouter un nouveau rôle
+  addDynamicRole: async (roleName: string): Promise<boolean> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/roles`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ roleName }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add dynamic role');
+      }
+      
+      const data = await response.json();
+      return data.success;
+    } catch (error) {
+      console.error('Erreur ajout rôle dynamique:', error);
+      return false;
+    }
+  },
+
   getSubmissions: async (aiModelPreference?: string): Promise<ApiResponse> => {
     const response = await fetch(`${API_BASE_URL}/submissions`);
     if (!response.ok) {
