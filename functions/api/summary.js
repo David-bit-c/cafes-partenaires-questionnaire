@@ -182,7 +182,7 @@ export async function onRequestGet(context) {
             'Authorization': `Bearer ${openaiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "gpt-5",
             messages: [
               {
                 role: "system",
