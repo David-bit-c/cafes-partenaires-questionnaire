@@ -10,6 +10,33 @@ export interface ApiResponse {
   usedModel?: string;
 }
 
+export interface InstitutionData {
+  name: string;
+  totalResponses: number;
+  percentageOfTotal: number;
+  challenges: Record<string, { count: number; percentage: number }>;
+  ruptureFactors: {
+    favorable: Record<string, { count: number; percentage: number }>;
+    negative: Record<string, { count: number; percentage: number }>;
+  };
+  challengesRanking: Record<string, number>;
+  topChallenges: Array<{ challenge: string; count: number; percentage: number }>;
+  topFavorableFactors: Array<{ factor: string; count: number; percentage: number }>;
+  topNegativeFactors: Array<{ factor: string; count: number; percentage: number }>;
+}
+
+export interface InstitutionAnalysisResponse {
+  success: boolean;
+  timestamp: string;
+  totalSubmissions: number;
+  institutions: InstitutionData[];
+  summary: {
+    totalInstitutions: number;
+    institutionsWithData: number;
+    averageResponsesPerInstitution: number;
+  };
+}
+
 export const apiService = {
   // Récupérer les rôles dynamiques
   getDynamicRoles: async (): Promise<string[]> => {
@@ -128,5 +155,20 @@ export const apiService = {
     }
 
     return response;
+  },
+
+  // Récupérer l'analyse par institution
+  getInstitutionAnalysis: async (): Promise<InstitutionAnalysisResponse> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/institution-analysis`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch institution analysis');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Erreur récupération analyse institution:', error);
+      throw error;
+    }
   },
 };

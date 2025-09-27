@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { Submission, ChartData, SubmissionData } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import MultiSelect from './MultiSelect'; // Importez le nouveau composant
+import { apiService, InstitutionData } from '../services/apiService';
 
 interface ResultsDashboardProps {
   submissions: Submission[];
@@ -166,11 +167,46 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       return 'auto';
     }
   });
+  const [showInstitutionAnalysis, setShowInstitutionAnalysis] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('showInstitutionAnalysis') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [institutionData, setInstitutionData] = useState<InstitutionData[]>([]);
+  const [isLoadingInstitutionData, setIsLoadingInstitutionData] = useState(false);
     
   // Mettre à jour les filtres lorsque les rôles changent
   React.useEffect(() => {
     setSelectedRoles(allRoles);
   }, [allRoles]);
+
+  // Charger les données d'analyse par institution
+  useEffect(() => {
+    if (showInstitutionAnalysis) {
+      setIsLoadingInstitutionData(true);
+      apiService.getInstitutionAnalysis()
+        .then(data => {
+          setInstitutionData(data.institutions);
+        })
+        .catch(error => {
+          console.error('Erreur chargement données institution:', error);
+        })
+        .finally(() => {
+          setIsLoadingInstitutionData(false);
+        });
+    }
+  }, [showInstitutionAnalysis]);
+
+  // Persister l'état showInstitutionAnalysis
+  useEffect(() => {
+    try {
+      localStorage.setItem('showInstitutionAnalysis', showInstitutionAnalysis.toString());
+    } catch (error) {
+      console.error('Erreur sauvegarde localStorage:', error);
+    }
+  }, [showInstitutionAnalysis]);
 
   // Persistance de l'état d'affichage de la synthèse (admin toggle)
   React.useEffect(() => {
@@ -580,6 +616,90 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 </Card>
               </>
             )}
+
+            {/* Section Analyse par Institution (affichage conditionné par le toggle admin) */}
+            {showInstitutionAnalysis && (
+              <>
+                <hr className="my-8 border-gray-200"/>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>
+                      Analyse par Institution
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {isLoadingInstitutionData ? (
+                      <div className="text-center py-8">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                        <p className="text-gray-600 mt-2">Chargement des données par institution...</p>
+                      </div>
+                    ) : institutionData.length > 0 ? (
+                      <div className="space-y-6">
+                        {/* Tableau comparatif */}
+                        <div className="overflow-x-auto">
+                          <table className="w-full border-collapse border border-gray-300">
+                            <thead>
+                              <tr className="bg-gray-50">
+                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Institution</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Réponses</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Défis Top 3 (%)</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Facteurs Rupture</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {institutionData.map((institution, index) => (
+                                <tr key={institution.name} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                  <td className="border border-gray-300 px-4 py-2 font-medium">{institution.name}</td>
+                                  <td className="border border-gray-300 px-4 py-2">{institution.totalResponses} ({institution.percentageOfTotal}%)</td>
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {institution.topChallenges.map(challenge => 
+                                      `${challenge.challenge}: ${challenge.percentage}%`
+                                    ).join(', ')}
+                                  </td>
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    <div className="text-sm">
+                                      <div className="text-green-600">
+                                        <strong>Favorables:</strong> {institution.topFavorableFactors.map(f => `${f.factor} (${f.percentage}%)`).join(', ')}
+                                      </div>
+                                      <div className="text-red-600 mt-1">
+                                        <strong>Négatifs:</strong> {institution.topNegativeFactors.map(f => `${f.factor} (${f.percentage}%)`).join(', ')}
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                        {/* Statistiques globales */}
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-blue-800 mb-2">Statistiques Globales</h4>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                            <div>
+                              <span className="font-medium">Total institutions:</span> {institutionData.length}
+                            </div>
+                            <div>
+                              <span className="font-medium">Avec données:</span> {institutionData.filter(i => i.totalResponses > 0).length}
+                            </div>
+                            <div>
+                              <span className="font-medium">Total réponses:</span> {institutionData.reduce((sum, i) => sum + i.totalResponses, 0)}
+                            </div>
+                            <div>
+                              <span className="font-medium">Moyenne/institution:</span> {Math.round(institutionData.reduce((sum, i) => sum + i.totalResponses, 0) / institutionData.length * 10) / 10}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-center py-8 text-gray-600">
+                        <p>Aucune donnée d'institution disponible</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </>
+            )}
         </>
       ) : (
         <Card>
@@ -705,6 +825,17 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                       type="checkbox"
                       checked={showSynthesis}
                       onChange={(e) => setShowSynthesis(e.target.checked)}
+                      className="h-4 w-4"
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <label htmlFor="toggle-institution" className="text-sm text-gray-700">Afficher tri par institution</label>
+                    <input
+                      id="toggle-institution"
+                      type="checkbox"
+                      checked={showInstitutionAnalysis}
+                      onChange={(e) => setShowInstitutionAnalysis(e.target.checked)}
                       className="h-4 w-4"
                     />
                   </div>
