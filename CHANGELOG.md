@@ -1,3 +1,56 @@
+## 2025-01-27 - [EUREKA] 🤖 CLASSIFICATION LLM + CACHE : Intelligence Institutionnelle
+
+### 🎯 CLASSIFICATION AUTOMATIQUE INTELLIGENTE
+
+**🚀 OBJECTIF :**
+Implémenter un système de classification hybride (LLM + Cache + Règles statiques) pour résoudre le problème des 79% "Autres" et améliorer la précision du tri par institution.
+
+**✅ APPROCHE HYBRIDE INTELLIGENTE :**
+- **Cache permanent** : Classification une fois, réutilisation infinie
+- **Règles statiques** : Domaines connus classés instantanément
+- **LLM intelligent** : Analyse réelle des sites web pour nouveaux domaines
+- **Seuils de confiance** : Classification LLM seulement si nécessaire
+- **Fallback robuste** : Gestion d'erreurs et domaines non classés
+
+**✅ CLASSIFICATION PAR MISSION (pas Public/Privé) :**
+- **HUG** : Santé publique, hôpitaux
+- **État de Genève** : Administration cantonale
+- **Hospice Général** : Institution sociale publique
+- **FASE** : Fondation sociale, animation socioculturelle
+- **Communes** : Collectivités locales genevoises
+- **Associations** : Structures associatives professionnelles
+- **Entreprises** : Structures commerciales privées
+- **Éducation** : Institutions de formation
+- **Personnel** : Emails personnels (gmail, hotmail, etc.)
+- **Autres** : Non classé
+
+**✅ OPTIMISATIONS TECHNIQUES :**
+- **Normalisation domaines** : Suppression sous-domaines (mail.fase.ch → fase.ch)
+- **Détection domaines suspects** : Patterns pour déclencher LLM
+- **Comptage soumissions** : LLM seulement si >1 soumission
+- **Gestion erreurs** : Fallback gracieux en cas d'échec
+- **Performance** : Cache = pas de re-requêtes coûteuses
+
+**🔧 IMPLÉMENTATION TECHNIQUE :**
+- **`functions/api/website-analyzer.js`** : Récupération et analyse sites web
+- **`functions/api/llm-classifier.js`** : Classification LLM avec prompts optimisés
+- **`functions/api/institution-analysis.js`** : Logique hybride intégrée
+- **`functions/api/migrate-classifications.js`** : Migration domaines existants
+- **`functions/api/test-classification.js`** : Tests et validation
+- **`functions/api/institution-classifications.sql`** : Table cache
+
+**💡 BÉNÉFICES :**
+- **Précision maximale** : LLM comprend le contexte réel vs règles statiques
+- **Évolutivité** : Nouveaux domaines automatiquement classés
+- **Performance** : Cache = pas de re-requêtes coûteuses
+- **Maintenance zéro** : Plus besoin de règles manuelles
+- **Coûts optimisés** : LLM seulement si nécessaire
+
+**🎯 RÉSULTAT ATTENDU :**
+Réduction drastique des "Autres" (79% → <5%) et classification précise par mission réelle des institutions.
+
+---
+
 ## 2025-09-26 - [EUREKA] 🛡️ BACKUP AUTOMATIQUE + NETTOYAGE : Protection Données Complète
 
 ### 🎯 BACKUP AUTOMATIQUE + OPTIMISATION PROJET

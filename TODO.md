@@ -28,6 +28,10 @@
   - 6 guides opérationnels pour autonomie totale
 - 🛡️ **[EUREKA] BACKUP AUTOMATIQUE** : Protection données quotidienne + nettoyage projet
   - Backup quotidien automatique à 2h du matin (UTC)
+- 🤖 **[EUREKA] CLASSIFICATION LLM + CACHE** : Intelligence institutionnelle hybride
+  - Classification automatique par mission (LLM + Cache + Règles statiques)
+  - Résolution problème 79% "Autres" → classification précise
+  - Cache permanent + LLM pour nouveaux domaines + optimisations coûts
   - Stockage sécurisé Cloudflare R2 + notifications email
   - Nettoyage systématique : 24 fichiers obsolètes supprimés
   - Projet optimisé : structure claire et maintenable

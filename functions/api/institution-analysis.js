@@ -1,5 +1,9 @@
 // Cloudflare Pages Function pour analyse par institution
 // Données pré-calculées par institution avec pourcentages
+// Version améliorée avec classification LLM + cache
+
+import { fetchWebsiteContent, extractMainDomain, isSuspiciousDomain } from './website-analyzer.js';
+import { classifyWithLLM, getStaticClassification } from './llm-classifier.js';
 
 export async function onRequestGet(context) {
   try {
@@ -17,66 +21,103 @@ export async function onRequestGet(context) {
 
     const submissions = submissionsResult.results;
     
-    // Classification simplifiée des institutions
-    function classifyInstitution(email) {
+    // Classification hybride des institutions (LLM + Cache + Règles statiques)
+    async function classifyInstitution(email) {
       if (!email || typeof email !== 'string') return 'Autres';
       
-      const domain = email.toLowerCase().split('@')[1];
+      const domain = extractMainDomain(email);
       if (!domain) return 'Autres';
       
-      // Classification simplifiée (Option D) - AMÉLIORÉE
-      if (domain.includes('hug.ch') || domain.includes('hcuge.ch')) {
-        return 'HUG';
+      try {
+        // 1. Vérifier le cache
+        const cached = await env.DB.prepare(
+          "SELECT institution_type FROM institution_classifications WHERE domain = ?"
+        ).bind(domain).first();
+        
+        if (cached) {
+          console.log(`📋 Cache hit pour ${domain}: ${cached.institution_type}`);
+          return cached.institution_type;
+        }
+        
+        // 2. Règles statiques pour domaines connus
+        const staticClassification = getStaticClassification(domain);
+        if (staticClassification) {
+          console.log(`📝 Règle statique pour ${domain}: ${staticClassification}`);
+          await cacheClassification(domain, staticClassification, 1.0, env);
+          return staticClassification;
+        }
+        
+        // 3. LLM seulement si domaine suspect OU >1 soumission
+        const submissionCount = await getSubmissionCount(domain, env);
+        if (submissionCount > 1 || isSuspiciousDomain(domain)) {
+          console.log(`🤖 Classification LLM pour ${domain} (${submissionCount} soumissions)`);
+          const websiteContent = await fetchWebsiteContent(domain);
+          const classification = await classifyWithLLM(domain, websiteContent, env);
+          
+          await cacheClassification(
+            domain, 
+            classification.institution_type, 
+            classification.confidence, 
+            env,
+            websiteContent
+          );
+          
+          return classification.institution_type;
+        }
+        
+        // 4. Fallback: Autres
+        await cacheClassification(domain, 'Autres', 0.5, env);
+        return 'Autres';
+        
+      } catch (error) {
+        console.error(`❌ Erreur classification ${domain}:`, error);
+        return 'Autres';
       }
-      if (domain.includes('ge.ch') || domain.includes('etat.ge.ch')) {
-        return 'État de Genève';
+    }
+    
+    // Fonctions utilitaires pour le cache
+    async function cacheClassification(domain, institutionType, confidence, env, websiteContent = '') {
+      try {
+        await env.DB.prepare(`
+          INSERT OR REPLACE INTO institution_classifications 
+          (domain, institution_type, confidence_score, classification_date, website_content, submission_count, last_updated)
+          VALUES (?, ?, ?, ?, ?, 1, ?)
+        `).bind(
+          domain,
+          institutionType,
+          confidence,
+          new Date().toISOString(),
+          websiteContent,
+          new Date().toISOString()
+        ).run();
+      } catch (error) {
+        console.error(`Erreur cache classification ${domain}:`, error);
       }
-      if (domain.includes('hospicegeneral.ch')) {
-        return 'Hospice Général';
+    }
+    
+    async function getSubmissionCount(domain, env) {
+      try {
+        const result = await env.DB.prepare(`
+          SELECT COUNT(*) as count FROM submissions 
+          WHERE data LIKE ?
+        `).bind(`%${domain}%`).first();
+        return result?.count || 0;
+      } catch (error) {
+        console.error(`Erreur count soumissions ${domain}:`, error);
+        return 0;
       }
-      
-      // FASE - Fondation d'Aide Sociale
-      if (domain.includes('fase.ch') || domain.includes('fase.cj')) {
-        return 'FASE';
-      }
-      
-      // Communes genevoises
-      if (domain.includes('lancy.ch') || domain.includes('plan-les-ouates.ch') || domain.includes('carouge.ch')) {
-        return 'Communes';
-      }
-      
-      // Associations spécialisées
-      if (domain.includes('for-pro.ch') || domain.includes('mbg.ch') || domain.includes('sceneactive.ch') || domain.includes('radiovostok.ch')) {
-        return 'Associations';
-      }
-      
-      // Entreprises/Groupes
-      if (domain.includes('groupe-serbeco.ch') || domain.includes('fegpac.ch')) {
-        return 'Entreprises';
-      }
-      
-      // Éducation
-      if (domain.includes('cfp') || domain.includes('ecole') || domain.includes('formation')) {
-        return 'Éducation';
-      }
-      
-      // Emails personnels
-      if (domain.includes('gmail.com') || domain.includes('hotmail.com') || domain.includes('yahoo.com')) {
-        return 'Personnel';
-      }
-      
-      return 'Autres';
     }
 
     // Traitement des données par institution
     const institutionData = {};
     const totalSubmissions = submissions.length;
     
+    // Traitement asynchrone des soumissions
     for (const submission of submissions) {
       try {
         const data = JSON.parse(submission.data);
         const email = data.email;
-        const institution = classifyInstitution(email);
+        const institution = await classifyInstitution(email);
         
         if (!institutionData[institution]) {
           institutionData[institution] = {
