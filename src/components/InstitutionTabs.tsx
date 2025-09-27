@@ -67,34 +67,41 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
 
   return (
     <div className="space-y-6">
-      {/* Navigation des onglets */}
+      {/* Navigation des onglets - Version améliorée */}
       <div className="border-b border-gray-200">
-        <nav className="-mb-px flex space-x-8 overflow-x-auto">
-          {institutions.map((institution) => (
+        <div className="overflow-x-auto">
+          <nav className="-mb-px flex space-x-4 min-w-max px-1">
+            {institutions.map((institution) => (
+              <button
+                key={institution.name}
+                onClick={() => setActiveTab(institution.name)}
+                className={`flex items-center space-x-2 py-2 px-3 border-b-2 font-medium text-sm rounded-t-lg transition-colors ${
+                  activeTab === institution.name
+                    ? 'border-blue-500 text-blue-600 bg-blue-50'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <span className="whitespace-nowrap">{institution.name}</span>
+                <span className={`py-0.5 px-2 rounded-full text-xs font-semibold ${
+                  activeTab === institution.name
+                    ? 'bg-blue-200 text-blue-800'
+                    : 'bg-gray-200 text-gray-700'
+                }`}>
+                  {institution.totalResponses}
+                </span>
+              </button>
+            ))}
+            
+            {/* Bouton Export Global */}
             <button
-              key={institution.name}
-              onClick={() => setActiveTab(institution.name)}
-              className={`whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm ${
-                activeTab === institution.name
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
+              onClick={() => handleExport()}
+              className="flex items-center space-x-2 py-2 px-4 border-b-2 border-transparent text-green-600 hover:text-green-700 hover:border-green-300 hover:bg-green-50 font-medium text-sm rounded-t-lg transition-colors"
             >
-              {institution.name}
-              <span className="ml-2 bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">
-                {institution.totalResponses}
-              </span>
+              <span>📊</span>
+              <span className="whitespace-nowrap">Export Global</span>
             </button>
-          ))}
-          
-          {/* Bouton Export Global */}
-          <button
-            onClick={() => handleExport()}
-            className="whitespace-nowrap py-2 px-4 border-b-2 border-transparent text-green-600 hover:text-green-700 hover:border-green-300 font-medium text-sm"
-          >
-            📊 Export Global
-          </button>
-        </nav>
+          </nav>
+        </div>
       </div>
 
       {/* Contenu de l'onglet actif */}
@@ -127,15 +134,17 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
             </h4>
             <div className="space-y-3">
               {activeInstitution.topChallenges.slice(0, 5).map((challenge, index) => (
-                <div key={challenge.challenge} className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full mr-3">
+                <div key={challenge.challenge} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <span className="bg-blue-500 text-white text-sm font-bold px-3 py-1 rounded-full">
                       #{index + 1}
                     </span>
-                    <span className="text-gray-700">{challenge.challenge}</span>
+                    <span className="text-gray-800 font-medium capitalize">
+                      {challenge.challenge.replace(/_/g, ' ')}
+                    </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-sm font-medium text-gray-900">{challenge.count}</span>
+                    <span className="text-lg font-bold text-blue-600">{challenge.count}</span>
                     <span className="text-sm text-gray-500 ml-1">({challenge.percentage}%)</span>
                   </div>
                 </div>
@@ -147,15 +156,18 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Facteurs favorables */}
             <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-green-800 mb-4">
-                ✅ Facteurs Favorables
+              <h4 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
+                <span className="mr-2">✅</span>
+                Facteurs Favorables
               </h4>
               <div className="space-y-3">
                 {activeInstitution.topFavorableFactors.slice(0, 3).map((factor, index) => (
-                  <div key={factor.factor} className="flex items-center justify-between">
-                    <span className="text-gray-700 text-sm">{factor.factor}</span>
+                  <div key={factor.factor} className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                    <span className="text-gray-800 font-medium capitalize">
+                      {factor.factor.replace(/_/g, ' ')}
+                    </span>
                     <div className="text-right">
-                      <span className="text-sm font-medium text-green-600">{factor.count}</span>
+                      <span className="text-lg font-bold text-green-600">{factor.count}</span>
                       <span className="text-sm text-gray-500 ml-1">({factor.percentage}%)</span>
                     </div>
                   </div>
@@ -165,15 +177,18 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
 
             {/* Facteurs négatifs */}
             <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-red-800 mb-4">
-                ❌ Facteurs Négatifs
+              <h4 className="text-lg font-semibold text-red-800 mb-4 flex items-center">
+                <span className="mr-2">❌</span>
+                Facteurs Négatifs
               </h4>
               <div className="space-y-3">
                 {activeInstitution.topNegativeFactors.slice(0, 3).map((factor, index) => (
-                  <div key={factor.factor} className="flex items-center justify-between">
-                    <span className="text-gray-700 text-sm">{factor.factor}</span>
+                  <div key={factor.factor} className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                    <span className="text-gray-800 font-medium capitalize">
+                      {factor.factor.replace(/_/g, ' ')}
+                    </span>
                     <div className="text-right">
-                      <span className="text-sm font-medium text-red-600">{factor.count}</span>
+                      <span className="text-lg font-bold text-red-600">{factor.count}</span>
                       <span className="text-sm text-gray-500 ml-1">({factor.percentage}%)</span>
                     </div>
                   </div>
