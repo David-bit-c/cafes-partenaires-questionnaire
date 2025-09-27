@@ -24,7 +24,7 @@ export async function onRequestGet(context) {
       const domain = email.toLowerCase().split('@')[1];
       if (!domain) return 'Autres';
       
-      // Classification simplifiée (Option D)
+      // Classification simplifiée (Option D) - AMÉLIORÉE
       if (domain.includes('hug.ch') || domain.includes('hcuge.ch')) {
         return 'HUG';
       }
@@ -34,11 +34,35 @@ export async function onRequestGet(context) {
       if (domain.includes('hospicegeneral.ch')) {
         return 'Hospice Général';
       }
+      
+      // FASE - Fondation d'Aide Sociale
+      if (domain.includes('fase.ch') || domain.includes('fase.cj')) {
+        return 'FASE';
+      }
+      
+      // Communes genevoises
+      if (domain.includes('lancy.ch') || domain.includes('plan-les-ouates.ch') || domain.includes('carouge.ch')) {
+        return 'Communes';
+      }
+      
+      // Associations spécialisées
+      if (domain.includes('for-pro.ch') || domain.includes('mbg.ch') || domain.includes('sceneactive.ch') || domain.includes('radiovostok.ch')) {
+        return 'Associations';
+      }
+      
+      // Entreprises/Groupes
+      if (domain.includes('groupe-serbeco.ch') || domain.includes('fegpac.ch')) {
+        return 'Entreprises';
+      }
+      
+      // Éducation
       if (domain.includes('cfp') || domain.includes('ecole') || domain.includes('formation')) {
         return 'Éducation';
       }
-      if (domain.includes('entreprise') || domain.includes('company') || domain.includes('.com')) {
-        return 'Insertion';
+      
+      // Emails personnels
+      if (domain.includes('gmail.com') || domain.includes('hotmail.com') || domain.includes('yahoo.com')) {
+        return 'Personnel';
       }
       
       return 'Autres';
