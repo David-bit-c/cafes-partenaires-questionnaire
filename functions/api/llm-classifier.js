@@ -16,26 +16,8 @@ export async function classifyWithLLM(domain, websiteContent, env) {
     
     const prompt = buildClassificationPrompt(domain, websiteContent);
     
-    // Utiliser l'API de synthèse existante
-    const response = await fetch(`${new URL(env.API_BASE_URL || 'https://cafes-partenaires-questionnaire.pages.dev').origin}/api/synthesis`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        model: 'gpt-4', // Utiliser GPT-4 pour meilleure précision
-        max_tokens: 200
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Erreur API synthèse: ${response.status}`);
-    }
-    
-    const result = await response.json();
-    const classification = parseLLMResponse(result.synthesis || result.text || '');
+    // Appel direct aux APIs IA (pas via l'API summary qui a sa propre logique)
+    const classification = await callLLMDirectly(prompt, env);
     
     if (isValidClassification(classification)) {
       console.log(`✅ Classification réussie pour ${domain}: ${classification.institution_type} (confiance: ${classification.confidence})`);
@@ -49,6 +31,90 @@ export async function classifyWithLLM(domain, websiteContent, env) {
     console.error(`❌ Erreur classification LLM pour ${domain}:`, error);
     return { institution_type: 'Autres', confidence: 0.1 };
   }
+}
+
+/**
+ * Appel direct aux APIs IA pour classification
+ */
+async function callLLMDirectly(prompt, env) {
+  const openaiKey = env.OPENAI_API_KEY;
+  const claudeKey = env.CLAUDE_API_KEY;
+  const geminiKey = env.GEMINI_API_KEY;
+  
+  // Essayer OpenAI en premier
+  if (openaiKey) {
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openaiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'gpt-4',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 200,
+          temperature: 0.1
+        })
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        return parseLLMResponse(data.choices[0].message.content);
+      }
+    } catch (error) {
+      console.error('Erreur OpenAI:', error);
+    }
+  }
+  
+  // Fallback vers Claude
+  if (claudeKey) {
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'x-api-key': claudeKey,
+          'Content-Type': 'application/json',
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 200,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        return parseLLMResponse(data.content[0].text);
+      }
+    } catch (error) {
+      console.error('Erreur Claude:', error);
+    }
+  }
+  
+  // Fallback vers Gemini
+  if (geminiKey) {
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 200, temperature: 0.1 }
+        })
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        return parseLLMResponse(data.candidates[0].content.parts[0].text);
+      }
+    } catch (error) {
+      console.error('Erreur Gemini:', error);
+    }
+  }
+  
+  throw new Error('Aucune API IA disponible');
 }
 
 /**
