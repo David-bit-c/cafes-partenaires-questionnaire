@@ -4,6 +4,7 @@ import { Submission, ChartData, SubmissionData } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 import MultiSelect from './MultiSelect'; // Importez le nouveau composant
 import { apiService, InstitutionData } from '../services/apiService';
+import { InstitutionTabs } from './InstitutionTabs';
 
 interface ResultsDashboardProps {
   submissions: Submission[];
@@ -634,63 +635,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                         <p className="text-gray-600 mt-2">Chargement des données par institution...</p>
                       </div>
                     ) : institutionData.length > 0 ? (
-                      <div className="space-y-6">
-                        {/* Tableau comparatif */}
-                        <div className="overflow-x-auto">
-                          <table className="w-full border-collapse border border-gray-300">
-                            <thead>
-                              <tr className="bg-gray-50">
-                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Institution</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Réponses</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Défis Top 3 (%)</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Facteurs Rupture</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {institutionData.map((institution, index) => (
-                                <tr key={institution.name} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                  <td className="border border-gray-300 px-4 py-2 font-medium">{institution.name}</td>
-                                  <td className="border border-gray-300 px-4 py-2">{institution.totalResponses} ({institution.percentageOfTotal}%)</td>
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    {institution.topChallenges.map(challenge => 
-                                      `${challenge.challenge}: ${challenge.percentage}%`
-                                    ).join(', ')}
-                                  </td>
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    <div className="text-sm">
-                                      <div className="text-green-600">
-                                        <strong>Favorables:</strong> {institution.topFavorableFactors.map(f => `${f.factor} (${f.percentage}%)`).join(', ')}
-                                      </div>
-                                      <div className="text-red-600 mt-1">
-                                        <strong>Négatifs:</strong> {institution.topNegativeFactors.map(f => `${f.factor} (${f.percentage}%)`).join(', ')}
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                        
-                        {/* Statistiques globales */}
-                        <div className="bg-blue-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-blue-800 mb-2">Statistiques Globales</h4>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                            <div>
-                              <span className="font-medium">Total institutions:</span> {institutionData.length}
-                            </div>
-                            <div>
-                              <span className="font-medium">Avec données:</span> {institutionData.filter(i => i.totalResponses > 0).length}
-                            </div>
-                            <div>
-                              <span className="font-medium">Total réponses:</span> {institutionData.reduce((sum, i) => sum + i.totalResponses, 0)}
-                            </div>
-                            <div>
-                              <span className="font-medium">Moyenne/institution:</span> {Math.round(institutionData.reduce((sum, i) => sum + i.totalResponses, 0) / institutionData.length * 10) / 10}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <InstitutionTabs 
+                        institutions={institutionData} 
+                        isLoading={isLoadingInstitutionData}
+                      />
                     ) : (
                       <div className="text-center py-8 text-gray-600">
                         <p>Aucune donnée d'institution disponible</p>
