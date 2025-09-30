@@ -667,7 +667,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
           <CardTitle className="text-lg text-blue-800">🧭 Navigation rapide</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
             <a href="#participation" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
               <span>📊</span>
               <span>Participation</span>
@@ -688,24 +688,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
               <span>🏢</span>
               <span>Institutions</span>
             </a>
-            {showThematicFocus && (
-              <a href="#focus" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-                <span>🎯</span>
-                <span>Focus</span>
-              </a>
-            )}
-            {showExecutiveDashboard && (
-              <a href="#dashboard" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-                <span>🎯</span>
-                <span>Dashboard</span>
-              </a>
-            )}
-            {showActionRecommendations && (
-              <a href="#recommandations" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-                <span>💡</span>
-                <span>Actions</span>
-              </a>
-            )}
           </div>
         </CardContent>
       </Card>
