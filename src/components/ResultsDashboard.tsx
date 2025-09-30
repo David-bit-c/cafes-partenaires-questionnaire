@@ -246,6 +246,15 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   // État pour le bloc Admin Avancés
   const [showAdvancedAdmin, setShowAdvancedAdmin] = useState(false);
   
+  // État pour masquer la section cafés partenaires
+  const [hideCafesSection, setHideCafesSection] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('hideCafesSection') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  
   // 3. État pour l'export des données
   const [isExporting, setIsExporting] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
@@ -382,6 +391,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       localStorage.setItem('synthesisDisplayMode', synthesisDisplayMode);
     } catch {}
   }, [synthesisDisplayMode]);
+
+  // Persistance masquage section cafés
+  useEffect(() => {
+    try {
+      localStorage.setItem('hideCafesSection', String(hideCafesSection));
+    } catch {}
+  }, [hideCafesSection]);
 
   // Persistance de l'état d'affichage de la synthèse (admin toggle)
   React.useEffect(() => {
@@ -670,7 +686,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
           <div className={`grid gap-3 text-sm ${(() => {
             const visibleMenus = [
               { id: 'participation', icon: '📊', label: 'Participation', always: true },
-              { id: 'perception', icon: '🧭', label: 'Perception', always: true },
+              { id: 'perception', icon: '🧭', label: 'Perception', condition: !hideCafesSection },
               { id: 'facteurs', icon: '✅', label: 'Facteurs', always: true },
               { 
                 id: 'syntheses', 
@@ -698,11 +714,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
               <span>Participation</span>
             </a>
             
-            {/* Perception - Toujours visible */}
-            <a href="#perception" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-              <span>🧭</span>
-              <span>Perception</span>
-            </a>
+            {/* Perception - Visible seulement si section cafés non masquée */}
+            {!hideCafesSection && (
+              <a href="#perception" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>🧭</span>
+                <span>Perception</span>
+              </a>
+            )}
             
             {/* Facteurs - Toujours visible */}
             <a href="#facteurs" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
@@ -798,12 +816,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       {/* Affichez les graphiques uniquement si des données existent après le filtrage */}
       {data ? (
         <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
+            <div className={`grid gap-6 ${data.participatedCafes && !hideCafesSection ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'}`}>
+                {data.participatedCafes && !hideCafesSection && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
                 {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={350} />}
             </div>
             
-            {data.cafeParticipants.length > 0 && (
+            {data.cafeParticipants.length > 0 && !hideCafesSection && (
                 <>
                     <hr className="my-8 border-gray-200"/>
                     <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">☕ Retours sur les Cafés Partenaires ({data.cafeParticipants.length} participant(s))</h2>
@@ -825,13 +843,18 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 </>
             )}
             
-            <hr className="my-8 border-gray-200"/>
-            <h2 id="perception" className="text-2xl font-bold text-center text-gray-800 mb-6 scroll-mt-24">🧭 Perception des Problématiques des Jeunes</h2>
+            {/* Section Perception des Problématiques des Jeunes - Conditionnelle */}
+            {!hideCafesSection && (
+              <>
+                <hr className="my-8 border-gray-200"/>
+                <h2 id="perception" className="text-2xl font-bold text-center text-gray-800 mb-6 scroll-mt-24">🧭 Perception des Problématiques des Jeunes</h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {data.observedChallenges && data.observedChallenges.length > 0 && <BarChartCard title="Défis les plus observés" data={data.observedChallenges} />}
-                <TextResponsesCard title="Autres défis observés" responses={data.textResponses.observedChallengesOther} />
-            </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {data.observedChallenges && data.observedChallenges.length > 0 && <BarChartCard title="Défis les plus observés" data={data.observedChallenges} />}
+                    <TextResponsesCard title="Autres défis observés" responses={data.textResponses.observedChallengesOther} />
+                </div>
+              </>
+            )}
             
             {data.challengesRankingAvg && data.challengesRankingAvg.length > 0 && <RadarChartCard title="Impact moyen perçu des problématiques" data={data.challengesRankingAvg} />}
             
@@ -1309,6 +1332,17 @@ Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : 
                       type="checkbox"
                       checked={showInstitutionAnalysis}
                       onChange={(e) => setShowInstitutionAnalysis(e.target.checked)}
+                      className="h-4 w-4"
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <label htmlFor="toggle-hide-cafes" className="text-sm text-gray-700">Masquer section "Cafés Partenaires"</label>
+                    <input
+                      id="toggle-hide-cafes"
+                      type="checkbox"
+                      checked={hideCafesSection}
+                      onChange={(e) => setHideCafesSection(e.target.checked)}
                       className="h-4 w-4"
                     />
                   </div>
