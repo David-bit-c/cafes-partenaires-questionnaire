@@ -46,12 +46,27 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR }: { title: string, data: any[], yAxisWidth?: number, color?: string }) => (
+const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTop5 = true }: { title: string, data: any[], yAxisWidth?: number, color?: string, showTop5?: boolean }) => {
+  const [showAll, setShowAll] = useState(false);
+  const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
+  const hasMore = showTop5 && data.length > 5;
+  
+  return (
     <Card>
-      <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle>{title}</CardTitle>
+        {hasMore && (
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="text-sm text-blue-600 hover:text-blue-800 underline"
+          >
+            {showAll ? 'Voir Top 5' : `Voir tout (${data.length})`}
+          </button>
+        )}
+      </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
+          <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
             <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
             <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
@@ -62,14 +77,30 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR }: { ti
         </ResponsiveContainer>
       </CardContent>
     </Card>
-);
+  );
+};
 
-const CombinedBarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string, data: any[], yAxisWidth?: number }) => (
+const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }: { title: string, data: any[], yAxisWidth?: number, showTop5?: boolean }) => {
+  const [showAll, setShowAll] = useState(false);
+  const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
+  const hasMore = showTop5 && data.length > 5;
+  
+  return (
     <Card>
-        <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>{title}</CardTitle>
+          {hasMore && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="text-sm text-blue-600 hover:text-blue-800 underline"
+            >
+              {showAll ? 'Voir Top 5' : `Voir tout (${data.length})`}
+            </button>
+          )}
+        </CardHeader>
         <CardContent>
             <ResponsiveContainer width="100%" height={350}>
-                <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
+                <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
                     <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
                     <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
@@ -81,7 +112,8 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100 }: { title: string
             </ResponsiveContainer>
         </CardContent>
     </Card>
-);
+  );
+};
 
 const PieChartCard = ({ title, data }: { title: string, data: ChartData }) => (
    <Card>
@@ -134,6 +166,39 @@ const TextResponsesCard = ({ title, responses }: { title: string, responses: (st
     );
 };
 
+const AccordionCard = ({ title, children, isExpanded, onToggle, color = "blue" }: { 
+  title: string, 
+  children: React.ReactNode, 
+  isExpanded: boolean, 
+  onToggle: () => void,
+  color?: "blue" | "green" | "red"
+}) => {
+  const colorClasses = {
+    blue: "border-blue-200 bg-blue-50",
+    green: "border-green-200 bg-green-50", 
+    red: "border-red-200 bg-red-50"
+  };
+  
+  return (
+    <Card className={`${colorClasses[color]} md:!bg-white md:!border-gray-200`}>
+      <CardHeader 
+        className="cursor-pointer hover:bg-opacity-80 transition-all md:cursor-default"
+        onClick={() => onToggle()}
+      >
+        <CardTitle className="flex items-center justify-between">
+          <span>{title}</span>
+          <span className="md:hidden">
+            {isExpanded ? '−' : '+'}
+          </span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className={`md:block ${isExpanded ? 'block' : 'hidden'}`}>
+        {children}
+      </CardContent>
+    </Card>
+  );
+};
+
 const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summary, summaryError, isLoading, error, usedModel, onRefreshSummary }) => {
   // 1. Extraire tous les rôles uniques pour le filtre
   const allRoles = useMemo(() => {
@@ -147,6 +212,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
 
   // 2. État pour les rôles sélectionnés
   const [selectedRoles, setSelectedRoles] = useState<string[]>(allRoles);
+  
+  // État pour les accordéons mobile
+  const [isMobileAccordionOpen, setIsMobileAccordionOpen] = useState(false);
+  const [isAllExpanded, setIsAllExpanded] = useState(false);
+  
+  // État pour le bloc Admin Avancés
+  const [showAdvancedAdmin, setShowAdvancedAdmin] = useState(false);
   
   // 3. État pour l'export des données
   const [isExporting, setIsExporting] = useState(false);
@@ -382,7 +454,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     const cafeParticipants = processedSubmissions.filter(s => s.participatedInCafes === 'Oui');
     
     const formatChartData = (data: Record<string, number>): ChartData =>
-      Object.entries(data).map(([name, value]) => ({ name, value })).sort((a,b) => b.value - a.value);
+      Object.entries(data).map(([name, value]) => ({ 
+        name: name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(), 
+        value 
+      })).sort((a,b) => b.value - a.value);
 
     const participatedCafes = processedSubmissions.reduce((acc, s) => {
         const key = s.participatedInCafes || "Non spécifié";
@@ -460,6 +535,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         'En augmentation': challengesEvolution[challenge] || 0,
     })).sort((a,b) => b['Fréquence'] - a['Fréquence']);
 
+    // Taux d'aggravation: part des répondants qui signalent au moins une problématique en augmentation
+    const submissionsWithEmergence = processedSubmissions.filter(s => (s.challengesHasEmerged || []).length > 0).length;
+    const aggravationRate = totalSubmissions > 0 ? Math.round((submissionsWithEmergence / totalSubmissions) * 100) : 0;
+
 
     const professionalRoles = processedSubmissions.reduce((acc, s) => {
         const role = s.professionalRole === 'Autre' ? s.professionalRoleOther || 'Autre (non précisé)' : s.professionalRole;
@@ -533,6 +612,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       ruptureFactorsFavorable: formatChartData(ruptureFactorsFavorable),
       ruptureFactorsNegative: formatChartData(ruptureFactorsNegative),
       ruptureResponsesCount: ruptureResponses.length,
+      aggravationRate,
     };
   }, [submissions, selectedRoles]);
   
@@ -555,10 +635,59 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
 
   return (
     <div className="space-y-6">
-      <Card>
+      {/* Sommaire de navigation */}
+      <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+        <CardHeader>
+          <CardTitle className="text-lg text-blue-800">🧭 Navigation rapide</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 text-sm">
+            <a href="#participation" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+              <span>📊</span>
+              <span>Participation</span>
+            </a>
+            <a href="#perception" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+              <span>🧭</span>
+              <span>Perception</span>
+            </a>
+            <a href="#facteurs" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+              <span>✅</span>
+              <span>Facteurs</span>
+            </a>
+            <a href="#syntheses" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+              <span>📋</span>
+              <span>Synthèses</span>
+            </a>
+            <a href="#institutions" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+              <span>🏢</span>
+              <span>Institutions</span>
+            </a>
+            {showThematicFocus && (
+              <a href="#focus" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>🎯</span>
+                <span>Focus</span>
+              </a>
+            )}
+            {showExecutiveDashboard && (
+              <a href="#dashboard" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>🎯</span>
+                <span>Dashboard</span>
+              </a>
+            )}
+            {showActionRecommendations && (
+              <a href="#recommandations" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>💡</span>
+                <span>Actions</span>
+              </a>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card id="participation">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="flex items-center text-xl font-bold">
-            Synthèse des Réponses
+            📊 Synthèse des Réponses
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -567,6 +696,59 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             <p className="text-xs text-muted-foreground">réponse(s) affichée(s) sur {submissions.length} au total</p>
         </CardContent>
       </Card>
+
+      {/* Dashboard exécutif remonté juste après le compteur */}
+      {showExecutiveDashboard && data && (
+        <>
+          <Card id="dashboard">
+            <CardHeader>
+              <CardTitle>🎯 Dashboard exécutif</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {(() => {
+                const total = data.filteredCount || 0;
+                const aggravation = data.aggravationRate || 0;
+                const topChallenge = (data.observedChallenges || [])[0]?.name || '—';
+                const topFav = (data.ruptureFactorsFavorable || [])[0]?.name || '—';
+                const topNeg = (data.ruptureFactorsNegative || [])[0]?.name || '—';
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <div className="text-xs uppercase text-blue-700">Réponses analysées</div>
+                      <div className="text-2xl font-bold text-blue-900">{total}</div>
+                    </div>
+                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                      <div className="text-xs uppercase text-purple-700">
+                        Tendance d'aggravation
+                        <span
+                          title="Part des répondants déclarant au moins une problématique 'en augmentation'."
+                          className="ml-1 inline-block text-purple-600/70 cursor-help"
+                          aria-label="Comment c'est calculé"
+                        >
+                          ℹ︎
+                        </span>
+                      </div>
+                      <div className="text-2xl font-bold text-purple-900">{aggravation}%</div>
+                    </div>
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                      <div className="text-xs uppercase text-amber-700">Défi dominant</div>
+                      <div className="text-sm font-semibold text-amber-900 capitalize">{topChallenge}</div>
+                    </div>
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <div className="text-xs uppercase text-red-700">Facteur critique</div>
+                      <div className="text-sm font-semibold text-red-900 capitalize">{topNeg}</div>
+                    </div>
+                    <div className="md:col-span-2 bg-slate-50 border border-slate-200 rounded-lg p-4">
+                      <div className="text-xs uppercase text-slate-700">Levier prioritaire</div>
+                      <div className="text-sm font-semibold text-slate-900 capitalize">{topFav}</div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </CardContent>
+          </Card>
+        </>
+      )}
       
       {/* Affichez les graphiques uniquement si des données existent après le filtrage */}
       {data ? (
@@ -579,7 +761,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {data.cafeParticipants.length > 0 && (
                 <>
                     <hr className="my-8 border-gray-200"/>
-                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Retours sur les Cafés Partenaires ({data.cafeParticipants.length} participant(s))</h2>
+                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">☕ Retours sur les Cafés Partenaires ({data.cafeParticipants.length} participant(s))</h2>
                     <div className="space-y-6">
                         {data.cafesKnowledge && data.cafesKnowledge.length > 0 && <BarChartCard title="Permet de mieux connaître..." data={data.cafesKnowledge} />}
                         {data.cafesCommunication && data.cafesCommunication.length > 0 && (
@@ -599,7 +781,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             )}
             
             <hr className="my-8 border-gray-200"/>
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Perception des Problématiques des Jeunes</h2>
+            <h2 id="perception" className="text-2xl font-bold text-center text-gray-800 mb-6">🧭 Perception des Problématiques des Jeunes</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {data.observedChallenges && data.observedChallenges.length > 0 && <BarChartCard title="Défis les plus observés" data={data.observedChallenges} />}
@@ -618,29 +800,55 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {data.ruptureResponsesCount >= 5 && (
                 <>
                     <hr className="my-8 border-gray-200"/>
-                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-                        Facteurs de Rupture et Maintien en Formation 
+                    <h2 id="facteurs" className="text-2xl font-bold text-center text-gray-800 mb-6">
+                        ✅ Facteurs de Rupture et Maintien en Formation 
                         <span className="text-lg font-normal text-gray-600 block mt-1">
                             Expertise terrain de {data.ruptureResponsesCount} professionnel(s)
                         </span>
                     </h2>
 
+                    {/* Boutons de contrôle mobile */}
+                    <div className="flex justify-center space-x-4 mb-6 md:hidden">
+                      <button
+                        onClick={() => setIsAllExpanded(!isAllExpanded)}
+                        className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm hover:bg-blue-200 transition-colors"
+                      >
+                        {isAllExpanded ? 'Replier tout' : 'Déplier tout'}
+                      </button>
+                    </div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {data.ruptureFactorsFavorable && data.ruptureFactorsFavorable.length > 0 && (
-                            <BarChartCard 
-                                title="Facteurs favorisant la reprise de formation" 
-                                data={data.ruptureFactorsFavorable.slice(0, 6)} 
-                                yAxisWidth={250}
-                                color="#059669"
-                            />
+                            <AccordionCard
+                                title="Facteurs favorisant la reprise de formation"
+                                isExpanded={isAllExpanded}
+                                onToggle={() => setIsAllExpanded(!isAllExpanded)}
+                                color="green"
+                            >
+                                <BarChartCard 
+                                    title="" 
+                                    data={data.ruptureFactorsFavorable.slice(0, 6)} 
+                                    yAxisWidth={250}
+                                    color="#059669"
+                                    showTop5={false}
+                                />
+                            </AccordionCard>
                         )}
                         {data.ruptureFactorsNegative && data.ruptureFactorsNegative.length > 0 && (
-                            <BarChartCard 
-                                title="Facteurs augmentant les risques d'abandon" 
-                                data={data.ruptureFactorsNegative.slice(0, 6)} 
-                                yAxisWidth={250}
-                                color="#DC2626"
-                            />
+                            <AccordionCard
+                                title="Facteurs augmentant les risques d'abandon"
+                                isExpanded={isAllExpanded}
+                                onToggle={() => setIsAllExpanded(!isAllExpanded)}
+                                color="red"
+                            >
+                                <BarChartCard 
+                                    title="" 
+                                    data={data.ruptureFactorsNegative.slice(0, 6)} 
+                                    yAxisWidth={250}
+                                    color="#DC2626"
+                                    showTop5={false}
+                                />
+                            </AccordionCard>
                         )}
                     </div>
                     
@@ -664,7 +872,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {((synthesisDisplayMode === 'general' && showSynthesis) || (synthesisDisplayMode === 'both' && showSynthesis)) && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card>
+                <Card id="syntheses">
                   <CardHeader>
                     <CardTitle>
                       Synthèse
@@ -694,12 +902,43 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
               </>
             )}
 
+            {/* Synthèse thématique directement sous synthèse générale si mode "both" */}
             {showThematicSynthesis && (synthesisDisplayMode === 'thematic' || synthesisDisplayMode === 'both') && data && (
               <>
-                <hr className="my-8 border-gray-200"/>
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Synthèse thématique</CardTitle>
+                  <CardHeader className="flex flex-row items-center justify-between">
+                    <CardTitle>
+                      📋 Synthèse thématique
+                      <span className="text-sm font-normal text-gray-500 ml-2">(Basé sur données brutes)</span>
+                    </CardTitle>
+                    <button
+                      onClick={() => {
+                        const top = (arr: { name: string; value: number }[] | undefined, n: number) => (arr || []).slice(0, n);
+                        const topChallenges = top(data.observedChallenges, 3);
+                        const topFav = top(data.ruptureFactorsFavorable, 2);
+                        const topNeg = top(data.ruptureFactorsNegative, 3);
+                        const total = data.filteredCount || 0;
+                        const aggravation = data.aggravationRate || 0;
+                        
+                        const synthesisText = `SYNTHÈSE THÉMATIQUE - Questionnaire CAP Formations
+                        
+Défis concrets: ${topChallenges.length > 0 ? topChallenges.map(c => c.name).join(' • ') : '—'}
+
+Impact organisationnel: ${total} réponses analysées • facteurs clés: ${topFav.length > 0 ? topFav.map(f => f.name).join(' • ') : '—'} • tendance: ${aggravation}% observent une aggravation
+
+Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : '—'}`;
+                        
+                        navigator.clipboard.writeText(synthesisText).then(() => {
+                          alert('Synthèse thématique copiée dans le presse-papiers !');
+                        }).catch(() => {
+                          alert('Erreur lors de la copie');
+                        });
+                      }}
+                      className="text-sm text-blue-600 hover:text-blue-800 underline flex items-center space-x-1"
+                    >
+                      <span>📋</span>
+                      <span>Copier</span>
+                    </button>
                   </CardHeader>
                   <CardContent>
                     {(() => {
@@ -708,12 +947,22 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                       const topFav = top(data.ruptureFactorsFavorable, 2);
                       const topNeg = top(data.ruptureFactorsNegative, 3);
                       const total = data.filteredCount || 0;
-                      const participants = data.cafeParticipants?.length || 0;
-                      const participationRate = total > 0 ? Math.round((participants / total) * 100) : 0;
+                      const aggravation = data.aggravationRate || 0;
+                      const topChallengeName = topChallenges[0]?.name || '—';
                       return (
                         <div className="space-y-3 text-gray-800">
                           <p><span className="font-semibold">Défis concrets:</span> {topChallenges.length > 0 ? topChallenges.map(c => c.name).join(' • ') : '—'}</p>
-                          <p><span className="font-semibold">Impact organisationnel:</span> {total} réponses analysées • {participationRate}% de participation aux cafés • facteurs clés: {topFav.length > 0 ? topFav.map(f => f.name).join(' • ') : '—'}</p>
+                          <p>
+                            <span className="font-semibold">Impact organisationnel:</span> {total} réponses analysées • facteurs clés: {topFav.length > 0 ? topFav.map(f => f.name).join(' • ') : '—'} •
+                            <span className="ml-1">tendance: {aggravation}% observent une aggravation</span>
+                            <span
+                              title="Part des répondants déclarant au moins une problématique 'en augmentation' parmi la liste proposée."
+                              className="ml-2 inline-block text-gray-400 cursor-help align-middle"
+                              aria-label="Comment c'est calculé"
+                            >
+                              ℹ︎
+                            </span>
+                          </p>
                           <p><span className="font-semibold">Impact sociétal:</span> {topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : '—'}</p>
                         </div>
                       );
@@ -727,10 +976,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {showInstitutionAnalysis && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card>
+                <Card id="institutions">
                   <CardHeader>
                     <CardTitle>
-                      Analyse par Institution
+                      🏢 Analyse par Institution
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -758,9 +1007,9 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {showThematicFocus && data && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card>
+                <Card id="focus">
                   <CardHeader>
-                    <CardTitle>Focus thématiques</CardTitle>
+                    <CardTitle>🎯 Focus thématiques</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {(() => {
@@ -769,8 +1018,8 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                       const topFav = top(data.ruptureFactorsFavorable || [], 3);
                       const topNeg = top(data.ruptureFactorsNegative || [], 3);
                       const total = data.filteredCount || 0;
-                      const participants = data.cafeParticipants?.length || 0;
-                      const participationRate = total > 0 ? Math.round((participants / total) * 100) : 0;
+                      const aggravation = data.aggravationRate || 0;
+                      const topChallengeName = topChallenges[0]?.name || '—';
                       return (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
                           <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
@@ -791,9 +1040,22 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                                 <div className="text-xs uppercase text-blue-700">Réponses affichées</div>
                                 <div className="text-lg font-bold text-blue-900">{total}</div>
                               </div>
-                              <div className="bg-green-50 border border-green-200 rounded-md p-3">
-                                <div className="text-xs uppercase text-green-700">Participation cafés</div>
-                                <div className="text-lg font-bold text-green-900">{participationRate}%</div>
+                              <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
+                                <div className="text-xs uppercase text-purple-700">
+                                  Tendance d'aggravation
+                                  <span
+                                    title="Part des répondants déclarant au moins une problématique 'en augmentation'."
+                                    className="ml-1 inline-block text-purple-600/70 cursor-help"
+                                    aria-label="Comment c'est calculé"
+                                  >
+                                    ℹ︎
+                                  </span>
+                                </div>
+                                <div className="text-lg font-bold text-purple-900">{aggravation}%</div>
+                              </div>
+                              <div className="bg-amber-50 border border-amber-200 rounded-md p-3">
+                                <div className="text-xs uppercase text-amber-700">Défi dominant</div>
+                                <div className="text-sm font-semibold text-amber-900 capitalize">{topChallengeName}</div>
                               </div>
                               <div className="col-span-2 bg-amber-50 border border-amber-200 rounded-md p-3">
                                 <div className="text-xs uppercase text-amber-700">Facteurs clés</div>
@@ -822,57 +1084,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
               </>
             )}
 
-            {showExecutiveDashboard && data && (
-              <>
-                <hr className="my-8 border-gray-200"/>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Dashboard exécutif</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {(() => {
-                      const total = data.filteredCount || 0;
-                      const participants = data.cafeParticipants?.length || 0;
-                      const participationRate = total > 0 ? Math.round((participants / total) * 100) : 0;
-                      const topChallenge = (data.observedChallenges || [])[0]?.name || '—';
-                      const topFav = (data.ruptureFactorsFavorable || [])[0]?.name || '—';
-                      const topNeg = (data.ruptureFactorsNegative || [])[0]?.name || '—';
-                      return (
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <div className="text-xs uppercase text-blue-700">Réponses analysées</div>
-                            <div className="text-2xl font-bold text-blue-900">{total}</div>
-                          </div>
-                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <div className="text-xs uppercase text-green-700">Participation cafés</div>
-                            <div className="text-2xl font-bold text-green-900">{participationRate}%</div>
-                          </div>
-                          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                            <div className="text-xs uppercase text-amber-700">Défi dominant</div>
-                            <div className="text-sm font-semibold text-amber-900 capitalize">{topChallenge}</div>
-                          </div>
-                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                            <div className="text-xs uppercase text-red-700">Facteur critique</div>
-                            <div className="text-sm font-semibold text-red-900 capitalize">{topNeg}</div>
-                          </div>
-                          <div className="md:col-span-2 bg-slate-50 border border-slate-200 rounded-lg p-4">
-                            <div className="text-xs uppercase text-slate-700">Levier prioritaire</div>
-                            <div className="text-sm font-semibold text-slate-900 capitalize">{topFav}</div>
-                          </div>
-                        </div>
-                      );
-                    })()}
-                  </CardContent>
-                </Card>
-              </>
-            )}
 
             {showActionRecommendations && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card>
+                <Card id="recommandations">
                   <CardHeader>
-                    <CardTitle>Recommandations d’actions</CardTitle>
+                    <CardTitle>💡 Recommandations d'actions</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {data ? (
@@ -883,18 +1101,17 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                         const topNeg = top(data.ruptureFactorsNegative, 2);
                         const recs: string[] = [];
                         if (topChallenges.length) {
-                          recs.push(`Traiter en priorité: ${topChallenges.map(c => c.name).join(' • ')}`);
+                          const topChallenge = topChallenges[0];
+                          recs.push(`Traiter en priorité: ${topChallenges.map(c => c.name).join(' • ')} (fréquence la plus élevée: ${topChallenge.value} réponses)`);
                         }
                         if (topFav.length) {
-                          recs.push(`Amplifier les leviers: ${topFav.map(f => f.name).join(' • ')}`);
+                          const topFavFactor = topFav[0];
+                          recs.push(`Amplifier les leviers: ${topFav.map(f => f.name).join(' • ')} (facteur le plus cité: ${topFavFactor.value} réponses)`);
                         }
                         if (topNeg.length) {
-                          recs.push(`Réduire les facteurs de risque: ${topNeg.map(n => n.name).join(' • ')}`);
+                          const topNegFactor = topNeg[0];
+                          recs.push(`Réduire les facteurs de risque: ${topNeg.map(n => n.name).join(' • ')} (risque le plus signalé: ${topNegFactor.value} réponses)`);
                         }
-                        const total = data.filteredCount || 0;
-                        const participants = data.cafeParticipants?.length || 0;
-                        const participationRate = total > 0 ? Math.round((participants / total) * 100) : 0;
-                        recs.push(`Objectif organisationnel: maintenir/augmenter ${participationRate}% de participation aux cafés`);
                         return (
                           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm">
                             {recs.map((r, i) => (
@@ -1028,6 +1245,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                 </div>
                 
                 <div className="space-y-3 mb-6">
+                  {/* Contrôles de base */}
                   <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                     <label htmlFor="toggle-synthesis" className="text-sm text-gray-700">Afficher la synthèse (bloc IA)</label>
                     <input
@@ -1050,84 +1268,109 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
                     />
                   </div>
 
-                  {/* Contrôles synthèse thématique */}
-                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="toggle-thematic-synthesis" className="text-sm text-gray-700">Activer synthèse thématique</label>
-                    <input
-                      id="toggle-thematic-synthesis"
-                      type="checkbox"
-                      checked={showThematicSynthesis}
-                      onChange={(e) => setShowThematicSynthesis(e.target.checked)}
-                      className="h-4 w-4"
-                    />
-                  </div>
-                  <div className="p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="synthesis-mode-select" className="text-sm text-gray-700 block mb-2">Mode d'affichage de la synthèse</label>
-                    <select
-                      id="synthesis-mode-select"
-                      value={synthesisDisplayMode}
-                      onChange={(e) => setSynthesisDisplayMode(e.target.value as any)}
-                      disabled={!showThematicSynthesis}
-                      className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50"
+                  {/* Bouton pour ouvrir/fermer les options avancées */}
+                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
+                    <span className="text-sm text-gray-700 font-medium">Options avancées</span>
+                    <button
+                      onClick={() => setShowAdvancedAdmin(!showAdvancedAdmin)}
+                      className="text-sm text-blue-600 hover:text-blue-800 underline"
                     >
-                      <option value="general">Générale uniquement</option>
-                      <option value="thematic">Thématique uniquement</option>
-                      <option value="both">Les deux (générale puis thématique)</option>
-                    </select>
+                      {showAdvancedAdmin ? 'Masquer' : 'Afficher'}
+                    </button>
                   </div>
 
-                  {/* Nouveaux feature flags (désactivés par défaut) */}
-                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="toggle-thematic" className="text-sm text-gray-700">Préparer Focus thématiques (lecture seule)</label>
-                    <input
-                      id="toggle-thematic"
-                      type="checkbox"
-                      checked={showThematicFocus}
-                      onChange={(e) => setShowThematicFocus(e.target.checked)}
-                      className="h-4 w-4"
-                    />
-                  </div>
+                  {/* Options avancées (retractables) */}
+                  {showAdvancedAdmin && (
+                    <div className="space-y-3 p-3 border border-gray-200 rounded-lg bg-blue-50">
+                      {/* Contrôles synthèse thématique */}
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="toggle-thematic-synthesis" className="text-sm text-gray-700">Activer synthèse thématique</label>
+                        <input
+                          id="toggle-thematic-synthesis"
+                          type="checkbox"
+                          checked={showThematicSynthesis}
+                          onChange={(e) => setShowThematicSynthesis(e.target.checked)}
+                          className="h-4 w-4"
+                        />
+                      </div>
+                      <div className="p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="synthesis-mode-select" className="text-sm text-gray-700 block mb-2">
+                          Mode d'affichage de la synthèse
+                          <span
+                            title="Générale: synthèse IA uniquement | Thématique: synthèse calculée uniquement | Les deux: synthèse IA puis synthèse calculée"
+                            className="ml-1 inline-block text-gray-400 cursor-help"
+                            aria-label="Comment ça fonctionne"
+                          >
+                            ℹ︎
+                          </span>
+                        </label>
+                        <select
+                          id="synthesis-mode-select"
+                          value={synthesisDisplayMode}
+                          onChange={(e) => setSynthesisDisplayMode(e.target.value as any)}
+                          disabled={!showThematicSynthesis}
+                          className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50"
+                        >
+                          <option value="general">Générale uniquement</option>
+                          <option value="thematic">Thématique uniquement</option>
+                          <option value="both">Les deux (générale puis thématique)</option>
+                        </select>
+                      </div>
 
-                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="toggle-exec" className="text-sm text-gray-700">Préparer Dashboard exécutif (lecture seule)</label>
-                    <input
-                      id="toggle-exec"
-                      type="checkbox"
-                      checked={showExecutiveDashboard}
-                      onChange={(e) => setShowExecutiveDashboard(e.target.checked)}
-                      className="h-4 w-4"
-                    />
-                  </div>
+                      {/* Nouveaux feature flags (désactivés par défaut) */}
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="toggle-thematic" className="text-sm text-gray-700">Préparer Focus thématiques (lecture seule)</label>
+                        <input
+                          id="toggle-thematic"
+                          type="checkbox"
+                          checked={showThematicFocus}
+                          onChange={(e) => setShowThematicFocus(e.target.checked)}
+                          className="h-4 w-4"
+                        />
+                      </div>
 
-                  <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="toggle-actions" className="text-sm text-gray-700">Préparer Recommandations d'actions (lecture seule)</label>
-                    <input
-                      id="toggle-actions"
-                      type="checkbox"
-                      checked={showActionRecommendations}
-                      onChange={(e) => setShowActionRecommendations(e.target.checked)}
-                      className="h-4 w-4"
-                    />
-                  </div>
-                  
-                  <div className="p-3 border border-gray-200 rounded-lg">
-                    <label htmlFor="ai-model-select" className="text-sm text-gray-700 block mb-2">Modèle IA pour synthèse</label>
-                    <select
-                      id="ai-model-select"
-                      value={aiModelPreference}
-                      onChange={(e) => setAiModelPreference(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    >
-                      <option value="auto">Auto (GPT-5 → Claude Sonnet 4 → Claude 3.5 → Gemini)</option>
-                      <option value="openai">Forcer GPT-5 uniquement</option>
-                      <option value="claude-sonnet4">Forcer Claude Sonnet 4 uniquement</option>
-                      <option value="claude">Forcer Claude 3.5 Sonnet uniquement</option>
-                      <option value="gemini">Forcer Gemini uniquement</option>
-                    </select>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Auto : essaie GPT-5 → Claude Sonnet 4 → Claude 3.5 → Gemini si échec
-                    </p>
-                  </div>
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="toggle-exec" className="text-sm text-gray-700">Préparer Dashboard exécutif (lecture seule)</label>
+                        <input
+                          id="toggle-exec"
+                          type="checkbox"
+                          checked={showExecutiveDashboard}
+                          onChange={(e) => setShowExecutiveDashboard(e.target.checked)}
+                          className="h-4 w-4"
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="toggle-actions" className="text-sm text-gray-700">Préparer Recommandations d'actions (lecture seule)</label>
+                        <input
+                          id="toggle-actions"
+                          type="checkbox"
+                          checked={showActionRecommendations}
+                          onChange={(e) => setShowActionRecommendations(e.target.checked)}
+                          className="h-4 w-4"
+                        />
+                      </div>
+                      
+                      <div className="p-3 border border-gray-200 rounded-lg bg-white">
+                        <label htmlFor="ai-model-select" className="text-sm text-gray-700 block mb-2">Modèle IA pour synthèse</label>
+                        <select
+                          id="ai-model-select"
+                          value={aiModelPreference}
+                          onChange={(e) => setAiModelPreference(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                        >
+                          <option value="auto">Auto (GPT-5 → Claude Sonnet 4 → Claude 3.5 → Gemini)</option>
+                          <option value="openai">Forcer GPT-5 uniquement</option>
+                          <option value="claude-sonnet4">Forcer Claude Sonnet 4 uniquement</option>
+                          <option value="claude">Forcer Claude 3.5 Sonnet uniquement</option>
+                          <option value="gemini">Forcer Gemini uniquement</option>
+                        </select>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Auto : essaie GPT-5 → Claude Sonnet 4 → Claude 3.5 → Gemini si échec
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   <button
                     onClick={handleExport}
                     disabled={isExporting || submissions.length === 0}

@@ -1,3 +1,24 @@
+## 2025-09-30 - [EUREKA] 📈 Indicateur tendance d'aggravation (remplace métrique cafés)
+
+Contexte: À la demande produit, nous avons retiré l'indicateur « participation aux cafés partenaires » des sections liées aux enjeux d'insertion (trop centré CAP) et l'avons remplacé par un signal directement pertinent pour l'analyse terrain.
+
+Changements côté client (sans impact backend/DB):
+- Ajout du calcul du « taux d'aggravation »: part des répondants déclarant au moins une problématique « en augmentation » (`challengesHasEmerged`).
+- Affichage du taux d'aggravation dans:
+  - Synthèse thématique (ligne Impact organisationnel)
+  - Focus thématiques (carte KPI dédiée)
+  - Dashboard exécutif (carte KPI dédiée)
+- Suppression de toute mention « participation aux cafés » dans les Recommandations d’actions.
+
+Détails techniques:
+- Fichier: `src/components/ResultsDashboard.tsx`
+  - Nouveau champ `aggravationRate` calculé côté client à partir des données brutes filtrées.
+  - Rendu conditionnel intégré aux blocs existants, aucune requête supplémentaire.
+
+Résultat:
+- Lecture plus parlante et actionnable pour professionnels, responsables/directeurs et décideurs: « X% observent une aggravation ».
+- Conforme au principe: visibilité générale, activation fine via Admin.
+
 ## 2025-01-27 - [SESSION] 🎯 ANALYSE COMPLÈTE + NOUVELLES FONCTIONNALITÉS : Feuille de Route Stratégique
 
 ### 🎯 SESSION DE TRAVAIL - ANALYSE ET PLANIFICATION STRATÉGIQUE
