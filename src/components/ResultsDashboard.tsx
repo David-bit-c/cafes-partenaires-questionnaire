@@ -667,27 +667,64 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
           <CardTitle className="text-lg text-blue-800">🧭 Navigation rapide</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+          <div className={`grid gap-3 text-sm ${(() => {
+            const visibleMenus = [
+              { id: 'participation', icon: '📊', label: 'Participation', always: true },
+              { id: 'perception', icon: '🧭', label: 'Perception', always: true },
+              { id: 'facteurs', icon: '✅', label: 'Facteurs', always: true },
+              { 
+                id: 'syntheses', 
+                icon: '📋', 
+                label: 'Synthèses', 
+                condition: showSynthesis || showThematicSynthesis 
+              },
+              { 
+                id: 'institutions', 
+                icon: '🏢', 
+                label: 'Institutions', 
+                condition: showInstitutionAnalysis 
+              }
+            ].filter(menu => menu.always || menu.condition);
+            
+            const count = visibleMenus.length;
+            if (count <= 2) return 'grid-cols-2';
+            if (count <= 3) return 'grid-cols-2 md:grid-cols-3';
+            if (count <= 4) return 'grid-cols-2 md:grid-cols-4';
+            return 'grid-cols-2 md:grid-cols-5';
+          })()}`}>
+            {/* Participation - Toujours visible */}
             <a href="#participation" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
               <span>📊</span>
               <span>Participation</span>
             </a>
+            
+            {/* Perception - Toujours visible */}
             <a href="#perception" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
               <span>🧭</span>
               <span>Perception</span>
             </a>
+            
+            {/* Facteurs - Toujours visible */}
             <a href="#facteurs" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
               <span>✅</span>
               <span>Facteurs</span>
             </a>
-            <a href="#syntheses" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-              <span>📋</span>
-              <span>Synthèses</span>
-            </a>
-            <a href="#institutions" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
-              <span>🏢</span>
-              <span>Institutions</span>
-            </a>
+            
+            {/* Synthèses - Visible seulement si synthèse IA OU thématique activée */}
+            {(showSynthesis || showThematicSynthesis) && (
+              <a href="#syntheses" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>📋</span>
+                <span>Synthèses</span>
+              </a>
+            )}
+            
+            {/* Institutions - Visible seulement si analyse par institution activée */}
+            {showInstitutionAnalysis && (
+              <a href="#institutions" className="flex items-center space-x-2 p-2 rounded-lg bg-white hover:bg-blue-100 transition-colors">
+                <span>🏢</span>
+                <span>Institutions</span>
+              </a>
+            )}
           </div>
         </CardContent>
       </Card>
