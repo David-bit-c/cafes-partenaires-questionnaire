@@ -44,6 +44,74 @@
 
 ## 🚀 PROCHAINES TÂCHES - SESSION FUTURE
 
+### 🎯 [SESSION] NOUVELLES FONCTIONNALITÉS - AMÉLIORATION LECTURE RÉSULTATS
+
+#### **Phase 1 : PRÉPARATION (Sans Impact)**
+- **ID**: prep-analysis
+- **Analyse d'impact détaillée** : Audit des composants existants
+- **Architecture des nouvelles fonctionnalités** : Structure des données et composants
+- **Plan de rollback** : Stratégie de retour en arrière
+- **Tests de régression** : Validation des fonctionnalités existantes
+
+#### **Phase 2 : DÉVELOPPEMENT LOCAL (Sans Impact)**
+- **ID**: dev-components
+- **Composants à créer** :
+  - `src/components/ThematicDashboard.tsx`
+  - `src/components/FocusSelector.tsx`
+  - `src/components/ExecutiveDashboard.tsx`
+  - `src/components/ActionRecommendations.tsx`
+- **Services à modifier** :
+  - `src/services/apiService.ts` (nouvelles interfaces)
+  - `src/components/ResultsDashboard.tsx` (intégration Admin)
+- **Logique de classification** :
+  - `getDataByFocus(focus: string, rawData: any[])`
+  - `classifyByThematicFocus(data: any[])`
+  - `generateActionRecommendations(data: any[])`
+
+#### **Phase 3 : TESTS ET VALIDATION (Sans Impact)**
+- **ID**: test-validation
+- **Tests unitaires** : Composants React, services API, logique métier
+- **Tests d'intégration** : Flux complet, compatibilité, performance
+- **Tests de régression** : Fonctionnalités existantes, module Admin, classification LLM
+
+#### **Phase 4 : DÉPLOIEMENT GRADUEL (Impact Contrôlé)**
+- **ID**: deploy-gradual
+- **Déploiement en mode développement** : Sur l'environnement de production
+- **Activation progressive** : Via module Admin (désactivé par défaut)
+- **Tests en production** : Validation avec données réelles
+- **Monitoring continu** : Logs, erreurs, performances
+
+#### **Phase 5 : OPTIMISATION ET FINALISATION**
+- **ID**: optimization-final
+- **Optimisations performance** : Lazy loading, mise en cache, compression
+- **Améliorations UX** : Responsive design, accessibilité, animations
+- **Documentation et formation** : Guide utilisateur, documentation technique
+
+### 🎯 FONCTIONNALITÉS À IMPLÉMENTER
+
+#### **1. PRÉSENTATION GÉNÉRALE AMÉLIORÉE**
+- **Hiérarchisation visuelle** : Données par importance (critique, élevée, moyenne, faible)
+- **KPIs visuels** : Cartes colorées avec métriques clés
+- **Navigation intuitive** : Structure claire et logique
+- **Design moderne** : Interface professionnelle et accessible
+
+#### **2. FOCUS THÉMATIQUES (Pas par rôle, mais par contenu)**
+- **Défis Concrets** : Problèmes identifiés et solutions pratiques
+- **Impact Organisationnel** : Efficacité, ressources, processus
+- **Impact Sociétal** : Enjeux publics, politiques, vision long terme
+
+#### **3. DASHBOARD EXÉCUTIF**
+- **Vue d'ensemble** : KPIs en cartes colorées
+- **Alertes visuelles** : Problèmes critiques en rouge
+- **Tendances** : Graphiques d'évolution temporelle
+- **Comparaisons** : Benchmarks par secteur/institution
+
+#### **4. RECOMMANDATIONS D'ACTIONS**
+- **Actions prioritaires** : Liste d'actions concrètes
+- **Ressources nécessaires** : Budget, personnel, formation
+- **Timeline** : Délais de mise en œuvre
+- **Impact attendu** : Résultats mesurables
+
 ### 🔧 CONFIGURATION BACKUP AUTOMATIQUE
 - **R2 Bucket** : Créer `cafes-partenaires-backups` dans Cloudflare
 - **Variables d'environnement** : Configurer `R2_BUCKET_NAME`, `EMAIL_API_KEY`, `ADMIN_EMAIL`
