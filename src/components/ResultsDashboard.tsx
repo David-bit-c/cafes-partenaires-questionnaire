@@ -710,7 +710,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         </CardContent>
       </Card>
 
-      <Card id="participation">
+      <Card id="participation" className="scroll-mt-24">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="flex items-center text-xl font-bold">
             📊 Synthèse des Réponses
@@ -726,7 +726,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       {/* Dashboard exécutif remonté juste après le compteur */}
       {showExecutiveDashboard && data && (
         <>
-          <Card id="dashboard">
+          <Card id="dashboard" className="scroll-mt-24">
             <CardHeader>
               <CardTitle>🎯 Dashboard exécutif</CardTitle>
             </CardHeader>
@@ -807,7 +807,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             )}
             
             <hr className="my-8 border-gray-200"/>
-            <h2 id="perception" className="text-2xl font-bold text-center text-gray-800 mb-6">🧭 Perception des Problématiques des Jeunes</h2>
+            <h2 id="perception" className="text-2xl font-bold text-center text-gray-800 mb-6 scroll-mt-24">🧭 Perception des Problématiques des Jeunes</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {data.observedChallenges && data.observedChallenges.length > 0 && <BarChartCard title="Défis les plus observés" data={data.observedChallenges} />}
@@ -826,7 +826,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {data.ruptureResponsesCount >= 5 && (
                 <>
                     <hr className="my-8 border-gray-200"/>
-                    <h2 id="facteurs" className="text-2xl font-bold text-center text-gray-800 mb-6">
+                    <h2 id="facteurs" className="text-2xl font-bold text-center text-gray-800 mb-6 scroll-mt-24">
                         ✅ Facteurs de Rupture et Maintien en Formation 
                         <span className="text-lg font-normal text-gray-600 block mt-1">
                             Expertise terrain de {data.ruptureResponsesCount} professionnel(s)
@@ -898,7 +898,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {((synthesisDisplayMode === 'general' && showSynthesis) || (synthesisDisplayMode === 'both' && showSynthesis)) && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card id="syntheses">
+                <Card id="syntheses" className="scroll-mt-24">
                   <CardHeader>
                     <CardTitle>
                       Synthèse
@@ -1002,7 +1002,7 @@ Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : 
             {showInstitutionAnalysis && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card id="institutions">
+                <Card id="institutions" className="scroll-mt-24">
                   <CardHeader>
                     <CardTitle>
                       🏢 Analyse par Institution
@@ -1033,7 +1033,7 @@ Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : 
             {showThematicFocus && data && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card id="focus">
+                <Card id="focus" className="scroll-mt-24">
                   <CardHeader>
                     <CardTitle>🎯 Focus thématiques</CardTitle>
                   </CardHeader>
@@ -1114,7 +1114,7 @@ Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : 
             {showActionRecommendations && (
               <>
                 <hr className="my-8 border-gray-200"/>
-                <Card id="recommandations">
+                <Card id="recommandations" className="scroll-mt-24">
                   <CardHeader>
                     <CardTitle>💡 Recommandations d'actions</CardTitle>
                   </CardHeader>
