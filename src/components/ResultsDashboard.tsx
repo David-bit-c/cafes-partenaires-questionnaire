@@ -21,6 +21,31 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
   usedModel, 
   onRefreshSummary 
 }) => {
+  // Gestion du mode preview via URL
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminParam = urlParams.get('admin');
+    
+    if (adminParam === '1') {
+      localStorage.setItem('previewMode', 'true');
+      // Recharger la page sans le paramètre pour nettoyer l'URL
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (adminParam === '0') {
+      localStorage.removeItem('previewMode');
+      // Recharger la page sans le paramètre pour nettoyer l'URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
+
+  // Vérifier si le mode preview est activé
+  const isPreviewMode = React.useMemo(() => {
+    try {
+      return localStorage.getItem('previewMode') === 'true';
+    } catch {
+      return false;
+    }
+  }, []);
+
   if (isLoading) {
     return (
       <Card>
@@ -33,7 +58,8 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
      return <Card><CardContent><p className="text-center text-red-600 py-10">{error}</p></CardContent></Card>;
   }
   
-  // Page d'information temporaire pendant la collecte
+  // Si le mode preview n'est pas activé, afficher la page d'information temporaire pendant la collecte
+  if (!isPreviewMode) {
   return (
     <div className="space-y-6">
       <Card className="bg-blue-50 border-blue-200">
@@ -86,6 +112,40 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
           </CardContent>
         </Card>
       )}
+    </div>
+  );
+  }
+
+  // Mode preview activé - afficher les vrais résultats
+  return (
+    <div className="space-y-6">
+      <Card className="bg-green-50 border-green-200">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-green-800">🔓 Mode Preview Activé</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-green-700">
+            Vous visualisez les résultats complets en mode prévisualisation. 
+            <span className="text-sm text-green-600 ml-2">
+              (Pour désactiver: <a href="?admin=0" className="underline">?admin=0</a>)
+            </span>
+          </p>
+        </CardContent>
+      </Card>
+      
+      {/* Ici on pourrait ajouter le contenu des vrais résultats */}
+      <Card>
+        <CardHeader>
+          <CardTitle>📊 Résultats Complets</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-center text-gray-500 py-10">
+            Contenu des résultats complets à implémenter...
+            <br />
+            <span className="text-sm">({submissions.length} réponses disponibles)</span>
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 };
