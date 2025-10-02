@@ -69,7 +69,20 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
           <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
             <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
-            <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
+            <YAxis 
+              type="category" 
+              dataKey="name" 
+              width={yAxisWidth} 
+              stroke="#a1a1aa" 
+              fontSize={10} 
+              interval={0}
+              tick={{ 
+                fontSize: 10, 
+                textAnchor: 'end', 
+                dominantBaseline: 'middle',
+                width: yAxisWidth - 10
+              }}
+            />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
             <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
             <Bar dataKey="value" name="Nombre de réponses" fill={color} barSize={20} />
@@ -103,7 +116,20 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }
                 <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
                     <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
-                    <YAxis type="category" dataKey="name" width={yAxisWidth} stroke="#a1a1aa" fontSize={12} interval={0} />
+                    <YAxis 
+              type="category" 
+              dataKey="name" 
+              width={yAxisWidth} 
+              stroke="#a1a1aa" 
+              fontSize={10} 
+              interval={0}
+              tick={{ 
+                fontSize: 10, 
+                textAnchor: 'end', 
+                dominantBaseline: 'middle',
+                width: yAxisWidth - 10
+              }}
+            />
                     <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
                     <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
                     <Bar dataKey="Fréquence" fill={BAR_COLOR} barSize={10} />
@@ -856,7 +882,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
-                {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={200} />}
+                {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={350} />}
             </div>
             
             {data.cafeParticipants.length > 0 && (
