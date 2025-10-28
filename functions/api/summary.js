@@ -139,7 +139,7 @@ export async function onRequestGet(context) {
       
       console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -223,7 +223,7 @@ export async function onRequestGet(context) {
             'anthropic-version': '2023-06-01'
           },
           body: JSON.stringify({
-            model: "claude-3-5-sonnet",
+            model: "claude-3-5-sonnet-20241022",
             max_tokens: 1000,
             messages: [
               {
