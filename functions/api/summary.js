@@ -139,7 +139,7 @@ export async function onRequestGet(context) {
       
       console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -247,10 +247,10 @@ export async function onRequestGet(context) {
     }
 
     // Fonction pour appeler Claude 3.5 Sonnet (fallback)
-    async function callClaude() {
+    async function callClaude35() {
       if (!claudeKey) throw new Error("Clé Claude non disponible");
       
-      console.log("🤖 Tentative appel Claude 3.5 Sonnet avec modèle claude-3-5-sonnet-20241022...");
+      console.log("🤖 Tentative appel Claude 3.5 Sonnet...");
       const claudeResponse = await fetch(
         "https://api.anthropic.com/v1/messages",
         {
@@ -261,7 +261,7 @@ export async function onRequestGet(context) {
             'anthropic-version': '2023-06-01'
           },
           body: JSON.stringify({
-            model: "claude-sonnet-4-5",
+            model: "claude-3-5-sonnet-20241022",
             max_tokens: 1000,
             messages: [
               {
@@ -327,7 +327,7 @@ export async function onRequestGet(context) {
             } catch (claudeSonnet4Error) {
               // Fallback vers Claude 3.5 Sonnet
               try {
-                summary = await callClaude();
+                summary = await callClaude35();
                 usedModel = "Anthropic Claude 3.5 Sonnet (fallback)";
               } catch (claudeError) {
                 // Dernier recours : Gemini si disponible

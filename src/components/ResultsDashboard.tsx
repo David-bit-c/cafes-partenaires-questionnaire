@@ -1486,13 +1486,13 @@ Impact sociétal: ${topNeg.length > 0 ? topNeg.map(n => n.name).join(' • ') : 
                           onChange={(e) => setAiModelPreference(e.target.value)}
                           className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                         >
-                          <option value="auto">Auto (GPT-5 → Claude Sonnet 4.5 → Gemini Flash)</option>
+                          <option value="auto">Auto (GPT-5 → Claude Sonnet 4.5 → Claude 3.5 → Gemini 2.5 Flash)</option>
                           <option value="openai">Forcer GPT-5 uniquement</option>
                           <option value="claude">Forcer Claude Sonnet 4.5 uniquement</option>
-                          <option value="gemini">Forcer Gemini Flash uniquement</option>
+                          <option value="gemini">Forcer Gemini 2.5 Flash uniquement</option>
                         </select>
                         <p className="text-xs text-gray-500 mt-1">
-                          Auto : essaie GPT-5 → Claude Sonnet 4.5 → Gemini Flash si échec
+                          Auto : essaie GPT-5 → Claude Sonnet 4.5 → Claude 3.5 → Gemini 2.5 Flash si échec
                         </p>
                       </div>
                     </div>
