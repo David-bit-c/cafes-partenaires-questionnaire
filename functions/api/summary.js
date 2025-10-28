@@ -137,9 +137,9 @@ export async function onRequestGet(context) {
     async function callGemini() {
       if (!geminiKey) throw new Error("Clé Gemini non disponible");
       
-      console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash-002...");
+      console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -182,7 +182,7 @@ export async function onRequestGet(context) {
             'Authorization': `Bearer ${openaiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-5",
+            model: "gpt-4o-mini",
             messages: [
               {
                 role: "system",
@@ -212,7 +212,7 @@ export async function onRequestGet(context) {
     async function callClaudeSonnet4() {
       if (!claudeKey) throw new Error("Clé Claude non disponible");
       
-      console.log("🚀 Tentative appel Claude Sonnet 4 avec modèle claude-3-5-sonnet-20241022...");
+      console.log("🚀 Tentative appel Claude Sonnet 4 avec modèle claude-3-5-sonnet...");
       const claudeResponse = await fetch(
         "https://api.anthropic.com/v1/messages",
         {
@@ -223,7 +223,7 @@ export async function onRequestGet(context) {
             'anthropic-version': '2023-06-01'
           },
           body: JSON.stringify({
-            model: "claude-3-5-sonnet-20241022",
+            model: "claude-3-5-sonnet",
             max_tokens: 1000,
             messages: [
               {
@@ -289,7 +289,7 @@ export async function onRequestGet(context) {
       if (adminPreference === 'openai' && openaiKey) {
         // Choix forcé OpenAI
         summary = await callOpenAI();
-        usedModel = "OpenAI GPT-5";
+        usedModel = "OpenAI GPT-4o-mini";
       } else if (adminPreference === 'claude-sonnet4' && claudeKey) {
         // Choix forcé Claude Sonnet 4
         summary = await callClaudeSonnet4();
@@ -307,7 +307,7 @@ export async function onRequestGet(context) {
         try {
           if (openaiKey) {
             summary = await callOpenAI();
-            usedModel = "OpenAI GPT-5";
+            usedModel = "OpenAI GPT-4o-mini";
           } else if (claudeKey) {
             summary = await callClaudeSonnet4();
             usedModel = "Anthropic Claude Sonnet 4";
