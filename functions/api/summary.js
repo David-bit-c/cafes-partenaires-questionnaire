@@ -139,7 +139,7 @@ export async function onRequestGet(context) {
       
       console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
