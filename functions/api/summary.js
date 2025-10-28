@@ -182,7 +182,7 @@ export async function onRequestGet(context) {
             'Authorization': `Bearer ${openaiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "gpt-5-2025-08-07",
             messages: [
               {
                 role: "system",
@@ -289,7 +289,7 @@ export async function onRequestGet(context) {
       if (adminPreference === 'openai' && openaiKey) {
         // Choix forcé OpenAI
         summary = await callOpenAI();
-        usedModel = "OpenAI GPT-4o-mini";
+        usedModel = "OpenAI GPT-5";
       } else if (adminPreference === 'claude-sonnet4' && claudeKey) {
         // Choix forcé Claude Sonnet 4
         summary = await callClaudeSonnet4();
@@ -307,7 +307,7 @@ export async function onRequestGet(context) {
         try {
           if (openaiKey) {
             summary = await callOpenAI();
-            usedModel = "OpenAI GPT-4o-mini";
+            usedModel = "OpenAI GPT-5";
           } else if (claudeKey) {
             summary = await callClaudeSonnet4();
             usedModel = "Anthropic Claude Sonnet 4";
