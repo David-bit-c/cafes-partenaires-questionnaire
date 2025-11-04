@@ -25,7 +25,7 @@ export async function onRequestGet(context) {
       try {
         console.log("🧪 Test Gemini...");
         const geminiTest = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${geminiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash:generateContent?key=${geminiKey}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
