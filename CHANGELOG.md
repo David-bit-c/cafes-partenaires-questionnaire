@@ -1,3 +1,25 @@
+## 2025-11-16 - [EUREKA] 🔧 Synthèse IA Réparée : Correction des noms de modèles
+
+### 🐛 PROBLÈME IDENTIFIÉ
+La synthèse IA affichait "Toutes les API ont échoué" car les noms de modèles étaient incorrects :
+- ❌ `gpt-5` (n'existe pas encore)
+- ❌ `claude-sonnet-4-5` (n'existe pas)
+
+### ✅ SOLUTION APPLIQUÉE
+
+#### **Corrections dans `functions/api/summary.js`**
+1. **OpenAI** : `gpt-5` → `gpt-4o` ✅
+2. **Claude** : `claude-sonnet-4-5` → `claude-3-5-sonnet-20241022` ✅
+3. Mise à jour de tous les messages de logs et références
+
+### 🎯 RÉSULTAT ATTENDU
+La génération de synthèse IA devrait maintenant fonctionner correctement avec :
+- GPT-4o (OpenAI) en priorité
+- Claude 3.5 Sonnet en fallback
+- Gemini 1.5 Flash en dernier recours
+
+---
+
 ## 2025-11-16 - [EUREKA] 🎉 MISSION ACCOMPLIE : Reclassification Complète Réussie !
 
 ### 🎯 RÉSULTATS FINAUX

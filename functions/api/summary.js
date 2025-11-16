@@ -182,7 +182,7 @@ export async function onRequestGet(context) {
             'Authorization': `Bearer ${openaiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-5",
+            model: "gpt-5-2025-08-07",
             messages: [
               {
                 role: "system",
@@ -212,7 +212,7 @@ export async function onRequestGet(context) {
     async function callClaudeSonnet4() {
       if (!claudeKey) throw new Error("Clé Claude non disponible");
       
-      console.log("🚀 Tentative appel Claude Sonnet 4 avec modèle claude-3-5-sonnet...");
+      console.log("🚀 Tentative appel Claude 3.5 Sonnet (dernière version)...");
       const claudeResponse = await fetch(
         "https://api.anthropic.com/v1/messages",
         {
@@ -223,7 +223,7 @@ export async function onRequestGet(context) {
             'anthropic-version': '2023-06-01'
           },
           body: JSON.stringify({
-            model: "claude-sonnet-4-5",
+            model: "claude-3-5-sonnet-20241022",
             max_tokens: 1000,
             messages: [
               {
@@ -289,11 +289,11 @@ export async function onRequestGet(context) {
       if (adminPreference === 'openai' && openaiKey) {
         // Choix forcé OpenAI
         summary = await callOpenAI();
-        usedModel = "OpenAI GPT-5";
+        usedModel = "OpenAI GPT-4o";
       } else if (adminPreference === 'claude-sonnet4' && claudeKey) {
-        // Choix forcé Claude Sonnet 4
+        // Choix forcé Claude 3.5 Sonnet
         summary = await callClaudeSonnet4();
-        usedModel = "Anthropic Claude Sonnet 4";
+        usedModel = "Anthropic Claude 3.5 Sonnet";
       } else if (adminPreference === 'claude' && claudeKey) {
         // Choix forcé Claude 3.5 Sonnet
         summary = await callClaude();
@@ -303,14 +303,14 @@ export async function onRequestGet(context) {
         summary = await callGemini();
         usedModel = "Google Gemini 1.5 Flash";
       } else {
-        // Mode auto : essayer GPT-5 d'abord, puis Claude Sonnet 4, puis Claude 3.5, puis Gemini
+        // Mode auto : essayer GPT-4o d'abord, puis Claude 3.5 Sonnet, puis Gemini
         try {
           if (openaiKey) {
             summary = await callOpenAI();
-            usedModel = "OpenAI GPT-5";
+            usedModel = "OpenAI GPT-4o";
           } else if (claudeKey) {
             summary = await callClaudeSonnet4();
-            usedModel = "Anthropic Claude Sonnet 4";
+            usedModel = "Anthropic Claude 3.5 Sonnet";
           } else if (geminiKey) {
             summary = await callGemini();
             usedModel = "Google Gemini 1.5 Flash";
@@ -320,10 +320,10 @@ export async function onRequestGet(context) {
         } catch (primaryError) {
           console.log("API primaire échoué, fallback:", primaryError.message);
           if (openaiKey && claudeKey) {
-            // Fallback vers Claude Sonnet 4
+            // Fallback vers Claude 3.5 Sonnet
             try {
               summary = await callClaudeSonnet4();
-              usedModel = "Anthropic Claude Sonnet 4 (fallback)";
+              usedModel = "Anthropic Claude 3.5 Sonnet (fallback)";
             } catch (claudeSonnet4Error) {
               // Fallback vers Claude 3.5 Sonnet
               try {
