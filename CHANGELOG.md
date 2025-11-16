@@ -30,7 +30,7 @@ Classifier les 4 emails "Personnel" (gmail.com, hotmail.com) en identifiant manu
 3. `functions/api/export-institution.js`
    - Même logique pour les exports
 
-### 🎯 RÉSULTATS ATTENDUS
+### 🎯 RÉSULTATS VALIDÉS ✅
 
 **Avant** :
 - État de Genève : 18 soumissions
@@ -38,11 +38,13 @@ Classifier les 4 emails "Personnel" (gmail.com, hotmail.com) en identifiant manu
 - FASE : 27 soumissions
 - Personnel : 4 soumissions (3%)
 
-**Après** :
-- État de Genève : 19 soumissions ✅ (+1)
-- Communes : 14 soumissions ✅ (+1)
-- FASE : 28 soumissions ✅ (+1)
-- Personnel : 1 soumission ✅ (-75%)
+**Après** (testé en production) :
+- État de Genève : **19 soumissions** ✅ (+1)
+- Communes : **14 soumissions** ✅ (+1)
+- FASE : **28 soumissions** ✅ (+1)
+- Personnel : **1 soumission** ✅ (-75%)
+
+**Impact** : Réduction de 75% de la catégorie "Personnel" (4 → 1)
 
 ### 🔒 CONFIDENTIALITÉ
 
