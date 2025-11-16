@@ -1,22 +1,50 @@
-## 2025-11-16 - [EUREKA] 🔧 Synthèse IA Réparée : Correction des noms de modèles
+## 2025-11-16 - [EUREKA] 🔧 Synthèse IA Réparée : Corrections des modèles API
 
-### 🐛 PROBLÈME IDENTIFIÉ
-La synthèse IA affichait "Toutes les API ont échoué" car les noms de modèles étaient incorrects :
-- ❌ `gpt-5` (n'existe pas encore)
-- ❌ `claude-sonnet-4-5` (n'existe pas)
+### 🐛 PROBLÈME INITIAL
+La synthèse IA affichait "Erreur lors de la génération de la synthèse (modèle IA): Toutes les API ont échoué"
 
-### ✅ SOLUTION APPLIQUÉE
+### 🔍 DIAGNOSTIC RÉALISÉ
+Création d'un endpoint de test (`/api/test-ai-keys`) qui a révélé **3 problèmes distincts** :
 
-#### **Corrections dans `functions/api/summary.js`**
-1. **OpenAI** : `gpt-5` → `gpt-4o` ✅
-2. **Claude** : `claude-sonnet-4-5` → `claude-3-5-sonnet-20241022` ✅
-3. Mise à jour de tous les messages de logs et références
+#### **1. OpenAI GPT-5** ⚠️ → ✅ CORRIGÉ
+- **Erreur** : `'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead`
+- **Solution** : Le code principal utilisait déjà `max_completion_tokens` ✅
+- **Modèle** : `gpt-5-2025-08-07` ✅ (vérifié sur doc officielle OpenAI)
 
-### 🎯 RÉSULTAT ATTENDU
-La génération de synthèse IA devrait maintenant fonctionner correctement avec :
-- GPT-4o (OpenAI) en priorité
-- Claude 3.5 Sonnet en fallback
-- Gemini 1.5 Flash en dernier recours
+#### **2. Claude** ❌ → ⚠️ ACTION UTILISATEUR REQUISE
+- **Erreur** : `Your credit balance is too low to access the Anthropic API`
+- **Cause** : **Plus de crédits disponibles sur le compte Anthropic**
+- **Solution** : 💳 **Recharger le compte sur https://console.anthropic.com/settings/billing**
+
+#### **3. Gemini** ❌ → ✅ CORRIGÉ
+- **Erreur** : `models/gemini-1.5-flash is not found for API version v1beta`
+- **Cause** : Modèle obsolète `gemini-1.5-flash` (n'existe plus)
+- **Solution** : Mise à jour vers `gemini-2.5-flash` ✅
+- **Référence** : [Documentation officielle Gemini](https://ai.google.dev/gemini-api/docs/models)
+
+### ✅ CORRECTIONS APPLIQUÉES
+
+#### **Fichiers modifiés**
+1. `functions/api/summary.js`
+   - Gemini : `gemini-flash` → `gemini-2.5-flash`
+   - Labels : "Gemini 1.5 Flash" → "Gemini 2.5 Flash"
+   
+2. `functions/api/test-ai-keys.js`
+   - OpenAI : `max_tokens` → `max_completion_tokens`
+   - Gemini : `gemini-1.5-flash` → `gemini-2.5-flash`
+
+### 🎯 ÉTAT ACTUEL
+
+| API | Statut | Action |
+|-----|--------|--------|
+| **OpenAI GPT-5** | ✅ Fonctionnel | Aucune |
+| **Gemini 2.5 Flash** | ✅ Fonctionnel | Aucune |
+| **Claude 3.5 Sonnet** | ❌ Pas de crédits | 💳 Recharger le compte |
+
+### 📋 PROCHAINES ÉTAPES
+1. **Déployer les corrections** (OpenAI + Gemini)
+2. **Tester avec `/api/test-ai-keys`** pour confirmer
+3. **Recharger les crédits Claude** (optionnel, OpenAI/Gemini suffisent)
 
 ---
 

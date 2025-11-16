@@ -137,9 +137,9 @@ export async function onRequestGet(context) {
     async function callGemini() {
       if (!geminiKey) throw new Error("Clé Gemini non disponible");
       
-      console.log("🤖 Tentative appel Gemini avec modèle gemini-1.5-flash...");
+      console.log("🤖 Tentative appel Gemini avec modèle gemini-2.5-flash...");
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash:generateContent?key=${geminiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
         {
           method: 'POST',
           headers: {
@@ -301,7 +301,7 @@ export async function onRequestGet(context) {
       } else if (adminPreference === 'gemini' && geminiKey) {
         // Choix forcé Gemini
         summary = await callGemini();
-        usedModel = "Google Gemini 1.5 Flash";
+        usedModel = "Google Gemini 2.5 Flash";
       } else {
         // Mode auto : essayer GPT-4o d'abord, puis Claude 3.5 Sonnet, puis Gemini
         try {
@@ -313,7 +313,7 @@ export async function onRequestGet(context) {
             usedModel = "Anthropic Claude 3.5 Sonnet";
           } else if (geminiKey) {
             summary = await callGemini();
-            usedModel = "Google Gemini 1.5 Flash";
+            usedModel = "Google Gemini 2.5 Flash";
           } else {
             throw new Error("Aucune clé API disponible");
           }
@@ -334,7 +334,7 @@ export async function onRequestGet(context) {
                 if (geminiKey) {
                   try {
                     summary = await callGemini();
-                    usedModel = "Google Gemini 1.5 Flash (fallback)";
+                    usedModel = "Google Gemini 2.5 Flash (fallback)";
                   } catch (geminiError) {
                     throw new Error("Toutes les API ont échoué");
                   }
@@ -347,7 +347,7 @@ export async function onRequestGet(context) {
             // Fallback vers Gemini
             try {
               summary = await callGemini();
-              usedModel = "Google Gemini 1.5 Flash (fallback)";
+              usedModel = "Google Gemini 2.5 Flash (fallback)";
             } catch (fallbackError) {
               throw new Error("Toutes les API ont échoué");
             }
