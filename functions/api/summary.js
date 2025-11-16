@@ -162,17 +162,24 @@ export async function onRequestGet(context) {
         console.log("❌ Erreur Gemini:", geminiResponse.status, errorText);
         throw new Error(`Gemini API error: ${geminiResponse.status} ${errorText}`);
       }
-      
-      console.log("✅ Gemini réussi");
 
       const geminiData = await geminiResponse.json();
-      return geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Erreur lors de la génération de la synthèse.";
+      const summary = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (!summary || summary.trim() === "") {
+        console.log("⚠️ Gemini a retourné une réponse vide");
+        throw new Error("Gemini returned empty response");
+      }
+      
+      console.log("✅ Gemini réussi, longueur:", summary.length);
+      return summary;
     }
 
     // Fonction pour appeler OpenAI
     async function callOpenAI() {
       if (!openaiKey) throw new Error("Clé OpenAI non disponible");
       
+      console.log("🚀 Tentative appel OpenAI GPT-5...");
       const openaiResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -201,11 +208,20 @@ export async function onRequestGet(context) {
 
       if (!openaiResponse.ok) {
         const errorText = await openaiResponse.text();
+        console.log("❌ Erreur OpenAI:", openaiResponse.status, errorText);
         throw new Error(`OpenAI API error: ${openaiResponse.status} ${errorText}`);
       }
 
       const openaiData = await openaiResponse.json();
-      return openaiData.choices?.[0]?.message?.content || "Erreur lors de la génération de la synthèse.";
+      const summary = openaiData.choices?.[0]?.message?.content;
+      
+      if (!summary || summary.trim() === "") {
+        console.log("⚠️ OpenAI a retourné une réponse vide");
+        throw new Error("OpenAI returned empty response");
+      }
+      
+      console.log("✅ OpenAI réussi, longueur:", summary.length);
+      return summary;
     }
 
     // Fonction pour appeler Claude Sonnet 4
