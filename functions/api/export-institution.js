@@ -74,7 +74,7 @@ export async function onRequestPost(context) {
 async function classifyAndProcessSubmissions(submissions, env) {
   // Import des fonctions de classification
   const { extractMainDomain } = await import('./website-analyzer.js');
-  const { getStaticClassification } = await import('./llm-classifier.js');
+  const { getStaticClassification, getEmailSpecificClassification } = await import('./llm-classifier.js');
   
   // Classification hybride (version simplifiée pour export)
   async function classifyInstitution(email) {
@@ -83,7 +83,13 @@ async function classifyAndProcessSubmissions(submissions, env) {
     const domain = extractMainDomain(email);
     if (!domain) return 'Autres';
     
-    // Vérifier le cache
+    // 1. Classification spécifique par email (pour emails personnels identifiés)
+    const emailSpecific = getEmailSpecificClassification(email);
+    if (emailSpecific) {
+      return emailSpecific;
+    }
+    
+    // 2. Vérifier le cache
     const cached = await env.DB.prepare(
       "SELECT institution_type FROM institution_classifications WHERE domain = ?"
     ).bind(domain).first();
@@ -92,12 +98,13 @@ async function classifyAndProcessSubmissions(submissions, env) {
       return cached.institution_type;
     }
     
-    // Règles statiques
+    // 3. Règles statiques
     const staticClassification = getStaticClassification(domain);
     if (staticClassification) {
       return staticClassification;
     }
     
+    // 4. Fallback
     return 'Autres';
   }
   

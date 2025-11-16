@@ -3,7 +3,7 @@
 // Version améliorée avec classification LLM + cache
 
 import { fetchWebsiteContent, extractMainDomain, isSuspiciousDomain } from './website-analyzer.js';
-import { classifyWithLLM, getStaticClassification } from './llm-classifier.js';
+import { classifyWithLLM, getStaticClassification, getEmailSpecificClassification } from './llm-classifier.js';
 
 export async function onRequestGet(context) {
   try {
@@ -21,7 +21,7 @@ export async function onRequestGet(context) {
 
     const submissions = submissionsResult.results;
     
-    // Classification hybride des institutions (LLM + Cache + Règles statiques)
+    // Classification hybride des institutions (Email spécifique + Cache + Règles statiques + LLM)
     async function classifyInstitution(email) {
       if (!email || typeof email !== 'string') return 'Autres';
       
@@ -29,7 +29,14 @@ export async function onRequestGet(context) {
       if (!domain) return 'Autres';
       
       try {
-        // 1. Vérifier le cache
+        // 1. Classification spécifique par email (pour emails personnels identifiés)
+        const emailSpecific = getEmailSpecificClassification(email);
+        if (emailSpecific) {
+          console.log(`🎯 Email spécifique identifié: ${email.substring(0, 3)}...@${domain} → ${emailSpecific}`);
+          return emailSpecific;
+        }
+        
+        // 2. Vérifier le cache
         const cached = await env.DB.prepare(
           "SELECT institution_type FROM institution_classifications WHERE domain = ?"
         ).bind(domain).first();
@@ -39,7 +46,7 @@ export async function onRequestGet(context) {
           return cached.institution_type;
         }
         
-        // 2. Règles statiques pour domaines connus
+        // 3. Règles statiques pour domaines connus
         const staticClassification = getStaticClassification(domain);
         if (staticClassification) {
           console.log(`📝 Règle statique pour ${domain}: ${staticClassification}`);
@@ -47,7 +54,7 @@ export async function onRequestGet(context) {
           return staticClassification;
         }
         
-        // 3. LLM seulement si domaine suspect OU >1 soumission
+        // 4. LLM seulement si domaine suspect OU >1 soumission
         const submissionCount = await getSubmissionCount(domain, env);
         if (submissionCount > 1 || isSuspiciousDomain(domain)) {
           console.log(`🤖 Classification LLM pour ${domain} (${submissionCount} soumissions)`);
@@ -65,7 +72,7 @@ export async function onRequestGet(context) {
           return classification.institution_type;
         }
         
-        // 4. Fallback: Autres
+        // 5. Fallback: Autres
         await cacheClassification(domain, 'Autres', 0.5, env);
         return 'Autres';
         

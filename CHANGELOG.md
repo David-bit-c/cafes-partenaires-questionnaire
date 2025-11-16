@@ -1,3 +1,58 @@
+## 2025-11-16 - [EUREKA] 📧 Classification Emails Personnels : 3 identifications réussies
+
+### 🎯 OBJECTIF
+Classifier les 4 emails "Personnel" (gmail.com, hotmail.com) en identifiant manuellement les institutions.
+
+### 🔍 IDENTIFICATION MANUELLE
+
+**Emails analysés** :
+1. `nathalie.burdet@gmail.com` → **DIP/OFPC/Service orientation** → État de Genève
+2. `jauninflorence@gmail.com` → **Transit Meyrin** → Communes
+3. `ajriz.aljiji@hotmail.com` → **FASE** → FASE
+4. `caroledebaz@gmail.com` → Non classifiable → Reste dans Personnel
+
+### ✅ SOLUTION TECHNIQUE
+
+#### **Nouvelle fonction** : `getEmailSpecificClassification(email)`
+- Classification par **email complet** (pas par domaine)
+- Pour emails personnels reliés à des institutions
+- **Confidentialité préservée** : emails complets uniquement en backend
+
+#### **Fichiers modifiés**
+1. `functions/api/llm-classifier.js`
+   - Nouvelle fonction `getEmailSpecificClassification()`
+   - Mapping de 3 emails → institutions
+
+2. `functions/api/institution-analysis.js`
+   - Ajout check email spécifique en **priorité #1**
+   - Ordre : Email spécifique > Cache > Règles statiques > LLM
+
+3. `functions/api/export-institution.js`
+   - Même logique pour les exports
+
+### 🎯 RÉSULTATS ATTENDUS
+
+**Avant** :
+- État de Genève : 18 soumissions
+- Communes : 13 soumissions  
+- FASE : 27 soumissions
+- Personnel : 4 soumissions (3%)
+
+**Après** :
+- État de Genève : 19 soumissions ✅ (+1)
+- Communes : 14 soumissions ✅ (+1)
+- FASE : 28 soumissions ✅ (+1)
+- Personnel : 1 soumission ✅ (-75%)
+
+### 🔒 CONFIDENTIALITÉ
+
+✅ **Garantie** : Les emails complets ne sont **JAMAIS** exposés publiquement
+- Backend uniquement (calcul statistiques)
+- Exports : domaine uniquement (ex: `gmail.com`)
+- Logs : partiellement masqués (ex: `nat...@gmail.com`)
+
+---
+
 ## 2025-11-16 - [EUREKA] 🔧 Synthèse IA Réparée : Corrections des modèles API
 
 ### 🐛 PROBLÈME INITIAL

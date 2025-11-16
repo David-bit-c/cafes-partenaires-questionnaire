@@ -213,6 +213,26 @@ function parseLLMResponse(responseText) {
 }
 
 /**
+ * Classification spécifique pour emails personnels identifiés
+ * (emails gmail/hotmail/etc. qui appartiennent à des institutions connues)
+ */
+export function getEmailSpecificClassification(email) {
+  if (!email) return null;
+  
+  const emailLower = email.toLowerCase().trim();
+  
+  const specificEmailRules = {
+    // Emails personnels identifiés manuellement (ajout 16/11/2025)
+    'nathalie.burdet@gmail.com': 'État de Genève',  // DIP/OFPC/Service orientation
+    'jauninflorence@gmail.com': 'Communes',  // Transit Meyrin
+    'ajriz.aljiji@hotmail.com': 'FASE'  // FASE
+    // caroledebaz@gmail.com reste dans "Personnel" (non classifiable)
+  };
+  
+  return specificEmailRules[emailLower] || null;
+}
+
+/**
  * Règles statiques pour domaines connus (évite les appels LLM)
  */
 export function getStaticClassification(domain) {
