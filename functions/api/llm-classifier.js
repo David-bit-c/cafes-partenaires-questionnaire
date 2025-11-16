@@ -230,6 +230,7 @@ export function getStaticClassification(domain) {
     
     // FASE
     'fase.ch': 'FASE',
+    'fase.cj': 'FASE',  // Erreur de frappe commune
     
     // Communes
     'lancy.ch': 'Communes',
@@ -237,16 +238,47 @@ export function getStaticClassification(domain) {
     'carouge.ch': 'Communes',
     'vernier.ch': 'Communes',
     'meyrin.ch': 'Communes',
+    'geneve.ch': 'Communes',  // Ville de Genève
     
     // Associations
     'for-pro.ch': 'Associations',
     'mbg.ch': 'Associations',
     'sceneactive.ch': 'Associations',
     'radiovostok.ch': 'Associations',
+    // Fondations et entreprises sociales (ajout 16/11/2025)
+    'filinea.ch': 'Associations',  // Entreprise sociale à but non lucratif
+    'pro-geneve.ch': 'Associations',  // Fondation réinsertion d'intérêt public
+    'paco-web.ch': 'Associations',
+    'phenix.ch': 'Associations',  // Fondation Phénix - santé mentale
     
     // Entreprises
     'groupe-serbeco.ch': 'Entreprises',
     'fegpac.ch': 'Entreprises',
+    // Entreprises du bâtiment et construction (ajout 16/11/2025)
+    'righi-sa.ch': 'Entreprises',
+    'menuiserie-legna.ch': 'Entreprises',
+    'entreprisemontefusco.ch': 'Entreprises',
+    'mazzoli.ch': 'Entreprises',
+    'belmontecarrelages.ch': 'Entreprises',
+    'storemania.ch': 'Entreprises',
+    'gatto-sa.ch': 'Entreprises',
+    'stormatic.ch': 'Entreprises',
+    'gri-sa.ch': 'Entreprises',
+    'macullo.ch': 'Entreprises',
+    'fragastores.ch': 'Entreprises',
+    'hts.swiss': 'Entreprises',
+    'menuiserie-fabbi.com': 'Entreprises',
+    'jfarina.ch': 'Entreprises',
+    'modulancy.ch': 'Entreprises',
+    'm-nobs.ch': 'Entreprises',
+    'piretti.ch': 'Entreprises',
+    'caragnano.ch': 'Entreprises',
+    'cuivretout.ch': 'Entreprises',
+    'bagattinisa.ch': 'Entreprises',
+    'gpisa.ch': 'Entreprises',
+    'nobile.ch': 'Entreprises',
+    'fretcargo.com': 'Entreprises',
+    'ch.dsv.com': 'Entreprises',
     
     // Emails personnels
     'gmail.com': 'Personnel',

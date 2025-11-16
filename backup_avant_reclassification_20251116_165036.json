@@ -1,0 +1,690 @@
+{
+  "metadata": {
+    "backup_date": "2025-11-16T15:50:37.277Z",
+    "total_submissions": 120,
+    "total_dynamic_roles": 13,
+    "valid_submissions": 120,
+    "invalid_submissions": 0,
+    "database_version": "1.0",
+    "source": "cloudflare-d1",
+    "project": "cap-formations-questionnaire",
+    "backup_type": "complete"
+  },
+  "submissions": [
+    {
+      "id": 130,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"5\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"Harcèlement sexuel\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"ruptureFactorsOther\":\"Difficultés économiques\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"stabilisation_situation\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"Mauvaise coordination entre les acteurs du réseau\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"romain.bischoff@geneve.ch\"}",
+      "created_at": "2025-11-14 16:10:09"
+    },
+    {
+      "id": 129,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"autre\"],\"observedChallengesOther\":\"intérêt pour le métier\",\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\"],\"ruptureFactorsOther\":\"De mon point de vue, la stabilité de la situation personnelle et les finances sont liées.\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"info@entreprisemontefusco.ch\"}",
+      "created_at": "2025-11-14 12:05:32"
+    },
+    {
+      "id": 128,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"3\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\",\"equipes\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"migration\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Selon moi, pour accompagner le jeune en milieu scolaire, il faudrait renforcer le lien avec le jeune avec un suivi plus régulier (1x/sem et non 1X/mois)+ des activités extrascolaires (dynamique de groupe).\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"paulina.castillo-belfaleh@etat.ge.ch\"}",
+      "created_at": "2025-11-14 11:05:48"
+    },
+    {
+      "id": 127,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"6\",\"decrochage\":\"4\",\"migration\":4,\"addictions\":\"6\",\"conflits\":4},\"observedChallenges\":[\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Utilisation du téléphone portable / airpods au travail \",\"challengesHasEmerged\":[\"addictions\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Communication avec les jeunes/ pas forcément mis  au courant quand ils sont en difficulté, problèmes familiaux ou autres\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"p.carvalho@righi-sa.ch\"}",
+      "created_at": "2025-11-14 07:41:17"
+    },
+    {
+      "id": 126,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"4\",\"migration\":\"3\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"addictions\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"L'influence parentale\",\"challengesHasEmerged\":[\"conflits\",\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"naik@menuiserie-legna.ch\"}",
+      "created_at": "2025-11-13 21:10:07"
+    },
+    {
+      "id": 125,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"3\",\"addictions\":\"3\",\"conflits\":\"5\"},\"observedChallenges\":[\"precarite\",\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Formateur·trice spécialisé\",\"email\":\"loic.mazzoli@mazzoli.ch\"}",
+      "created_at": "2025-11-13 14:42:25"
+    },
+    {
+      "id": 124,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"4\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"migration\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Certains jeunes ne se présentent pas lors d'entretien, perdent de l'intérêt pour la formation car cette dernière est peu être trop exigeante à leurs yeux. \",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"info@menuiserie-legna.ch\"}",
+      "created_at": "2025-11-13 11:01:10"
+    },
+    {
+      "id": 123,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"2\",\"conflits\":\"3\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"informels\"],\"observedChallenges\":[\"autre\"],\"observedChallengesOther\":\"Les difficultés de notre système \",\"emergingChallengesDescription\":\"Juste que les jeunes ont la flemme….\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\"],\"specializationObstacles\":\"Pas assez de place d’apprentissage. Système exigeant et des entreprises très compliquées dans le recrutement. L’état doit assouplir les règles ! \",\"professionalRole\":\"Autre\",\"email\":\"alexandre.kunzi@etat.ge.ch\",\"professionalRoleOther\":\"Conseiller en formation \"}",
+      "created_at": "2025-11-13 10:14:46"
+    },
+    {
+      "id": 122,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"1\",\"precarite\":\"2\",\"decrochage\":\"7\",\"migration\":\"6\",\"addictions\":\"1\",\"conflits\":\"1\"},\"observedChallenges\":[\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"Arriver à remotiver les jeunes à travailler.\\nLeur montrer que le travail artisanal bien fait peut amener à un très bon salaire.\\nTrès souvent, la motivation financière n'est pas là car ce sont souvent des jeunes qui souhaitent avoir tout et tout de suite. Il faudrait retravailler cette notion du temps.\",\"challengesHasEmerged\":[\"decrochage\",\"migration\"],\"ruptureFactorsOther\":\"Nous avons eu 1 décrochage mais dû à une blessure au poignet qui était présente avant la signature du contrat d'apprentissage.\\n\",\"skipRuptureSection\":false,\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le temps, il est compliqué pour nous de prendre du temps à comprendre leurs problématiques souvent personnels et trouver des solutions.\\nIl faudrait également redorer l'image de tous les métiers d'art qui sont encore malheureusement peu désirés car moins bien payé.\",\"professionalRole\":\"secrétaire rh\",\"email\":\"info@belmontecarrelages.ch\"}",
+      "created_at": "2025-11-13 07:55:37"
+    },
+    {
+      "id": 121,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"2\",\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"6\",\"conflits\":\"2\"},\"observedChallenges\":[\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"patricia@storemania.ch\",\"professionalRoleOther\":\"secrétaire rh\"}",
+      "created_at": "2025-11-13 07:19:08"
+    },
+    {
+      "id": 120,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"3\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"addictions\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Nous avons rencontré un seul cas de d'interruption de formation, ce dernier a été diagnostiqué tardivement TDHA, cela semblait être la raison pour laquelle notre ancien apprenti ne souhaitait pas continuer sa formation \",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"info@gatto-sa.ch\"}",
+      "created_at": "2025-11-13 06:52:28"
+    },
+    {
+      "id": 119,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"autre\"],\"observedChallengesOther\":\"Nous n'avons pas été confronté à ces défis\",\"emergingChallengesDescription\":\"L'apprenti se rend compte que l'apprentissage choisi ne lui correspond pas.\",\"challengesHasEmerged\":[\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"inadequation_orientation\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Responsale RH\",\"email\":\"cperujo@stormatic.ch\"}",
+      "created_at": "2025-11-13 06:12:56"
+    },
+    {
+      "id": 118,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"6\",\"addictions\":\"6\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\"],\"observedChallenges\":[\"decrochage\",\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"migration\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Si le jeune a des difficultés psychiques importantes et qu'il-elle ne veut pas les prendre en compte et demander un soutien psychologique ou autre, bilan neuropsychologique..\\n\\nAbsences nombreuses\\n\\nManque de motivation générale et non implication, \\\"procrastination\\\"\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"isabelle.guye@etat.ge.ch\"}",
+      "created_at": "2025-11-12 15:26:52"
+    },
+    {
+      "id": 117,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"7\",\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"7\",\"conflits\":4},\"observedChallenges\":[\"precarite\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"addictions\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"soutien_financier_materiel\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le manque de formation de base est un vrai frein dans l'environnement professionnel.\\nLes notions essentielles de calculs et de maitrise de la langue sont vraiment à privilégier. \",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"sl@gri-sa.ch\"}",
+      "created_at": "2025-11-12 13:43:10"
+    },
+    {
+      "id": 116,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"2\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":\"2\",\"conflits\":\"2\"},\"observedChallenges\":[\"decrochage\"],\"emergingChallengesDescription\":\"Manque d'implication des jeunes, insensible au monde du travail.\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Beaucoup de mal à recruter des jeunes motivés, nous récupérons souvent des jeunes qui se retrouvent la par hasard. Métier inconnu.\",\"professionalRole\":\"Coordinateur·trice de projet\",\"email\":\"mc@macullo.ch\"}",
+      "created_at": "2025-11-12 13:41:40"
+    },
+    {
+      "id": 115,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"1\",\"precarite\":4,\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"2\",\"conflits\":4},\"observedChallenges\":[\"decrochage\"],\"emergingChallengesDescription\":\"Nous avons également constaté qu'aujourd'hui beaucoup de jeunes( 17-20) ne sont pas capables d'assumer leurs responsabilités et le manque d'entrain est évident. \\n\",\"challengesHasEmerged\":[\"decrochage\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"soutien_competences_base\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le manque de maturité et mauvaise orientation initiale\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"a.fraga@fragastores.ch\"}",
+      "created_at": "2025-11-12 13:14:14"
+    },
+    {
+      "id": 114,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":4,\"migration\":\"3\",\"addictions\":\"3\",\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Les parents qui n'aident pas les jeunes et qui ne se remettent pas en question. Ils pensent les protéger et en fait ils les tirent en bas\\n\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"migration\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"isolement_social\"],\"specializationObstacles\":\"Les parents\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"eric@hts.swiss\"}",
+      "created_at": "2025-11-12 13:00:13"
+    },
+    {
+      "id": 113,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"4\",\"migration\":\"2\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"precarite\",\"conflits\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"info@menuiserie-fabbi.com\"}",
+      "created_at": "2025-11-12 12:39:02"
+    },
+    {
+      "id": 112,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"2\",\"decrochage\":\"7\",\"migration\":\"7\",\"addictions\":\"2\",\"conflits\":4},\"observedChallenges\":[\"migration\",\"decrochage\"],\"emergingChallengesDescription\":\"Chez certains jeunes, le manque d'envie de travailler, de se lever le matin. Ils ne comprennent pas que sans effort il n'y a pas de salaire, et que la vie professionnelle est un combat perpétuel pour survivre.\",\"challengesHasEmerged\":[\"migration\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"La rentabilité, dans notre secteur (en tout cas pour les petites entreprises) on ne peut malheureusement plus se permettre de prendre du temps pour s'occuper des jeunes à \\\"problèmes\\\". Déjà il est par exemple de plus en plus difficile de donner du temps en suffisance pour former correctement un jeune \\\"normal\\\".\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"info@jfarina.ch\"}",
+      "created_at": "2025-11-12 11:27:51"
+    },
+    {
+      "id": 111,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"5\",\"conflits\":\"5\"},\"observedChallenges\":[\"decrochage\",\"autre\"],\"observedChallengesOther\":\"\",\"emergingChallengesDescription\":\"désintérêt total pour la tache confiée ou le travail en général, omnibulés par leur téléphone ils ne sont plus dans le moment présent physique, ne comprennent pas les consignes et n'ont pas envie de les comprendre ils ne posent pas de question, se lassent rapidement des taches répétitives, se lassent de la routine du travail\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\",\"lacunes_scolaires\"],\"specializationObstacles\":\"manque de soutien de la part des parents, le manque de volonté du jeune n'est pas compensé, la désillusion de la réalité du travail par rapport a ce qui est présenté sur les réseaux sociaux\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"info@modulancy.ch\"}",
+      "created_at": "2025-11-12 11:12:44"
+    },
+    {
+      "id": 110,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"2\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"6\",\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"migration\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Un manque de soutien familial.\\nRelâchement des parents après la majorité.\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"p.bonadei@m-nobs.ch\"}",
+      "created_at": "2025-11-12 10:40:56"
+    },
+    {
+      "id": 109,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"decrochage\"],\"emergingChallengesDescription\":\"les réseaux sociaux\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Les obstacles rencontrés sont surtout pour qu'ils gardent leur motivation (ils abandonnent facilement) et sont perdus\",\"professionalRole\":\"Autre\",\"email\":\"info@piretti.ch\",\"professionalRoleOther\":\"Responsale RH\"}",
+      "created_at": "2025-11-12 10:19:10"
+    },
+    {
+      "id": 108,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"autre\"],\"observedChallengesOther\":\"motivation\"}",
+      "created_at": "2025-11-12 10:11:33"
+    },
+    {
+      "id": 107,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"christophe.leroy@orif.ch\"}",
+      "created_at": "2025-11-12 09:57:45"
+    },
+    {
+      "id": 106,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"6\",\"addictions\":\"2\",\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"difficultes_integration\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"petra.zampoleri@orif.ch\",\"professionalRoleOther\":\"responsable équipe sociale \"}",
+      "created_at": "2025-11-12 09:49:27"
+    },
+    {
+      "id": 105,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":4,\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"3\",\"conflits\":\"5\"},\"observedChallenges\":[\"decrochage\",\"migration\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Représentant·e d'association professionnelle\",\"email\":\"luca@caragnano.ch\"}",
+      "created_at": "2025-11-12 09:26:16"
+    },
+    {
+      "id": 104,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"4\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":false,\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"adaptation_pedagogique\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"manque de suivi entre le pédagogique et l'entreprise \",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"info@cuivretout.ch\"}",
+      "created_at": "2025-11-12 09:24:10"
+    },
+    {
+      "id": 103,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"3\",\"precarite\":\"3\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"3\",\"conflits\":\"5\"},\"observedChallenges\":[\"decrochage\",\"conflits\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"mbagattini@bagattinisa.ch\"}",
+      "created_at": "2025-11-12 09:19:30"
+    },
+    {
+      "id": 102,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"1\",\"decrochage\":\"5\",\"migration\":\"1\",\"addictions\":\"2\",\"conflits\":\"5\"},\"observedChallenges\":[\"decrochage\",\"conflits\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"accompagnement_individualise\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"lacunes_scolaires\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"mathilde.magnin@gpisa.ch\"}",
+      "created_at": "2025-11-12 09:09:27"
+    },
+    {
+      "id": 101,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":4,\"migration\":\"6\",\"addictions\":4,\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\",\"informels\"],\"observedChallenges\":[\"sante_mentale\",\"migration\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"migration\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\"],\"specializationObstacles\":\"Autonomie insuffisante des apprentis\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"p.jobin@pro-geneve.ch\"}",
+      "created_at": "2025-11-12 09:01:37"
+    },
+    {
+      "id": 100,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"7\",\"conflits\":\"3\"},\"observedChallenges\":[\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"Implication réel du CFC, peut être la rémunération faible de l'apprentissage ?\",\"challengesHasEmerged\":[\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"Il serait intéressant d'avoir 1 ou 2 fois par mois le professeur 1/2 journée pour voir chaque élève sur son lieu  travail pendant toute la durée de la formation et voir l'évolution réel et corriger \",\"ruptureFactorsFavorable\":[\"soutien_financier_materiel\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"inadequation_orientation\",\"lacunes_scolaires\"],\"specializationObstacles\":\"- La motivation est le facture principale il doit passer par une meilleure  rémunération avec l'aide cantonal et/ou fédéral ?\\n- Une présence régulière et pendant toute la durée de la formation de l'école individualisé car l'élève interagit de façon différente avec l'entreprise et l'école pour cibler au plus tôt ces envies \",\"professionalRole\":\"Mentor·e en entreprise\",\"email\":\"ristic@nobile.ch\"}",
+      "created_at": "2025-11-12 08:59:33"
+    },
+    {
+      "id": 99,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"7\",\"decrochage\":\"7\",\"migration\":\"7\",\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"decrochage\",\"precarite\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"migration\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"difficultes_integration\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"isabelle.bezencon@etat.ge.ch\"}",
+      "created_at": "2025-11-11 14:21:31"
+    },
+    {
+      "id": 98,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Harcèlement\\nQuestionnement/regards critiques envers les autorités\",\"challengesHasEmerged\":[\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"Manque de connaissances des possibles pour le J.A. et du soutien, écoute des parents\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Un diagnostic médical souvent tardif et/ou pas réussi à être effectuer en amont, ce qui a engendré un cumul d'années de rupture puisque projet/voie pas adapté/e et en échec.\\n\\nPas de projet professionnel visé / défini, car pas eu connaissance du catalogue formatif (métiers) possible.\\n\\nEnjeux socio-familiaux... ils doivent participer financièrement aux besoins financiers familiaux.\\n\\nProche-aidance\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"caroline.martinez@meyrin.ch\"}",
+      "created_at": "2025-11-11 11:16:09"
+    },
+    {
+      "id": 97,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"discussion\",\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"migration\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Manque de moyen (p.ex attente ++ pour la mise en place d'un suivi psy), \\n\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"marion.prieto-mera@etat.ge.ch\"}",
+      "created_at": "2025-11-11 10:31:38"
+    },
+    {
+      "id": 96,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"3\",\"conflits\":\"3\"},\"observedChallenges\":[\"decrochage\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"orientation_adaptee\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\"],\"specializationObstacles\":\"manque de confiance en soi - scolarité compliquée\",\"professionalRole\":\"Coach en insertion\",\"email\":\"christine.ritter@meyrin.ch\"}",
+      "created_at": "2025-11-10 15:37:07"
+    },
+    {
+      "id": 95,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":\"4\",\"addictions\":4,\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"discussion\",\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"Passivité des jeunes face à leur avenir. Niveau d'information faible, vivent dans une bulle\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Manque d'un partenariat avec les entreprises. Difficulté à trouver des stages.\\nPeu de possibilité pour les jeunes d'expérimenter et prendre confiance dans le monde professionnel.\\n\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"pamela.allemann@etat.ge.ch\"}",
+      "created_at": "2025-11-07 07:10:13"
+    },
+    {
+      "id": 94,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"addictions\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"isolement_social\",\"difficultes_integration\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"selamauit.ghebre-medhin@etat.ge.ch\"}",
+      "created_at": "2025-11-06 12:29:43"
+    },
+    {
+      "id": 93,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":4,\"conflits\":\"3\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\",\"informels\"],\"observedChallenges\":[\"precarite\",\"decrochage\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"l'absentéisme. Sans les voir, difficile de travailler avec eux. \",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"seda.tahan@etat.ge.ch\"}",
+      "created_at": "2025-11-06 08:55:45"
+    },
+    {
+      "id": 92,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"7\",\"migration\":\"3\",\"addictions\":\"5\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"L'isolement\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Dans les situations complexes impliquant une accumulation de facteurs de risque et présentant par le passé un enchainement de structures accompagnantes sans coordination entre elles, me semble conduire à une posture passive des jeunes et une difficulté à entrer en lien et à croire à une possible issue positive. La proportion de ces situations complexes accompagnées me semble augmenter depuis quelques années, ce qui est un obstacle majeur pour proposer un suivi individualisé efficace.  \",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"adriana.lepape@etat.ge.ch\"}",
+      "created_at": "2025-11-06 07:38:59"
+    },
+    {
+      "id": 91,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"6\",\"decrochage\":\"7\",\"migration\":\"6\",\"addictions\":\"2\",\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"discussion\",\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"manques de mesures en fonctions des difficultés des jeunes\",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"frank.wunderlich@etat.ge.ch\"}",
+      "created_at": "2025-11-05 14:51:45"
+    },
+    {
+      "id": 90,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"3\",\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"3\",\"conflits\":\"7\"},\"observedChallenges\":[\"conflits\",\"sante_mentale\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Manque d'appartements accompagné d'un suivi psychologique en parallèle pour permettre de stabiliser la situation familiale et psychologique des jeunes.\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"c.blanco@vernier.ch\"}",
+      "created_at": "2025-11-04 10:25:18"
+    },
+    {
+      "id": 89,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"7\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"decrochage\",\"sante_mentale\",\"conflits\"],\"emergingChallengesDescription\":\"la difficulté à l'effort, encore plus qu'avant.\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"Manque de soutien de l'entourage, ou du moins un soutien adapté. \",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\",\"lacunes_scolaires\"],\"specializationObstacles\":\"- pas d'accès à un ordinateur\\n- manque de persévérance\\n- Manque de volition\\n- perte de rythme \",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"fanny.laemmel@etat.ge.ch\"}",
+      "created_at": "2025-11-03 12:34:34"
+    },
+    {
+      "id": 88,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\"],\"observedChallenges\":[\"precarite\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"orientation_adaptee\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"L'irrégularité de leur présence au rdv et de leur investissement dans leur projet. Les problématiques des jeunes rencontrés peuvent être nombreuses et multiples installées souvent depuis longtemps. Le manque de soutien dans leur environnement personnel et familial. La multiplicité des acteurs professionnels autour du jeune peut représenter une difficulté également. Le temps nécessaire à leur offrir pour un suivi rapproché sur la longueur et pour les aider à gagner en autonomie. Le manque d'autonomie chez les jeunes est un grand frein, cela les pousse parfois à abandonner rapidement face à la sensation de devoir effectuer un trop grand nombre de démarches. Un marché de l'emploi et de la formation à Genève très concurrentiel.\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"l.innocentini@vernier.ch\"}",
+      "created_at": "2025-11-03 11:16:41"
+    },
+    {
+      "id": 87,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"4\",\"addictions\":\"3\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Les principaux obstacles que j'observe pour accompagner les jeunes sont souvent d’ordre psychologique. Beaucoup présentent des difficultés comme l’anxiété, les phobies sociales, l’isolement, la dépression ou un manque de sens et de motivation. À cela s’ajoutent parfois une faible estime de soi, un sentiment d’échec, ainsi qu’une grande difficulté à se projeter dans l’avenir.\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"stefanie.magalhaes@etat.ge.ch\"}",
+      "created_at": "2025-11-03 09:18:15"
+    },
+    {
+      "id": 86,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":4,\"migration\":\"4\",\"addictions\":\"4\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"la difficulté à faire accéder les jeunes à un professionnel de la santé mental que ce soit de les aider à y voir le sens ou de trouver un rendez-vous dans le réseau genevois. \",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"d.lenggenhager@vernier.ch\"}",
+      "created_at": "2025-10-30 13:39:05"
+    },
+    {
+      "id": 85,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"autre\"],\"observedChallengesOther\":\"\",\"emergingChallengesDescription\":\"manque de \\\"débrouillardise\\\" car ils ont été trop couvée !\",\"challengesHasEmerged\":[\"migration\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Enseignant·e\",\"email\":\"david@fretcargo.com\"}",
+      "created_at": "2025-10-30 10:28:45"
+    },
+    {
+      "id": 84,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"4\",\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Manque de formateurs avec du temps à disposition pour former efficacement et qualitativement\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"ariane.quero@ch.dsv.com\"}",
+      "created_at": "2025-10-30 10:25:45"
+    },
+    {
+      "id": 83,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"4\",\"addictions\":\"3\",\"conflits\":\"3\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"informels\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"aude.gendre@etat.ge.ch\"}",
+      "created_at": "2025-10-30 08:07:54"
+    },
+    {
+      "id": 82,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"migration\",\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"inadequation_orientation\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"L'absentéisme et l'inconstance du à de multiples facteurs.\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"nathalie.burdet@gmail.com\"}",
+      "created_at": "2025-10-29 11:08:53"
+    },
+    {
+      "id": 81,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"2\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\",\"equipes\"],\"cafesEnjoyment\":[\"discussion\",\"informels\"],\"observedChallenges\":[\"precarite\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Quelques connaissances sur les multiples prestations offertes pour les jeunes par le canton. Les cafés partenaires sont un bon moyen d'en découvrir davantage :)\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"martin.hebert@etat.ge.ch\"}",
+      "created_at": "2025-10-28 14:45:12"
+    },
+    {
+      "id": 80,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":\"5\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\"],\"emergingChallengesDescription\":\"Oui, je rencontre de plus en plus de jeunes souffrant de phobie scolaire. De manière générale, il y a vraiment une grosse augmentation des troubles anxieux chez les jeunes depuis quelques années. \\nDans une moindre mesure, le TDAH est aussi fortement présent chez nos jeunes. \",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_competences_base\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Les jeunes que nous suivons rencontrent beaucoup de difficultés dans des sphères très différentes (difficultés scolaires, sociales, psychologiques, relationnelles, etc.) mais je dirai que les obstacles principaux que je rencontre et qui entravent mon travail sont les troubles psychologiques. \",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"alexandra.schreiber@etat.ge.ch\"}",
+      "created_at": "2025-10-28 14:01:06"
+    },
+    {
+      "id": 79,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"7\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"lacunes_scolaires\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"florence.moser@etat.ge.ch\"}",
+      "created_at": "2025-10-28 13:38:47"
+    },
+    {
+      "id": 78,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"autre\",\"decrochage\",\"sante_mentale\"],\"observedChallengesOther\":\"Baisse des compétences de base (autonomie, persévérance, intelligence émotionnelle)\",\"emergingChallengesDescription\":\"Comme dit précédemment, au delà des problématiques elles-mêmes, c'est les compétences pour y faire face qui me semblent diminuées. \",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"L'ensemble des facteurs soulevés me semblent très pertinents. Il est complexe de faire un choix. \",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"orientation_adaptee\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"difficultes_integration\"],\"specializationObstacles\":\"Adhésion et engagement du jeune sur un suivi de long cours. \\n\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"michael.emery@etat.ge.ch\"}",
+      "created_at": "2025-10-28 13:31:49"
+    },
+    {
+      "id": 77,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":4,\"addictions\":\"2\",\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"decouverte\",\"informels\"],\"observedChallenges\":[\"precarite\",\"decrochage\",\"sante_mentale\"],\"emergingChallengesDescription\":\"C'est propre à chaque public et à chaque association, mais dernièrement, je vois de plus en plus de jeunes femmes qui se retrouvent entravées dans leur formation car elles doivent rester à la maison pour s'occuper de leur famille. Des dispositifs plus modulaires permettraient de mieux accompagner ces jeunes concernées \\n\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"chaves@voief.ch\"}",
+      "created_at": "2025-10-27 11:07:22"
+    },
+    {
+      "id": 76,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"6\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"parfois l'aide sociale est perçue, même par les plus jeunes, comme une option tout à fait acceptable\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"- manque de clarté, de motivation\\n- manque de sens, difficulté à se projeter dans le futur\\n- croyances limitantes (p/r à soi: je suis nul, je n'y arriverai jamais... et/ou lié au marché du travail ou à la situation économique en général: à quoi bon, perte de sens, si c'est pour me tuer à la tâche comme mes parents...)\\n- désengagement total \",\"professionalRole\":\"Autre\",\"email\":\"sabine.pellarin@fondation-ipt.ch\",\"professionalRoleOther\":\"conseillère en réinsertion, spécialisée dans les parcours avec limitations de santé\"}",
+      "created_at": "2025-10-22 13:57:50"
+    },
+    {
+      "id": 75,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":4,\"decrochage\":\"7\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"La difficulté de travail et de flexibilité des partenaires.\",\"challengesHasEmerged\":[\"precarite\",\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"la flexibilité des partenaires et l'accessibilité des parents.\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"mouna.alwash@fase.ch\"}",
+      "created_at": "2025-10-17 15:26:55"
+    },
+    {
+      "id": 74,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"4\",\"decrochage\":\"6\",\"migration\":\"7\",\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"migration\",\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"Dès lors que les jeunes n'ont plus de famille capable de les soutenir... Tout devient difficile. L'accompagnement individualisé a bien sûr du sens mais devrait être presque du un pour trois selon les \",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le travail de masse est peu efficace et prendre le temps permet d'aller bien plus vite.\\nLE TEMPS - LE MANQUE  DE TRAVAILLEUSES/EURS AU BON ENDROIT- LE MANQUE DE COMPETENCE RU CAPABLE DE SUIVRE LES ENJEUX DE TERRAIN - LE MANQUE DE COURAGE - L'ABSENCE DE COORDINATION RESEAU EFFICACE\",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"isabelle.migraine@hospicegeneral.ch\"}",
+      "created_at": "2025-10-17 08:48:01"
+    },
+    {
+      "id": 73,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":\"7\",\"migration\":\"3\",\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"decrochage\",\"addictions\",\"sante_mentale\"],\"emergingChallengesDescription\":\"Vilolence \",\"challengesHasEmerged\":[\"decrochage\",\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"La lenteur administrative ,la perte de motivation.\",\"professionalRole\":\"Animateur·trice socioculturel·le\",\"email\":\"nihed.tilouche@fase.ch\"}",
+      "created_at": "2025-10-16 15:18:04"
+    },
+    {
+      "id": 72,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":\"4\",\"addictions\":\"5\",\"conflits\":\"3\"},\"observedChallenges\":[\"decrochage\",\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"Bonjour,\\nLes difficultés auxquels je fais le plus face sont parfois le manque de disponibilités et fléxibilités des partenaires.\\nMeilleurs messages.\\nYvan Barros\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"yvan.barros@fase.ch\"}",
+      "created_at": "2025-10-16 15:01:00"
+    },
+    {
+      "id": 71,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"4\"},\"observedChallenges\":[\"sante_mentale\",\"addictions\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":false,\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"isolement_social\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"samy.boughzala@fase.ch\"}",
+      "created_at": "2025-10-16 12:44:18"
+    },
+    {
+      "id": 70,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":4,\"decrochage\":\"7\",\"migration\":\"2\",\"addictions\":\"4\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"manque de moyen (humain, trop de dossier, pas assez de temps)\",\"professionalRole\":\"Assistant·e social·e\",\"email\":\"magali.mallard@hospicegeneral.ch\"}",
+      "created_at": "2025-10-16 12:19:14"
+    },
+    {
+      "id": 69,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"3\",\"decrochage\":\"7\",\"migration\":\"3\",\"addictions\":\"4\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"Difficultés à se projeter dans l'avenir, notamment au niveau professionnel.\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"Charge de travail importante et en augmentation constante = manque de temps pour un accompagnement de qualité et répondant aux besoins des jeunes adultes.\",\"professionalRole\":\"Assistant·e social·e\",\"email\":\"adielle.bertschy@hospicegeneral.ch\"}",
+      "created_at": "2025-10-16 11:58:47"
+    },
+    {
+      "id": 68,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"3\",\"decrochage\":\"7\",\"migration\":\"2\",\"addictions\":4,\"conflits\":\"7\"},\"observedChallenges\":[\"decrochage\",\"conflits\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e\",\"email\":\"Victoria.Solla@hospicegeneral.ch\"}",
+      "created_at": "2025-10-16 11:44:21"
+    },
+    {
+      "id": 67,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"7\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":\"7\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"Précarité de logement\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"adaptation_pedagogique\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"isolement_social\"],\"specializationObstacles\":\"Des lieux de vie adapté.\\nLes contraintes psychologique/psychiatrique.\\nL'isolement familial/social\\nLes ressources financières.\\nLa libre adhésion du jeune, création de lien de confiance\",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"miguel.pouchet@hospicegeneral.ch\"}",
+      "created_at": "2025-10-16 11:14:55"
+    },
+    {
+      "id": 66,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"informels\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Les comportements à risque, notamment prostitution de mineurs/ jeunes majeurs,\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"lacunes_scolaires\",\"isolement_social\"],\"specializationObstacles\":\"Dans notre mandat, la libre adhésion peut parfois nous amener à nos limites, car le jeune peut nous échapper par moment. Nous faisons plutôt du \\\"raccrochage scolaire\\\", et il est parfois difficile de les amener vers les structures scolaires après des années d'errance. Il manque de la prévention au décrochage (péventif vs curatif)\\nParfois, perte de temps dans le tourisme institutionnel. Les TSHM ne sont souvent pas sollicité quand le jeune commence à décrocher (ex: parcours individualisés qui ne nous sollicitent pas)\\n\",\"professionalRole\":\"Animateur·trice socioculturel·le\",\"email\":\"sandrine.queiroga@fase.ch\"}",
+      "created_at": "2025-10-16 08:13:38"
+    },
+    {
+      "id": 65,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"3\",\"precarite\":\"2\",\"decrochage\":\"5\",\"migration\":\"4\",\"addictions\":\"6\",\"conflits\":\"7\"},\"observedChallenges\":[\"decrochage\",\"conflits\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"addictions\",\"conflits\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Assistant·e social·e\",\"email\":\"nina.frossard@fase.ch\"}",
+      "created_at": "2025-10-15 19:28:53"
+    },
+    {
+      "id": 64,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"addictions\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"Violence physique et verbale \",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_financier_materiel\",\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le long processus car les jeunes ont des objectifs de résultats \",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"mourad.hechiche@fase.ch\"}",
+      "created_at": "2025-10-15 18:02:57"
+    },
+    {
+      "id": 63,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"7\",\"decrochage\":\"6\",\"migration\":\"6\",\"addictions\":\"6\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"discussion\",\"informels\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Violence chez les plus jeunes (cycle d'orientation)\",\"challengesHasEmerged\":[\"precarite\",\"addictions\",\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Manque de temps et de ressource. Ce que les communes peuvent mentionner comme transfert de charge...\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"thomas.bertrand@fase.ch\"}",
+      "created_at": "2025-10-15 17:44:52"
+    },
+    {
+      "id": 62,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"6\",\"conflits\":\"7\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"inadequation_orientation\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Activer et maintenir la motivation du jeune suite à un parcours scolaire, professionnel ou personnel qui a pu le mettre en situation d’échec.\\n\\nRendre le jeune acteur et lui faire prendre conscience que son implication dans son projet est une grande partie du travail.\\n\\nFaire accepter au jeune de travailler avec des professionnels de la santé mentale pour l’accompagner.\",\"professionalRole\":\"Job coach\",\"email\":\"lgagliolo@qualife.ch\"}",
+      "created_at": "2025-10-15 13:12:41"
+    },
+    {
+      "id": 61,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"3\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Manque de temps pour mettre en place des suivis individuels plus réguliers. \",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"nicolas.glenat@fase.ch\"}",
+      "created_at": "2025-10-15 12:48:37"
+    },
+    {
+      "id": 60,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"6\",\"decrochage\":\"3\",\"migration\":\"1\",\"addictions\":\"3\",\"conflits\":4},\"observedChallenges\":[\"precarite\"],\"emergingChallengesDescription\":\"Les phénomènes de violence entre pairs et envers les structures sociales.  \",\"challengesHasEmerged\":[\"precarite\",\"sante_mentale\"],\"ruptureFactorsOther\":\"Travailler en réseau. \",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\"],\"specializationObstacles\":\"Le travail en Silo\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"gil.palau@fase.ch\"}",
+      "created_at": "2025-10-15 07:57:49"
+    },
+    {
+      "id": 59,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"2\",\"addictions\":\"5\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"addictions\",\"decrochage\"],\"emergingChallengesDescription\":\"Impact des réseaux sociaux\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Orientation des jeunes en décrochage trop tardive, les laissant souvent trop longtemps sans activité\\nDifficultés parfois à mobiliser le réseau\\nPerte de confiance dans les professionnel·les après mauvaises expériences à l'école\",\"professionalRole\":\"Directeur·trice d'institution\",\"email\":\"info@paco-web.ch\"}",
+      "created_at": "2025-10-15 06:45:40"
+    },
+    {
+      "id": 58,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":4,\"addictions\":\"3\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Job coach\",\"email\":\"rdurand@qualife.ch\"}",
+      "created_at": "2025-10-14 11:47:34"
+    },
+    {
+      "id": 57,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"3\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\"],\"emergingChallengesDescription\":\"L'enfermement lié aux nouvelles technologies. \",\"challengesHasEmerged\":[\"conflits\",\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"La santé mentale et les conflits familiaux. \",\"professionalRole\":\"Coach en insertion\",\"email\":\"jfluckiger@qualife.ch\"}",
+      "created_at": "2025-10-14 06:39:29"
+    },
+    {
+      "id": 56,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"L'anxiété liée à l'avenir ou à des expériences passées\\nProblèmes de logement, absence de soutien au niveau de la famille. \",\"professionalRole\":\"Autre\",\"email\":\"ideville@qualife.ch\",\"professionalRoleOther\":\"Job coach\"}",
+      "created_at": "2025-10-13 08:57:51"
+    },
+    {
+      "id": 55,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"constance.ottmani@fondation-ipt.ch\"}",
+      "created_at": "2025-10-13 07:49:39"
+    },
+    {
+      "id": 54,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\"],\"emergingChallengesDescription\":\"Identité et question de genre\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Coach en insertion\",\"email\":\"dominika.rozek@fondation-ipt.ch\"}",
+      "created_at": "2025-10-13 06:03:35"
+    },
+    {
+      "id": 53,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"3\",\"decrochage\":\"5\",\"migration\":\"4\",\"addictions\":\"5\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\",\"decouverte\",\"autre\"],\"cafesEnjoymentOther\":\"Comprendre plus en détails le fonctionnement de CAP, les outils et les processus mobilisés dans l'accompagnement des jeunes\",\"observedChallenges\":[\"sante_mentale\",\"autre\"],\"observedChallengesOther\":\"Manque de perspectives sur le marché selon le ressenti des jeunes et les difficultés d'orientation\",\"emergingChallengesDescription\":\"Masculinisme\\nPassage à la majorité (accompagnement pour devenir adulte)\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":false,\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"tdurand@qualife.ch\",\"professionalRoleOther\":\"Directeur d'institution\"}",
+      "created_at": "2025-10-12 18:07:33"
+    },
+    {
+      "id": 52,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"Savoir penser par soi même et sans avoir recours à l'IA\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"isolement_social\"],\"specializationObstacles\":\"Il faudrait pouvoir intervenir chaque jour pour garder la tête du jeune hors de l'eau. \\nAvoir davantage d'entreprises prêtes à intégrer les jeunes en stage et dans une réalité professionnelle\\nManque d'accompagnement personnalisé à chacun \",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"sarah.beolet@fondation-ipt.ch\"}",
+      "created_at": "2025-10-10 13:08:03"
+    },
+    {
+      "id": 51,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":4,\"migration\":4,\"addictions\":4,\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\",\"informels\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"difficultes_integration\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"younes.tayek@fase.ch\"}",
+      "created_at": "2025-10-10 11:43:13"
+    },
+    {
+      "id": 50,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"7\",\"conflits\":\"7\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"Pas nouveau mais qui prend de plus en plus d'empleur, c'est le harcèlement, scolaire ou non, et tout ce que ça engendre. \",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Du côté des jeunes, la motivation qui est souvent aléatoire et qu'on doit rebooster souvent. Une part leur appartient mais, l'autre part, dépend aussi d'un système biaisé et déconnecté de la réalité pour les raisons suivantes. \\n\\nDu côté des institutions, difficulté à trouver des stages, des apprentissages ou autre. Le jeune est souvent marginalisé et pas pris au sérieux sans même avoir laissé eu une chance. \",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"leyla.cruchon@fase.ch\"}",
+      "created_at": "2025-10-09 15:23:27"
+    },
+    {
+      "id": 49,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"2\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"L'influence des réseaux sociaux \",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"sandra.schmidhauser@fase.ch\"}",
+      "created_at": "2025-10-09 12:27:51"
+    },
+    {
+      "id": 48,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"3\",\"precarite\":\"1\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"3\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"informels\"],\"observedChallenges\":[\"decrochage\",\"conflits\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"guillaume.vaucouleur@fase.ch\"}",
+      "created_at": "2025-10-09 06:57:04"
+    },
+    {
+      "id": 47,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":4,\"addictions\":4,\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\"],\"observedChallenges\":[\"decrochage\",\"conflits\",\"sante_mentale\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"conflits\",\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"lacunes_scolaires\",\"inadequation_orientation\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"a.depreux@vernier.ch\"}",
+      "created_at": "2025-10-08 16:04:35"
+    },
+    {
+      "id": 46,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"3\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"precarite\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"Les réseaux sociaux et leurs impacts sur la jeunesse.\",\"challengesHasEmerged\":[\"decrochage\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"adaptation_pedagogique\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Manque de temps, de moyens voir de compétences. Réseaux et partenaires surchargés. Difficultés des jeunes à se projeter sur l'avenir entre autres.\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"adrian.brunet@fase.ch\"}",
+      "created_at": "2025-10-08 14:35:33"
+    },
+    {
+      "id": 45,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":4,\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"4\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"Nécessité d'une approche globale de type psycho-sociale/ adaptation pédagogique pour cesser la spirale de l'échec, valoriser le jeune et ses compétences \",\"professionalRole\":\"Animateur·trice socioculturel·le\",\"email\":\"juliette.alix@fase.ch\"}",
+      "created_at": "2025-10-08 13:55:54"
+    },
+    {
+      "id": 44,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"5\",\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"informels\"],\"observedChallenges\":[\"decrochage\",\"addictions\",\"sante_mentale\"],\"emergingChallengesDescription\":\"Depuis 2/3ans à Versoix: l'harcèlement scolaire et les bagarres au niveau du cycles (filles et garçons)\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"difficultes_integration\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"C'est de réussir à avoir une constance dans les rencontres et du coup dans le lien. Pour les jeunes les plus abimés, c'est difficile de répondre aux présents à tous les rdv de suivi.\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"assia.hamdaoui@fase.ch\"}",
+      "created_at": "2025-10-07 12:42:17"
+    },
+    {
+      "id": 43,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"4\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":\"2\",\"conflits\":\"3\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\",\"informels\"],\"observedChallenges\":[\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\",\"decrochage\",\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"soutien_competences_base\",\"adaptation_pedagogique\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"difficultes_integration\"],\"specializationObstacles\":\"Manque de variété d'approche pédagogique des connaissances des bases pour les jeunes en ruptures réticent au format scolaire classique.  \",\"professionalRole\":\"Conseiller·ère en formation\",\"email\":\"dave.kamilindi@etat.ge.ch\"}",
+      "created_at": "2025-10-07 09:37:11"
+    },
+    {
+      "id": 42,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"6\",\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\"],\"observedChallenges\":[\"addictions\",\"decrochage\",\"sante_mentale\"],\"emergingChallengesDescription\":\"Violence entre groupes de jeunes de différents quartiers et par ailleurs jeunes qui s'isolent à la maison, perte de lien, de motivation, de sens, profonde\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"accompagnement_individualise\",\"soutien_financier_materiel\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"instabilite_psycho_sociale\",\"isolement_social\"],\"specializationObstacles\":\"Notre rôle en tant que TSHM est très généraliste, nous devons normalement dans un système qui fonctionne les remettre en lien avec le réseau institutionnel. Nous remarquons que ce réseau est en surcharge, en manque de temps pour accompagner les jeunes à faire leurs démarches. Nous nous trouvons souvent en subsidiarité à faire les demandes de bourse, des demandes de fond, des démarches pour un désendettement, trouver des lieux de stage, etc.. Notre mission principale est de créer le lien d'aller vers la jeunesse, mais nous sommes vite pris par des démarches administratives complexes qui prennent le pas sur cette première mission. Il faut que le système change, comment \\\"prendre le temps\\\" avec les jeunes dans les institutions ?\",\"professionalRole\":\"Travailleur·euse social·e\",\"email\":\"julie.uhlig@fase.ch\"}",
+      "created_at": "2025-10-03 08:10:05"
+    },
+    {
+      "id": 41,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":4,\"migration\":\"3\",\"addictions\":\"5\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Une faible estime de soi\\nUne impression que les jeunes sont dépassés par les enjeux de leur vie\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Il y a beaucoup de mesure, mais la plus part d'entre eux manque de souplesse pour les jeunes qui sont déjà fragilisée. \\n\",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"caroline-sanibel.allemano-llorente@hospicegeneral.ch\"}",
+      "created_at": "2025-10-02 10:06:05"
+    },
+    {
+      "id": 40,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"7\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"6\",\"conflits\":\"7\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"Les difficultés liées à l'identité et toutes les questions relatives au genre (transition et autre).\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"lacunes_scolaires\",\"difficultes_integration\"],\"specializationObstacles\":\"Les nombreux d'acteurs différents, la difficulté d'être dans les interstices et coordonner en cohérence le projet du jeune à 360 degrés, les logiques institutionnelles, la surcharge des intervenants de terrain, l'accès au Premier marché.\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"jean-philippe.vincent@filinea.ch\"}",
+      "created_at": "2025-10-02 08:37:37"
+    },
+    {
+      "id": 39,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"7\",\"decrochage\":\"7\",\"migration\":4,\"addictions\":4,\"conflits\":\"7\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"Les difficultés pour trouver un logement suite à une rupture familiale et les entraves pour accéder à des droits financiers (SBPE quand les parents ne collaborent pas, aide sociale pour les SDF)\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Lors de ruptures familiales, il est souvent très difficile pour les jeunes adultes de trouver un logement pour activer une aide sociale, et les démarches pour obtenir une bourse du SBPE et les allocations familiales sont très compliquées voire impossibles sans la collaboration des parents. \",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"line-marie.notter@hospicegeneral.ch\"}",
+      "created_at": "2025-09-30 13:15:31"
+    },
+    {
+      "id": 38,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"informels\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"accès aux soins dans la santé mentale\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"difficultes_integration\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Il faudrait une plus grande coopération entre les différents professionnels des structures\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"remi.mouthon@fase.ch\"}",
+      "created_at": "2025-09-30 13:08:10"
+    },
+    {
+      "id": 37,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"4\",\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":\"7\",\"conflits\":\"6\"},\"observedChallenges\":[\"decrochage\",\"conflits\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\",\"addictions\"],\"ruptureFactorsOther\":\"Trouver sa voie professionnelle, trouver une place après une longue période descolarisée et accepter les refus\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"Le temps à accorder à chaque jeune, des situations de plus en plus complexes (familiales, motivation, santé mentale, situation de vie général) qu'il faut traiter avant la réinsertion professionnelle\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"emil.yilmaz@fase.ch\"}",
+      "created_at": "2025-09-30 10:04:57"
+    },
+    {
+      "id": 36,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"precarite\",\"decrochage\",\"conflits\"],\"emergingChallengesDescription\":\"Le niveau de concentration. \",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"Ce que je peux observer, c'est qu'au niveau de la famille il y a une dévalorisation de l'importance du nid, du soutien et de la communication au sein de la famille. \",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"J'accompagne des jeunes qui sont souvent doués et ont une forte envie de pratiquer un métier et par un CV et une lettre de motivation, cela ne suffit pas. Les jeunes que je rencontre se disent \\\" pas très scolaires\\\" pour diverses raisons (croyances limitantes, mauvaises expériences etc..) et ont de la difficulté à faire valoir leurs compétences, leur réelle envie d'apprendre un métier. La confiance et l'estime compte beaucoup là-dedans. Le système d'aujourd'hui peut faire peur et certain.e.s n'ont pas tous les codes. \",\"professionalRole\":\"Coach en insertion\",\"email\":\"jauninflorence@gmail.com\"}",
+      "created_at": "2025-09-30 09:16:06"
+    },
+    {
+      "id": 35,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":4,\"migration\":\"4\",\"addictions\":4,\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Jeunes en perte de sens sur leur compétences et leur projet de vie \",\"professionalRole\":\"Éducateur·trice social·e\",\"email\":\"margot.chenal@hospicegeneral.ch\"}",
+      "created_at": "2025-09-30 06:30:29"
+    },
+    {
+      "id": 34,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"6\",\"addictions\":\"5\",\"conflits\":\"7\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"Danny-Santiago.Ona-Torres@hospicegeneral.ch\",\"professionalRoleOther\":\"GFA\"}",
+      "created_at": "2025-09-29 14:07:06"
+    },
+    {
+      "id": 33,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Réseaux sociaux\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Problématique de logement qui freine la capacité à élaborer un projet de formation.\\nSituation de santé mentale précaire qui incapacite souvent, associée à une addiction\",\"professionalRole\":\"Intervenant·e socio-éducatif·ve\",\"email\":\"delphine.boex@hospicegeneral.ch\"}",
+      "created_at": "2025-09-29 12:08:25"
+    },
+    {
+      "id": 32,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"7\",\"migration\":\"6\",\"addictions\":\"6\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Psychologue\",\"email\":\"fabienne.von-during@phenix.ch\"}",
+      "created_at": "2025-09-29 11:14:58"
+    },
+    {
+      "id": 31,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":4,\"conflits\":\"4\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"partenaires\",\"equipes\"],\"cafesEnjoyment\":[\"informels\",\"discussion\"],\"observedChallenges\":[\"decrochage\"],\"emergingChallengesDescription\":\"Addiction jeux en ligne et réseaux sociaux\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"instabilite_psycho_sociale\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Le temps et manque de supervision. \",\"professionalRole\":\"Assistant·e social·e\",\"email\":\"catherine.martinet@hospicegeneral.ch\"}",
+      "created_at": "2025-09-29 08:53:36"
+    },
+    {
+      "id": 30,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"5\",\"conflits\":\"3\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"manque de d'orientation précise\",\"professionalRole\":\"Autre\",\"email\":\"ajriz.aljiji@hotmail.com\",\"professionalRoleOther\":\"travailleur social en formation\"}",
+      "created_at": "2025-09-29 06:18:35"
+    },
+    {
+      "id": 29,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":\"3\",\"addictions\":4,\"conflits\":\"5\"},\"observedChallenges\":[\"decrochage\",\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"Perte d'attractivité de la formation/emploi au profit d'ambitions ephémères véhiculées par les réseaux sociaux(influenceur, dropshipping, trading, e-commerce, startup etc.)\\n\\nAugmentation des demandes de formation privées non qualifiantes\",\"challengesHasEmerged\":[\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"accompagnement_individualise\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"inadequation_orientation\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"- Manque de temps et/ou de partenaires impliqués, les JA ne vont pas les consulter ou n'adhèrent pas, mais je n'ai pas le temps de faire du coaching\\n- Problème d'orientation professionnelle, quels moyens pour permettre aux JA de tester des métiers?\\n- Manque de moyens pour montrer des \\\"quickwins\\\" p. ex: on appelle pour des stages, on trouve des stages. En réalité cela ne fonctionne presque plus. Cela démotive les JA\\n- Plus d'accès aux CFP auprès 18 ans\\n- Décrochage longue durée, avec une prise en charge inexistante entre 16 et 18 ans\",\"professionalRole\":\"Travailleur·euse social·e\",\"email\":\"aurelie.prod-hom@hospicegeneral.ch\"}",
+      "created_at": "2025-09-26 14:31:30"
+    },
+    {
+      "id": 28,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"3\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"decrochage\",\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"elodie.percin@hospicegeneral.ch\"}",
+      "created_at": "2025-09-26 13:50:05"
+    },
+    {
+      "id": 27,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":\"5\",\"addictions\":4,\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Le manque de temps alloué à chaque situation…\",\"professionalRole\":\"Autre\",\"email\":\"charlotte.jaggi@for-pro.ch\",\"professionalRoleOther\":\"Referent ForPro\"}",
+      "created_at": "2025-09-26 11:28:44"
+    },
+    {
+      "id": 26,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":4,\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"6\",\"conflits\":\"6\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"decouverte\"],\"observedChallenges\":[\"addictions\",\"conflits\",\"decrochage\"],\"emergingChallengesDescription\":\"L'addiction au téléphone et au \\\"scroll\\\" sur Tiktok et Instagram. Les jeunes n'arrivent plus à rester concentré(e)s sur la durée, car le contenu qu'ils regardent durent uniquement quelques secondes et ils passent à autre chose. Ce n'est pas forcément leur faute, car c'est tout le système des réseaux sociaux qui favorisent cette addiction.\",\"challengesHasEmerged\":[\"addictions\",\"decrochage\",\"sante_mentale\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"adaptation_pedagogique\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"inadequation_orientation\"],\"specializationObstacles\":\"Les métiers en contact avec les jeunes pour la formation professionnelle nécessitent de la pédagogie, de la valorisation pour les compétences du jeune et d'une empathie pour sa situation actuelle. Les diplômes n'achèteront jamais ces compétences. Ce qu'on observe, ce sont des jeunes pour la plupart gentils en privé, perdus et en manque de confiance en soi, souvent incompris à la maison par ses parents ou autres. Ils ont besoin d'avoir une personne faisant preuve d'empathie pour sa situation et qui valorise ses compétences, car \\\"l'intelligence\\\" est un mot trop vaste et utilisé pour tout et n'importe quoi, alors qu'au fond nous sommes tous \\\"intelligents\\\" dans un domaine, et nous sommes tous \\\"bêtes\\\" dans un autre . Le manque d'orientation est également un gros problème, les jeunes sortent du cycle sans trop savoir où ils vont, se retrouvent pour la plupart dans des école plein-temps sans but précis et décrochent. L'apprentissage pour une profession qui les intéresse reste personnellement la meilleure option.\",\"professionalRole\":\"Représentant·e d'association professionnelle\",\"email\":\"l.sinani@mbg.ch\"}",
+      "created_at": "2025-09-26 08:27:49"
+    },
+    {
+      "id": 25,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":4,\"precarite\":\"6\",\"decrochage\":\"7\",\"migration\":\"5\",\"addictions\":\"4\",\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\",\"informels\"],\"observedChallenges\":[\"precarite\",\"decrochage\",\"migration\"],\"emergingChallengesDescription\":\"le choix du mauvais métier et des parcours d'étude qui n'en finissent pas, une mauvaise connaissance des métiers et de leurs débouchés \",\"challengesHasEmerged\":[\"precarite\",\"decrochage\",\"migration\"],\"ruptureFactorsOther\":\"multiplier les expériences pratiques et ciblées (pas d'occupation)\",\"ruptureFactorsFavorable\":[\"orientation_adaptee\",\"accompagnement_individualise\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"m.zreikat@mbg.ch\",\"professionalRoleOther\":\"Responsable Formation\"}",
+      "created_at": "2025-09-26 07:34:47"
+    },
+    {
+      "id": 24,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"3\",\"addictions\":\"5\",\"conflits\":\"5\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"discussion\"],\"observedChallenges\":[\"migration\",\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"Les nouvelles générations ne souhaitent plus travailler à plein et souhaitent de la flexibilité ce qui est parfois compliqué à intégrer dans un modèle existant\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"Mes principales difficultés sont:\\n- le temps que je peux accorder et leur mettre à disposition pour les accompagner\\n- Comment apporter de l'aide sans interférer dans leur sphère privée quand les problèmes sont liés à des problèmes familiaux ou économiques.\",\"professionalRole\":\"Directeur·trice / Responsable de service\",\"email\":\"christelle.benatier@groupe-serbeco.ch\"}",
+      "created_at": "2025-09-25 12:48:40"
+    },
+    {
+      "id": 23,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":\"5\",\"conflits\":4},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\",\"partenaires\"],\"cafesEnjoyment\":[\"decouverte\",\"discussion\"],\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"autre\"],\"observedChallengesOther\":\"manque de sens et incertitude. Isolement \",\"emergingChallengesDescription\":\"Le virtuel enlève le lien physique et la communication. Comme ils ne se voient plus en vrai, ils manquent parfois de lecture sur le non verbal. Je trouve aussi qu'ils sont de plus en plus intransigeants sur leurs positionnements et pas si facile de les ouvrir à d'autres perspectives. \\nL'esprit critique me semble très important \",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\"],\"ruptureFactorsOther\":\"Trop peu d'espace pour se connaitre et un accent uniquement sur le savoir faire. Le CO est un des défis car c'est là où ils peuvent aussi faire les mauvais choix, guidés uniquement par leurs résultats\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"J'ai eu l'occasion d'être formée à l'animation d'une conférence sur les nouvelles générations qui est passionnante et permet de mieux les comprendre. Pour moi, c'est à nous, adultes, de mieux cerner leurs besoins pour pouvoir ensuite rebondir et les accompagner au mieux. \\nSi ça vous intéresse, je viens volontiers partager cette présentation avec vos équipes lors d'un café. Ca prend 20 à 30'. \\nN'hésitez pas ! et merci d'être un relais aussi essentiel pour nos jeunes genevois. \\nCarole \\n\",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"caroledebaz@gmail.com\"}",
+      "created_at": "2025-09-25 10:45:57"
+    },
+    {
+      "id": 22,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"3\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"4\",\"addictions\":\"6\",\"conflits\":4},\"observedChallenges\":[\"precarite\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"precarite\",\"migration\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"soutien_financier_materiel\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Ressources limitées (manque de personnel, de moyens financiers et d'outils adaptés). \\nManque de coordinations entre les acteurs\\nRigidité institutionnelle qui ne s'adapte pas toujours aux parcours atypiques ou aux besoins spécifiques des jeunes. \\nPressions familiales ou sociétales parfois en décalage avec les aspirations des jeunes. \\nDiscriminations dans certains cas (origine, genre, lieu de résidence, handicap...). \\nFracture numérique : difficultés d'accès aux outils digitaux ou manque de compétences numériques. \",\"professionalRole\":\"Travailleur·euse social·e\",\"email\":\"abdallah.fellahi@fase.ch\"}",
+      "created_at": "2025-09-24 13:54:28"
+    },
+    {
+      "id": 21,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"6\",\"decrochage\":\"5\",\"migration\":\"6\",\"addictions\":\"3\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"migration\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\",\"lacunes_scolaires\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Coach en insertion\",\"email\":\"f.christinat@plan-les-ouates.ch\"}",
+      "created_at": "2025-09-23 15:27:47"
+    },
+    {
+      "id": 20,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":\"5\",\"addictions\":4,\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"migration\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"migration\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Lorsque cela touche des problématiques dont je ne suis pas formée, comme la santé, les problèmes d'addictions, etc.\",\"professionalRole\":\"Coach en insertion\",\"email\":\"b.prida@lancy.ch\"}",
+      "created_at": "2025-09-23 14:59:12"
+    },
+    {
+      "id": 19,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":4,\"migration\":\"2\",\"addictions\":\"3\",\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"precarite\"],\"emergingChallengesDescription\":\"cyberharcèlement\",\"challengesHasEmerged\":[\"sante_mentale\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"soutien_competences_base\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"instabilite_psycho_sociale\",\"isolement_social\"],\"specializationObstacles\":\"Mobilisation et investissement des jeunes dans leur parcours de suivi\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"olivier.dunand@fase.ch\"}",
+      "created_at": "2025-09-23 14:02:57"
+    },
+    {
+      "id": 18,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":4,\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"2\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\",\"stabilisation_situation\"],\"ruptureFactorsNegative\":[\"lacunes_scolaires\",\"demotivation_perte_sens\",\"instabilite_psycho_sociale\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Coach en insertion\",\"email\":\"a.stemberger@lancy.ch\"}",
+      "created_at": "2025-09-23 13:11:10"
+    },
+    {
+      "id": 17,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"7\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"5\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"addictions\",\"conflits\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_financier_materiel\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"inadequation_orientation\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Autre\",\"email\":\"g.wellhauser@lancy.ch\",\"professionalRoleOther\":\"employé administratif structure d'insertion professionnelle\"}",
+      "created_at": "2025-09-23 13:04:04"
+    },
+    {
+      "id": 16,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"6\",\"migration\":4,\"addictions\":\"5\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\"],\"specializationObstacles\":\"\",\"professionalRole\":\"Travailleur·euse social·e hors murs (TSHM)\",\"email\":\"anais.elbahjaoui@fase.cj\"}",
+      "created_at": "2025-09-23 10:24:29"
+    },
+    {
+      "id": 15,
+      "data": "{\"participatedInCafes\":\"Oui\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"7\",\"decrochage\":\"7\",\"migration\":\"6\",\"addictions\":\"5\",\"conflits\":\"7\"},\"cafesCommunication\":\"Oui\",\"cafesKnowledge\":[\"equipes\"],\"cafesEnjoyment\":[\"informels\"],\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"Transition de genre/sexe\\nErrance institutionnelle/médicale\\n\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"Structures violentes et reproduction des oppressions en milieu scolaire/de formation\",\"ruptureFactorsFavorable\":[\"stabilisation_situation\",\"adaptation_pedagogique\",\"accompagnement_individualise\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"La pluralité des institutions demande un rééquillibrage constant, des rencontres, des présentations. En parallèle, les visions politiques et les tensions du terrain nous demandent également de requestionner la pertinence et le sens de l'action sociale en continu.\\n\\nCes niveaux de tension, bien qu'inhérents au travail social, peuvent également être perçus comme des freins à nos missions, dans la pratique effective. \\n\\nDe manière plus concrète : notre lieu d'accueil est difficile.\",\"professionalRole\":\"Travailleur·euse social·e\",\"email\":\"contact@sceneactive.ch\"}",
+      "created_at": "2025-09-23 08:01:59"
+    },
+    {
+      "id": 14,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"6\",\"precarite\":\"4\",\"decrochage\":4,\"migration\":4,\"addictions\":\"6\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"addictions\",\"conflits\"],\"emergingChallengesDescription\":\"L'enjeu majeur c'est une intervention plus précoce, des généralistes formés à aborder les problématique susmentionnées avec les jeunes et mener les premières réflexions.\",\"challengesHasEmerged\":[\"sante_mentale\",\"decrochage\",\"addictions\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":false,\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"Les vacances d'été. Lorsque des parents ou un jeunes s'adressent à nous afin que la consommation revienne à quelque chose de viable, c'est en mai, lorsque le constat d'échec est là et les perspectives lointaines ou fermées. Nous soutenons des jeunes et des parents durant un ou 2 entretien avant ce grand vide et cette période d'intense sollicitation autour des consommations.\",\"professionalRole\":\"Chargé·e d'accompagnement / d'insertion professionnelle\",\"email\":\"christian.wilhelm@fegpac.ch\"}",
+      "created_at": "2025-09-23 07:49:10"
+    },
+    {
+      "id": 13,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"2\",\"precarite\":\"6\",\"decrochage\":\"2\",\"migration\":\"6\",\"addictions\":\"2\",\"conflits\":\"6\"},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"conflits\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\"],\"ruptureFactorsOther\":\"\",\"skipRuptureSection\":true,\"specializationObstacles\":\"\",\"professionalRole\":\"Assistant·e social·e\",\"email\":\"o.greder@plan-les-ouates.ch\"}",
+      "created_at": "2025-09-23 06:09:50"
+    },
+    {
+      "id": 12,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"6\",\"decrochage\":\"6\",\"migration\":\"2\",\"addictions\":\"2\",\"conflits\":\"5\"},\"observedChallenges\":[\"conflits\",\"decrochage\",\"precarite\"],\"emergingChallengesDescription\":\"les violences faites aux femmes ne diminuent pas. Nous avons eu plusieurs témoignages de très jeunes femmes ayant subi des violences par leur copain. \",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"ne pas avoir de logement. \",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"stabilisation_situation\",\"orientation_adaptee\"],\"ruptureFactorsNegative\":[\"instabilite_psycho_sociale\",\"isolement_social\",\"demotivation_perte_sens\"],\"specializationObstacles\":\"les absences et le manque de constance, mais on y travaille. \",\"professionalRole\":\"Formateur·trice (en entreprise, atelier, etc.)\",\"email\":\"dwuest@radiovostok.ch\"}",
+      "created_at": "2025-09-22 18:11:30"
+    },
+    {
+      "id": 11,
+      "data": "{\"participatedInCafes\":\"Non\",\"challengesRanking\":{\"sante_mentale\":\"5\",\"precarite\":\"5\",\"decrochage\":\"5\",\"migration\":4,\"addictions\":\"5\",\"conflits\":4},\"observedChallenges\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"emergingChallengesDescription\":\"\",\"challengesHasEmerged\":[\"sante_mentale\",\"precarite\",\"decrochage\"],\"ruptureFactorsOther\":\"\",\"ruptureFactorsFavorable\":[\"accompagnement_individualise\",\"soutien_competences_base\",\"adaptation_pedagogique\"],\"ruptureFactorsNegative\":[\"isolement_social\",\"instabilite_psycho_sociale\",\"lacunes_scolaires\"],\"specializationObstacles\":\"Irrégularité et absentéisme aux rendez-vous\",\"professionalRole\":\"Conseiller·ère en orientation\",\"email\":\"k.mazzocut@carouge.ch\"}",
+      "created_at": "2025-09-22 13:29:18"
+    }
+  ],
+  "dynamic_roles": [
+    {
+      "id": 1,
+      "role_name": "Référent·e ForPro",
+      "created_at": "2025-09-26 20:06:10"
+    },
+    {
+      "id": 3,
+      "role_name": "Coordinateur projet test",
+      "created_at": "2025-09-26 21:34:14"
+    },
+    {
+      "id": 4,
+      "role_name": "Formateur·trice spécialisé",
+      "created_at": "2025-09-26 21:36:03"
+    },
+    {
+      "id": 5,
+      "role_name": "Coordinateur·trice projet test",
+      "created_at": "2025-09-26 21:36:13"
+    },
+    {
+      "id": 6,
+      "role_name": "travailleur social en formation",
+      "created_at": "2025-09-29 06:18:35"
+    },
+    {
+      "id": 7,
+      "role_name": "GFA",
+      "created_at": "2025-09-29 14:07:05"
+    },
+    {
+      "id": 8,
+      "role_name": "Directeur·trice d'institution",
+      "created_at": "2025-10-12 18:07:33"
+    },
+    {
+      "id": 9,
+      "role_name": "Job coach",
+      "created_at": "2025-10-13 08:57:51"
+    },
+    {
+      "id": 10,
+      "role_name": "conseillère en réinsertion, spécialisée dans les parcours avec limitations de santé",
+      "created_at": "2025-10-22 13:57:50"
+    },
+    {
+      "id": 11,
+      "role_name": "responsable équipe sociale",
+      "created_at": "2025-11-12 09:49:27"
+    },
+    {
+      "id": 12,
+      "role_name": "Responsale RH",
+      "created_at": "2025-11-12 10:19:10"
+    },
+    {
+      "id": 13,
+      "role_name": "secrétaire rh",
+      "created_at": "2025-11-13 07:19:08"
+    },
+    {
+      "id": 14,
+      "role_name": "Conseiller·ère en formation",
+      "created_at": "2025-11-13 10:14:46"
+    }
+  ],
+  "data_validation": {
+    "submissions_json_success_rate": "100.00%",
+    "total_tables": 2,
+    "tables_included": [
+      "submissions",
+      "dynamic_roles"
+    ]
+  }
+}
