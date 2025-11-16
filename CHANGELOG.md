@@ -1,3 +1,27 @@
+## 2025-11-16 - [EUREKA] 🔄 Cache vidé : Reclassification activée sur 30 domaines
+
+### 🎯 OBJECTIF
+Vider le cache de classification pour forcer la reclassification des 30 domaines avec les nouvelles règles statiques.
+
+### ✅ SOLUTION : API de Nettoyage de Cache
+
+#### **Nouveau fichier créé**
+- `functions/api/clear-reclassified-cache.js`
+- API POST sécurisée avec code d'accès
+- Supprime les 30 domaines du cache `institution_classifications`
+- Force la reclassification avec les nouvelles règles
+
+#### **Pourquoi nécessaire ?**
+Le cache en base de données avait priorité sur les nouvelles règles statiques.
+Les anciennes classifications restaient actives malgré le code mis à jour.
+
+#### **Sécurité**
+- Code d'accès requis : `CAP_CLEAR_CACHE_2025`
+- Logs détaillés de chaque suppression
+- Rapport complet des opérations
+
+---
+
 ## 2025-11-16 - [EUREKA] 🎯 Reclassification Complète : 30 domaines corrigés (24 Entreprises + 6 Autres)
 
 ### 🎯 OBJECTIF RÉALISÉ
