@@ -1,3 +1,25 @@
+## 2025-11-17 - ✅ Ajout Entreprise : Berchten (Peinture & Plâtre)
+
+### 🏗️ NOUVEAU DOMAINE IDENTIFIÉ
+
+**Soumission du 17/11/2025 à 07h23** :
+- Email : `info@berchten.ch`
+- Type : Entreprise de peinture et plâtre
+- Rôle : Directeur·trice / Responsable de service
+
+### ✅ CLASSIFICATION AJOUTÉE
+
+**Fichier modifié** : `functions/api/llm-classifier.js`
+```javascript
+'berchten.ch': 'Entreprises',  // Peinture et plâtre (ajout 17/11/2025)
+```
+
+**Impact attendu** :
+- Entreprises : 27 → 28 soumissions (+1)
+- Catégorie correcte appliquée automatiquement
+
+---
+
 ## 2025-11-16 - [EUREKA] 📧 Classification Emails Personnels : 3 identifications réussies
 
 ### 🎯 OBJECTIF

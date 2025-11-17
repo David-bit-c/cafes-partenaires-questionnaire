@@ -275,6 +275,7 @@ export function getStaticClassification(domain) {
     'groupe-serbeco.ch': 'Entreprises',
     'fegpac.ch': 'Entreprises',
     // Entreprises du bâtiment et construction (ajout 16/11/2025)
+    'berchten.ch': 'Entreprises',  // Peinture et plâtre (ajout 17/11/2025)
     'righi-sa.ch': 'Entreprises',
     'menuiserie-legna.ch': 'Entreprises',
     'entreprisemontefusco.ch': 'Entreprises',
