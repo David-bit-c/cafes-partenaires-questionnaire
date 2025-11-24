@@ -17,7 +17,6 @@ import { adaptSubmissionsToDashboard, DashboardData, MINIMUM_THRESHOLD } from '.
 import PrivacyShield from '../components/dashboard/PrivacyShield';
 import ChallengesBarChart from '../components/dashboard/ChallengesBarChart';
 import ImpactsRadarChart from '../components/dashboard/ImpactsRadarChart';
-import ScoresPieChart from '../components/dashboard/ScoresPieChart';
 
 const AlternativeDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -109,7 +108,7 @@ const AlternativeDashboard: React.FC = () => {
     );
   }
 
-  const { totalResponses, challengesData, impactsData, scoreDistribution, qualitativeData } = dashboardData;
+  const { totalResponses, challengesData, impactsData, qualitativeData } = dashboardData;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -173,8 +172,8 @@ const AlternativeDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Charts */}
-        <div className="space-y-8">
+        {/* Charts - Tous sur une seule page longue */}
+        <div className="space-y-6">
           {/* Challenges Bar Chart */}
           {challengesData.length > 0 && (
             <ChallengesBarChart data={challengesData} />
@@ -183,11 +182,6 @@ const AlternativeDashboard: React.FC = () => {
           {/* Impacts Radar Chart */}
           {impactsData.length > 0 && (
             <ImpactsRadarChart data={impactsData} />
-          )}
-
-          {/* Scores Pie Chart */}
-          {scoreDistribution.length > 0 && (
-            <ScoresPieChart data={scoreDistribution} />
           )}
 
           {/* Qualitative Data */}

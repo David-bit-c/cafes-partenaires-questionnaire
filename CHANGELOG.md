@@ -1,3 +1,31 @@
+## 2025-01-27 - 🐛 FIX Dashboard : Suppression Pie Chart Cassé + Page Unique
+
+### 🔧 CORRECTIONS APPLIQUÉES
+
+**Problème identifié après déploiement:**
+- ❌ Graphique "Distribution des Niveaux de Priorité" affichait 122+ niveaux (CASSÉ)
+- ❌ Légende énorme illisible
+- ❌ Page séparée en plusieurs sections
+
+**Corrections:**
+- ✅ Suppression complète du Pie Chart cassé (ScoresPieChart.tsx)
+- ✅ Suppression fonction `getScoreDistribution()` (source du bug)
+- ✅ Dashboard simplifié : 2 graphiques fonctionnels (Barres + Radar)
+- ✅ Une seule page longue (scroll vertical fluide)
+- ✅ Code nettoyé (interface `ScoreData` supprimée)
+
+**Fichiers modifiés:**
+- `src/pages/AlternativeDashboard.tsx` - Suppression import + utilisation Pie Chart
+- `src/utils/dashboardAdapter.ts` - Suppression `ScoreData` interface + fonction
+- `src/components/dashboard/ScoresPieChart.tsx` - SUPPRIMÉ ❌
+
+**Résultat:**
+- ✅ Dashboard propre avec 2 graphiques lisibles
+- ✅ Une seule page longue scrollable
+- ✅ KPIs + Graphiques + Retours qualitatifs en flux continu
+
+---
+
 ## 2025-01-27 - [EUREKA] 📊 Dashboard Alternatif avec Graphiques Interactifs
 
 ### 🎯 OBJECTIF ATTEINT : Vue analytique des résultats

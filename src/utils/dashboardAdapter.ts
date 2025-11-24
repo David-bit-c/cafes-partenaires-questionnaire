@@ -21,7 +21,6 @@ export interface DashboardData {
   hasMinimumResponses: boolean;
   challengesData: AggregatedItem[];
   impactsData: AggregatedItem[];
-  scoreDistribution: ScoreData[];
   qualitativeData: {
     challenges: string[];
     impacts: string[];
@@ -33,11 +32,6 @@ export interface AggregatedItem {
   name: string;
   count: number;
   percentage: number;
-}
-
-export interface ScoreData {
-  score: string;
-  count: number;
 }
 
 /**
@@ -54,7 +48,6 @@ export function adaptSubmissionsToDashboard(submissions: Submission[]): Dashboar
       hasMinimumResponses: false,
       challengesData: [],
       impactsData: [],
-      scoreDistribution: [],
       qualitativeData: {
         challenges: [],
         impacts: [],
@@ -69,9 +62,6 @@ export function adaptSubmissionsToDashboard(submissions: Submission[]): Dashboar
   // Agréger les impacts
   const impactsData = aggregateImpacts(submissions);
   
-  // Distribution des scores
-  const scoreDistribution = getScoreDistribution(submissions);
-  
   // Données qualitatives
   const qualitativeData = extractQualitativeData(submissions);
 
@@ -80,7 +70,6 @@ export function adaptSubmissionsToDashboard(submissions: Submission[]): Dashboar
     hasMinimumResponses: true,
     challengesData,
     impactsData,
-    scoreDistribution,
     qualitativeData
   };
 }
@@ -180,32 +169,6 @@ function aggregateImpacts(submissions: Submission[]): AggregatedItem[] {
       percentage: Math.round((count / total) * 100)
     }))
     .sort((a, b) => b.count - a.count);
-}
-
-/**
- * Génère la distribution des rankings de défis
- */
-function getScoreDistribution(submissions: Submission[]): ScoreData[] {
-  const scoresMap = new Map<string, number>();
-  
-  submissions.forEach(sub => {
-    const data = sub.data as SubmissionData;
-    if (data.challengesRanking) {
-      // Calculer le score moyen des challenges
-      const scores = Object.values(data.challengesRanking);
-      const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length;
-      const roundedScore = Math.round(avgScore);
-      const scoreKey = String(roundedScore);
-      scoresMap.set(scoreKey, (scoresMap.get(scoreKey) || 0) + 1);
-    }
-  });
-
-  return Array.from(scoresMap.entries())
-    .map(([score, count]) => ({
-      score: `Niveau ${score}`,
-      count
-    }))
-    .sort((a, b) => parseInt(a.score.replace('Niveau ', '')) - parseInt(b.score.replace('Niveau ', '')));
 }
 
 /**
