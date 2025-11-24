@@ -12,6 +12,15 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      // Configuration multi-page: ajout de dashboard.html
+      build: {
+        rollupOptions: {
+          input: {
+            main: path.resolve(__dirname, 'index.html'),
+            dashboard: path.resolve(__dirname, 'dashboard.html')
+          }
+        }
       }
     };
 });
