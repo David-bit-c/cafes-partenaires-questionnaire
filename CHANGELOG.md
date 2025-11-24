@@ -1,3 +1,28 @@
+## 2025-01-27 - [EUREKA] ✅ Synthèse Réparée : Passage GPT-5 → GPT-4o
+
+### 🐛 PROBLÈME IDENTIFIÉ
+- Synthèse affichait "Toutes les API ont échoué"
+- GPT-5 (`gpt-5-2025-08-07`) retournait des réponses vides
+- Claude sans crédits
+- Gemini clé non configurée correctement
+
+### ✅ SOLUTION APPLIQUÉE
+**Retour à GPT-4o** (stable et fiable)
+- Modèle OpenAI : `gpt-5-2025-08-07` → `gpt-4o` ✅
+- Fichier modifié : `functions/api/summary.js`
+- Résultat : Synthèse de 1608 caractères générée avec succès
+
+### 🎯 RÉSULTAT
+- ✅ **Synthèse fonctionnelle** : 1608 caractères
+- ✅ **Modèle utilisé** : OpenAI GPT-4o  
+- ✅ **Stabilité** : GPT-4o plus fiable que GPT-5
+- ✅ **Production ready**
+
+### 📋 PROCHAINE ÉTAPE
+Configuration de Gemini 3 Pro avec clé PRO (à faire ultérieurement)
+
+---
+
 ## 2025-01-27 - [EUREKA] 🚀 Mise à jour vers Gemini 3 Pro - Modèle le Plus Performant
 
 ### 🎯 OBJECTIF
