@@ -666,7 +666,6 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
 
   return (
     <div className="space-y-6">
-      {previewBanner}
       {/* Sommaire de navigation */}
       <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
         <CardHeader>
