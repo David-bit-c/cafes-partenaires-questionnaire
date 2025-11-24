@@ -179,7 +179,7 @@ export async function onRequestGet(context) {
     async function callOpenAI() {
       if (!openaiKey) throw new Error("Clé OpenAI non disponible");
       
-      console.log("🚀 Tentative appel OpenAI GPT-5...");
+      console.log("🚀 Tentative appel OpenAI GPT-4o...");
       const openaiResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -189,7 +189,7 @@ export async function onRequestGet(context) {
             'Authorization': `Bearer ${openaiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-5-2025-08-07",
+            model: "gpt-4o",
             messages: [
               {
                 role: "system",
