@@ -110,7 +110,7 @@ export async function onRequestGet(context) {
   const geminiKey = env.GEMINI_API_KEY;
   if (geminiKey) {
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent?key=${geminiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -123,14 +123,14 @@ export async function onRequestGet(context) {
       if (response.ok) {
         results.tests.push({
           api: 'Gemini',
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3-pro-preview',
           status: '✅ Fonctionne',
           response: data.candidates?.[0]?.content?.parts?.[0]?.text
         });
       } else {
         results.tests.push({
           api: 'Gemini',
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3-pro-preview',
           status: '❌ Erreur',
           error: data.error?.message || JSON.stringify(data),
           statusCode: response.status
