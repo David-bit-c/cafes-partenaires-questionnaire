@@ -356,7 +356,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     try {
       return localStorage.getItem('showSynthesis') === 'true';
     } catch {
-      return false;
+      return true;
     }
   });
   const [aiModelPreference, setAiModelPreference] = useState<string>(() => {
@@ -400,7 +400,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     try {
       return localStorage.getItem('showThematicSynthesis') === 'true';
     } catch {
-      return false;
+      return true;
     }
   });
   const [synthesisDisplayMode, setSynthesisDisplayMode] = useState<'general' | 'thematic' | 'both'>(() => {
