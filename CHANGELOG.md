@@ -8,17 +8,27 @@
 
 ### ✅ MODIFICATIONS APPLIQUÉES
 
-**Activation des synthèses par défaut:**
+**1. Activation des synthèses par défaut:**
 ```javascript
 showSynthesis: false → true  // Synthèse IA générale visible
 showThematicSynthesis: false → true  // Synthèse thématique visible
 ```
 
+**2. Suppression système de blocage Preview Mode:**
+```javascript
+// SUPPRIMÉ: if (!isPreviewMode) { return "Collecte en cours"; }
+// ✅ Rapport maintenant accessible sans authentification
+```
+
 **Fichier modifié:** `src/components/ResultsDashboard.tsx`
+- 97 lignes supprimées (système de blocage complet)
+- Page "Collecte en cours" supprimée
+- Vérification isPreviewMode supprimée
 
 ### 🎯 RÉSULTAT
 
-- ✅ **Rapport complet accessible** publiquement
+- ✅ **Rapport complet accessible** publiquement SANS restriction
+- ✅ **Page "Collecte en cours" supprimée** définitivement
 - ✅ **Synthèse IA** (GPT-4o) visible par tous
 - ✅ **Synthèse thématique** avec données détaillées
 - ✅ **Analyse complète** disponible pour les décideurs
