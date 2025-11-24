@@ -113,24 +113,33 @@ const AlternativeDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+      <header className="bg-gradient-to-br from-blue-50 via-white to-blue-50 border-b border-gray-200 shadow-sm">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          {/* Titre principal et badge */}
+          <div className="flex items-start justify-between mb-6">
             <div className="flex items-center">
-              <BarChart3 className="w-8 h-8 mr-3 text-blue-600" />
+              <BarChart3 className="w-10 h-10 mr-4 text-blue-600" />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  Tableau de Bord des Résultats
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  Renforcer le réseau et l'accompagnement
                 </h1>
-                <p className="text-sm text-gray-600">
-                  Vue analytique des retours sur les cafés partenaires
+                <p className="text-lg text-gray-700 font-medium">
+                  Tableau de Bord des Résultats
                 </p>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-blue-600">{totalResponses}</div>
-              <div className="text-sm text-gray-600">Réponses totales</div>
+            <div className="text-right flex-shrink-0 ml-6">
+              <div className="text-4xl font-bold text-blue-600">{totalResponses}</div>
+              <div className="text-sm text-gray-600 uppercase tracking-wide">Réponses</div>
             </div>
+          </div>
+          
+          {/* Message d'introduction */}
+          <div className="p-6 bg-white rounded-lg shadow-sm border border-blue-100">
+            <p className="text-base text-gray-700 leading-relaxed">
+              La synthèse de vos retours sur les « Cafés Partenaires » et votre vision des défis actuels 
+              participent à construire ensemble des réponses adaptées pour les jeunes en rupture.
+            </p>
           </div>
         </div>
       </header>
