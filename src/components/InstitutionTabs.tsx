@@ -92,14 +92,14 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
               </button>
             ))}
             
-            {/* Bouton Export Global */}
-            <button
+            {/* Bouton Export Global - DÉSACTIVÉ */}
+            {/* <button
               onClick={() => handleExport()}
               className="flex items-center space-x-2 py-2 px-4 border-b-2 border-transparent text-green-600 hover:text-green-700 hover:border-green-300 hover:bg-green-50 font-medium text-sm rounded-t-lg transition-colors"
             >
               <span>📊</span>
               <span className="whitespace-nowrap">Export Global</span>
-            </button>
+            </button> */}
           </nav>
         </div>
       </div>
@@ -118,12 +118,13 @@ export const InstitutionTabs: React.FC<InstitutionTabsProps> = ({ institutions, 
                   {activeInstitution.totalResponses} réponses ({activeInstitution.percentageOfTotal}% du total)
                 </p>
               </div>
-              <button
+              {/* Bouton Export Institution - DÉSACTIVÉ */}
+              {/* <button
                 onClick={() => handleExport(activeInstitution.name)}
                 className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-medium"
               >
                 📥 Export {activeInstitution.name}
-              </button>
+              </button> */}
             </div>
           </div>
 
