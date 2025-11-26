@@ -235,8 +235,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   const allRoles = useMemo(() => {
     const roles = new Set<string>();
     submissions.forEach(s => {
-      const role = s.data.professionalRole === 'Autre' ? s.data.professionalRoleOther || 'Autre (non précisé)' : s.data.professionalRole;
-      if (role) roles.add(role);
+      const role = s.data.professionalRole === 'Autre' 
+        ? s.data.professionalRoleOther || 'Autre (non précisé)' 
+        : s.data.professionalRole || 'Rôle non spécifié';
+      roles.add(role); // Inclure tous les rôles, même s'ils sont non spécifiés
     });
     return Array.from(roles);
   }, [submissions]);
@@ -473,8 +475,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   const data = useMemo(() => {
     // 3. Filtrer les soumissions en fonction des rôles sélectionnés
     const filteredSubmissions = submissions.filter(s => {
-      const role = s.data.professionalRole === 'Autre' ? s.data.professionalRoleOther || 'Autre (non précisé)' : s.data.professionalRole;
-      return role && selectedRoles.includes(role);
+      const role = s.data.professionalRole === 'Autre' 
+        ? s.data.professionalRoleOther || 'Autre (non précisé)' 
+        : s.data.professionalRole || 'Rôle non spécifié';
+      return selectedRoles.includes(role);
     });
       
     const totalSubmissions = filteredSubmissions.length;
