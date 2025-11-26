@@ -1,3 +1,56 @@
+## 2025-11-26 - [EUREKA] 🏢 Ajout Vue d'Ensemble dans l'Analyse par Institution
+
+### 🎯 OBJECTIF : Restaurer la vue générale tout en conservant la vue détaillée par institution
+
+**Contexte :**
+- L'analyse par institution permettait de sélectionner chaque institution séparément (✅)
+- MAIS la vue d'ensemble/générale avait disparu (❌)
+- Les utilisateurs avaient besoin des deux : vue globale ET vue détaillée par institution
+
+### ✅ SOLUTION IMPLÉMENTÉE
+
+**1. Ajout d'un onglet "Vue d'ensemble"**
+- Nouvel onglet positionné en premier avec l'icône 🏢
+- Affiche les données agrégées de TOUTES les institutions
+- Permet une vision globale avant de descendre dans les détails
+
+**2. Calcul des données agrégées**
+- Agrégation de tous les défis observés
+- Agrégation des facteurs favorables
+- Agrégation des facteurs négatifs
+- Recalcul automatique des pourcentages sur le total des réponses
+- Tri par nombre de mentions (Top 5 des défis, Top 3 des facteurs)
+
+**3. Interface cohérente**
+- Même présentation que les onglets individuels
+- Badge avec le nombre total de réponses
+- Statistiques globales : nombre d'institutions, total défis identifiés, etc.
+- Design harmonisé avec gradient bleu/indigo pour différencier la vue d'ensemble
+
+### 📊 RÉSULTAT
+
+**Avant :**
+- ✅ Onglets par institution individuels
+- ❌ Pas de vue d'ensemble
+
+**Après :**
+- ✅ Onglet "Vue d'ensemble" (toutes les institutions agrégées)
+- ✅ Onglets par institution individuels
+- ✅ Navigation fluide entre vue globale et vues détaillées
+
+### 🔧 FICHIERS MODIFIÉS
+
+- `src/components/InstitutionTabs.tsx` : Ajout de l'onglet vue d'ensemble avec calcul des données agrégées
+
+### 💡 AVANTAGES
+
+1. **Vision stratégique** : Vue globale des tendances communes à toutes les institutions
+2. **Analyse détaillée** : Possibilité de zoomer sur chaque institution
+3. **Comparaison facilitée** : Identification des spécificités de chaque institution par rapport à la moyenne
+4. **UX améliorée** : Navigation intuitive du général au particulier
+
+---
+
 ## 2025-01-27 - 🔑 Configuration Clé Gemini + Redéploiement
 
 ### 🎯 OBJECTIF : Activer l'API Gemini en production
