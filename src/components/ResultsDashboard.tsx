@@ -51,8 +51,8 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
-  // Hauteur dynamique : minimum 300px, puis +28px par élément (compact mais lisible)
-  const dynamicHeight = Math.max(300, displayData.length * 28 + 80);
+  // Hauteur dynamique uniforme : 25px par élément + marges fixes (compact, noms sur 2 lignes OK)
+  const dynamicHeight = displayData.length * 25 + 100;
   
   return (
     <Card>
@@ -101,8 +101,8 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
-  // Hauteur dynamique : minimum 350px, puis +28px par élément (compact mais lisible)
-  const dynamicHeight = Math.max(350, displayData.length * 28 + 80);
+  // Hauteur dynamique uniforme : 25px par élément + marges fixes (compact, noms sur 2 lignes OK)
+  const dynamicHeight = displayData.length * 25 + 100;
   
   return (
     <Card>
