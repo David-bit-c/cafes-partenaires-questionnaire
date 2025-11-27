@@ -317,11 +317,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     }
   });
   // Filtre d'affichage : Cafés partenaires (public, pas admin-only)
+  // Par défaut DÉCOCHÉ (false) pour afficher directement les problématiques des jeunes
   const [showCafesPartners, setShowCafesPartners] = useState<boolean>(() => {
     try {
-      return localStorage.getItem('showCafesPartners') !== 'false'; // Par défaut true
+      return localStorage.getItem('showCafesPartners') === 'true'; // Par défaut false
     } catch {
-      return true;
+      return false;
     }
   });
   const [synthesisDisplayMode, setSynthesisDisplayMode] = useState<'general' | 'thematic' | 'both'>(() => {
