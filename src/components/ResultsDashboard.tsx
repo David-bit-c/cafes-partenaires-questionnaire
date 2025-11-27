@@ -51,6 +51,9 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
+  // Hauteur dynamique : minimum 300px, puis +40px par élément supplémentaire
+  const dynamicHeight = Math.max(300, displayData.length * 40 + 100);
+  
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
@@ -65,7 +68,7 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
         )}
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={dynamicHeight}>
           <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
             <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
@@ -98,6 +101,9 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
+  // Hauteur dynamique : minimum 350px, puis +40px par élément supplémentaire
+  const dynamicHeight = Math.max(350, displayData.length * 40 + 100);
+  
   return (
     <Card>
         <CardHeader className="flex flex-row items-center justify-between">
@@ -112,7 +118,7 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }
           )}
         </CardHeader>
         <CardContent>
-            <ResponsiveContainer width="100%" height={350}>
+            <ResponsiveContainer width="100%" height={dynamicHeight}>
                 <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
                     <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
@@ -824,10 +830,18 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       {/* Affichez les graphiques uniquement si des données existent après le filtrage */}
       {data ? (
         <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {showCafesPartners && data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
-                {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={350} />}
-            </div>
+            {/* Vue AVEC cafés : Grid 2 colonnes */}
+            {showCafesPartners && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
+                {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={250} />}
+              </div>
+            )}
+            
+            {/* Vue SANS cafés : Rôles en pleine largeur */}
+            {!showCafesPartners && data.professionalRoles && data.professionalRoles.length > 0 && (
+              <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={350} />
+            )}
             
             {showCafesPartners && data.cafeParticipants.length > 0 && (
                 <>
