@@ -752,24 +752,39 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             <p className="text-3xl font-bold text-primary">{data?.filteredCount ?? 0}</p>
             <p className="text-xs text-muted-foreground">réponse(s) affichée(s) sur {submissions.length} au total</p>
             
-            {/* Toggle pour afficher/masquer la section Cafés Partenaires */}
+            {/* Toggle Switch moderne pour afficher/masquer la section Cafés Partenaires */}
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <label htmlFor="toggle-cafes-partners" className="text-sm font-medium text-gray-700 cursor-pointer">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex-1">
+                  <label htmlFor="toggle-cafes-partners" className="text-sm font-semibold text-gray-700 cursor-pointer flex items-center gap-2">
                     ☕ Afficher les retours sur les Cafés Partenaires
                   </label>
                   <p className="text-xs text-gray-500 mt-1">
                     Désactiver pour voir uniquement les problématiques des jeunes
                   </p>
                 </div>
-                <input
+                {/* Toggle Switch moderne */}
+                <button
                   id="toggle-cafes-partners"
-                  type="checkbox"
-                  checked={showCafesPartners}
-                  onChange={(e) => setShowCafesPartners(e.target.checked)}
-                  className="h-4 w-4 cursor-pointer"
-                />
+                  type="button"
+                  role="switch"
+                  aria-checked={showCafesPartners}
+                  onClick={() => setShowCafesPartners(!showCafesPartners)}
+                  className={`
+                    relative inline-flex h-7 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent 
+                    transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                    ${showCafesPartners ? 'bg-blue-600' : 'bg-gray-300'}
+                  `}
+                >
+                  <span className="sr-only">Afficher les cafés partenaires</span>
+                  <span
+                    className={`
+                      pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 
+                      transition duration-200 ease-in-out
+                      ${showCafesPartners ? 'translate-x-7' : 'translate-x-0'}
+                    `}
+                  />
+                </button>
               </div>
             </div>
         </CardContent>
