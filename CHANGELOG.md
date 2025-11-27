@@ -1,10 +1,65 @@
+## 2025-11-27 - 🎨 Toggle Switch Moderne (iOS/Material Design)
+
+### 🎯 OBJECTIF : Remplacer la checkbox par un toggle switch professionnel moderne
+
+**Problème :**
+- Simple checkbox peu visible et peu moderne
+- Design basique pas assez engageant
+- Besoin d'un contrôle visuel plus impactant
+
+### ✅ SOLUTION IMPLÉMENTÉE
+
+**Toggle Switch moderne style iOS/Material Design**
+- Curseur fluide avec animation smooth (200ms)
+- Couleurs : Bleu (#2563EB) activé / Gris (#D1D5DB) désactivé
+- Taille optimale : 56px × 28px
+- Bouton circulaire : 24px avec shadow
+
+**Accessibilité renforcée**
+- `role="switch"` pour lecteurs d'écran
+- `aria-checked` pour l'état
+- Focus visible avec ring bleu
+- Label cliquable
+
+**Responsive & Modern**
+- Parfait sur mobile et desktop
+- Inspiration : iOS, Material Design, Tailwind UI
+- Animation fluide et professionnelle
+
+### 📊 RÉSULTAT
+
+**Avant :**
+```
+☐ Simple checkbox 16×16px
+Peu visible, basique
+```
+
+**Après :**
+```
+🔘 Toggle switch 56×28px moderne
+Animation fluide, très visible
+Bleu quand activé, Gris quand désactivé
+```
+
+### 🔧 FICHIERS MODIFIÉS
+
+- `src/components/ResultsDashboard.tsx` : Remplacement checkbox → toggle switch
+
+### 💡 NOTES
+
+- Build réussi : 4.13s
+- Commit : `6997f75`
+- Déploiement : En cours sur Cloudflare Pages
+
+---
+
 ## 2025-11-27 - [SESSION COMPLÈTE] 🚀 Refonte Affichage Résultats + UX
 
 ### 📋 RÉCAPITULATIF SESSION DU 27 NOVEMBRE 2025
 
 **Objectif global :** Améliorer l'affichage des résultats avec un filtre flexible, des graphiques optimisés et une vue par défaut centrée sur les jeunes.
 
-**6 améliorations majeures déployées avec succès ✅**
+**7 améliorations majeures déployées avec succès ✅**
 
 ---
 
@@ -91,6 +146,23 @@
 - UX optimisée
 
 **Commits :** `9d55a71`
+
+---
+
+### 🎨 **7. Toggle Switch Moderne (iOS/Material Design)**
+
+**Amélioration :**
+- Remplace la simple checkbox par un toggle switch professionnel
+- Animation fluide bleu/gris (200ms)
+- Taille optimale : 56×28px avec bouton 24px circulaire
+- Accessibilité renforcée (role, aria, focus)
+
+**Design inspiré de :**
+- iOS Switch
+- Material Design
+- Tailwind UI patterns
+
+**Commits :** `6997f75`
 
 ---
 
