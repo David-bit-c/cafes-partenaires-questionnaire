@@ -51,8 +51,8 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
-  // Hauteur dynamique : minimum 300px, puis +40px par élément supplémentaire
-  const dynamicHeight = Math.max(300, displayData.length * 40 + 100);
+  // Hauteur dynamique : minimum 300px, puis +28px par élément (compact mais lisible)
+  const dynamicHeight = Math.max(300, displayData.length * 28 + 80);
   
   return (
     <Card>
@@ -69,7 +69,7 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={dynamicHeight}>
-          <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 20 }}>
+          <BarChart data={displayData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 15 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.1)" />
             <XAxis type="number" allowDecimals={false} stroke="#a1a1aa" fontSize={12} />
             <YAxis 
@@ -77,18 +77,18 @@ const BarChartCard = ({ title, data, yAxisWidth = 100, color = BAR_COLOR, showTo
               dataKey="name" 
               width={yAxisWidth} 
               stroke="#a1a1aa" 
-              fontSize={10} 
+              fontSize={9} 
               interval={0}
               tick={{ 
-                fontSize: 10, 
+                fontSize: 9, 
                 textAnchor: 'end', 
                 dominantBaseline: 'middle',
                 width: yAxisWidth - 10
               }}
             />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }} />
-            <Legend wrapperStyle={{ position: 'relative', marginTop: '20px' }} />
-            <Bar dataKey="value" name="Nombre de réponses" fill={color} barSize={20} />
+            <Legend wrapperStyle={{ position: 'relative', marginTop: '15px' }} />
+            <Bar dataKey="value" name="Nombre de réponses" fill={color} barSize={14} />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
@@ -101,8 +101,8 @@ const CombinedBarChartCard = ({ title, data, yAxisWidth = 100, showTop5 = true }
   const displayData = showTop5 && !showAll ? data.slice(0, 5) : data;
   const hasMore = showTop5 && data.length > 5;
   
-  // Hauteur dynamique : minimum 350px, puis +40px par élément supplémentaire
-  const dynamicHeight = Math.max(350, displayData.length * 40 + 100);
+  // Hauteur dynamique : minimum 350px, puis +28px par élément (compact mais lisible)
+  const dynamicHeight = Math.max(350, displayData.length * 28 + 80);
   
   return (
     <Card>
