@@ -310,6 +310,14 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       return true;
     }
   });
+  // Filtre d'affichage : Cafés partenaires (public, pas admin-only)
+  const [showCafesPartners, setShowCafesPartners] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('showCafesPartners') !== 'false'; // Par défaut true
+    } catch {
+      return true;
+    }
+  });
   const [synthesisDisplayMode, setSynthesisDisplayMode] = useState<'general' | 'thematic' | 'both'>(() => {
     try {
       const saved = localStorage.getItem('synthesisDisplayMode');
@@ -389,6 +397,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       localStorage.setItem('synthesisDisplayMode', synthesisDisplayMode);
     } catch {}
   }, [synthesisDisplayMode]);
+  
+  // Persistance filtre cafés partenaires
+  useEffect(() => {
+    try {
+      localStorage.setItem('showCafesPartners', String(showCafesPartners));
+    } catch {}
+  }, [showCafesPartners]);
 
   // Persistance de l'état d'affichage de la synthèse (admin toggle)
   React.useEffect(() => {
@@ -729,6 +744,27 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
             {/* Afficher le nombre total et le nombre filtré */}
             <p className="text-3xl font-bold text-primary">{data?.filteredCount ?? 0}</p>
             <p className="text-xs text-muted-foreground">réponse(s) affichée(s) sur {submissions.length} au total</p>
+            
+            {/* Toggle pour afficher/masquer la section Cafés Partenaires */}
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <label htmlFor="toggle-cafes-partners" className="text-sm font-medium text-gray-700 cursor-pointer">
+                    ☕ Afficher les retours sur les Cafés Partenaires
+                  </label>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Désactiver pour voir uniquement les problématiques des jeunes
+                  </p>
+                </div>
+                <input
+                  id="toggle-cafes-partners"
+                  type="checkbox"
+                  checked={showCafesPartners}
+                  onChange={(e) => setShowCafesPartners(e.target.checked)}
+                  className="h-4 w-4 cursor-pointer"
+                />
+              </div>
+            </div>
         </CardContent>
       </Card>
 
@@ -789,11 +825,11 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
       {data ? (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
+                {showCafesPartners && data.participatedCafes && <PieChartCard title="Participation aux cafés partenaires" data={data.participatedCafes} />}
                 {data.professionalRoles && data.professionalRoles.length > 0 && <BarChartCard title="Répartition par rôle professionnel" data={data.professionalRoles} yAxisWidth={350} />}
             </div>
             
-            {data.cafeParticipants.length > 0 && (
+            {showCafesPartners && data.cafeParticipants.length > 0 && (
                 <>
                     <hr className="my-8 border-gray-200"/>
                     <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">☕ Retours sur les Cafés Partenaires ({data.cafeParticipants.length} participant(s))</h2>

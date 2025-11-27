@@ -1,3 +1,62 @@
+## 2025-11-27 - [EUREKA] 👁️ Filtre d'Affichage : Cafés Partenaires vs Jeunes Uniquement
+
+### 🎯 OBJECTIF : Permettre de visualiser uniquement les problématiques des jeunes (sans les cafés partenaires)
+
+**Contexte :**
+- La page des résultats affiche actuellement TOUTES les sections : Cafés Partenaires + Problématiques des Jeunes
+- Certains utilisateurs souhaitent se concentrer uniquement sur les problématiques des jeunes
+- Besoin d'un filtre simple et accessible publiquement (pas réservé aux admins)
+
+### ✅ SOLUTION IMPLÉMENTÉE
+
+**1. Toggle visible dans la section "Synthèse des Réponses"**
+- ☑️ Case à cocher : "Afficher les retours sur les Cafés Partenaires"
+- Activée par défaut (comportement actuel préservé)
+- Accessible à tous les visiteurs de la page des résultats
+
+**2. Filtrage conditionnel des sections**
+- Lorsque **activé** : Affichage complet (Cafés + Jeunes) - comportement actuel
+- Lorsque **désactivé** : Masque automatiquement :
+  - Le graphique "Participation aux cafés partenaires"
+  - Toute la section "☕ Retours sur les Cafés Partenaires"
+  - Les graphiques de connaissance, communication, appréciation des cafés
+
+**3. Persistance du choix utilisateur**
+- La préférence est sauvegardée dans localStorage
+- Le choix persiste entre les sessions de navigation
+- Chaque utilisateur garde sa préférence personnelle
+
+### 📊 BÉNÉFICES
+
+**Flexibilité d'analyse :**
+- Vue complète pour analyse globale
+- Vue "Jeunes uniquement" pour focus ciblé sur les problématiques terrain
+
+**UX améliorée :**
+- Contrôle simple et intuitif
+- Pas de rechargement de page
+- Feedback visuel immédiat
+
+**Cas d'usage :**
+- Présentation focalisée sur les problématiques des jeunes
+- Comparaison année par année des défis (sans biais cafés)
+- Export analytique concentré sur l'accompagnement jeunesse
+
+### 🔧 FICHIERS MODIFIÉS
+
+- `src/components/ResultsDashboard.tsx` : 
+  - Ajout état `showCafesPartners` avec persistance localStorage
+  - Toggle visible dans la carte "Synthèse des Réponses"
+  - Conditionnement de l'affichage des sections cafés
+
+### 💡 NOTES TECHNIQUES
+
+- **Par défaut** : Toutes les sections affichées (rétro-compatibilité)
+- **Aucun impact** : Les données restent intactes, seul l'affichage change
+- **Réversible** : L'utilisateur peut basculer à tout moment
+
+---
+
 ## 2025-11-26 - [EUREKA] 🏢 Ajout Vue d'Ensemble dans l'Analyse par Institution
 
 ### 🎯 OBJECTIF : Restaurer la vue générale tout en conservant la vue détaillée par institution
