@@ -166,7 +166,7 @@ const App: React.FC = () => {
           <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center gap-3 animate-fade-in">
               <div>
-                <h1 className="text-xl sm:text-2xl font-display font-bold cap-logo">
+                <h1 className="text-xl sm:text-2xl font-display font-bold cap-logo invisible">
                   CAP Formations
                 </h1>
                 <p className="hidden sm:block text-sm text-muted-foreground font-medium">
