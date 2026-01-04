@@ -57,7 +57,23 @@ Directeur·trice / Responsable en entreprise : ~9 réponses (entreprises privée
 - **Date :** 4 janvier 2026
 - **Commit :** `d1a17a7` - "feat: Distinction Directeurs/Responsables en entreprise vs institutions"
 - **Temps de déploiement :** ~1-2 minutes via Cloudflare Pages
-- **Statut :** ✅ **VÉRIFIÉ EN PRODUCTION** - Les changements sont visibles sur la page des résultats
+- **Statut :** ✅ **VÉRIFIÉ EN PRODUCTION**
+
+### ✅ VALIDATION COMPLÈTE (Export CSV)
+
+**Vérification du fichier `questionnaire_cap_formations_2026-01-04.csv` :**
+
+| Catégorie | Nombre | Exemples de domaines |
+|-----------|--------|---------------------|
+| Directeur·trice / Responsable **en entreprise** | ~10 | berchten.ch, gatto-sa.ch, modulancy.ch, gpisa.ch, ch.dsv.com |
+| Directeur·trice / Responsable de service | ~8 | etat.ge.ch, croix-rouge-ge.ch, hospicegeneral.ch, vernier.ch |
+
+**Confirmé :**
+- ✅ Affichage page résultats → Enrichissement actif
+- ✅ Export CSV → Enrichissement actif
+- ✅ Cohérence totale entre affichage et exports
+
+### 🏆 MISSION ACCOMPLIE
 
 ---
 
