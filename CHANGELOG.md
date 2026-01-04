@@ -1,4 +1,4 @@
-## 2026-01-04 - [EUREKA] 🏢 Distinction Directeurs/Responsables en Entreprise
+## 2026-01-04 - [EUREKA] 🏢 Distinction Directeurs/Responsables en Entreprise ✅ DÉPLOYÉ
 
 ### 🎯 OBJECTIF
 Distinguer les "Directeur·trice / Responsable de service" venant d'**entreprises privées** (BTP, services) de ceux venant d'**institutions sociales/publiques** (fondations, associations, État).
@@ -11,14 +11,14 @@ Distinguer les "Directeur·trice / Responsable de service" venant d'**entreprise
 ### ✅ SOLUTION IMPLÉMENTÉE
 
 **Logique d'enrichissement :**
-- Si rôle = "Directeur·trice / Responsable de service" **ET** email vient d'une entreprise (liste de 31 domaines)
+- Si rôle = "Directeur·trice / Responsable de service" **ET** email vient d'une entreprise (liste de 28 domaines)
 - → Afficher "Directeur·trice / Responsable **en entreprise**"
 - Sinon → Conserver le rôle original
 
 **Fichiers modifiés :**
 
 1. **`functions/api/export.js`**
-   - Ajout de la liste `ENTREPRISES_DOMAINS` (31 domaines)
+   - Ajout de la liste `ENTREPRISES_DOMAINS` (28 domaines)
    - Ajout de la fonction `enrichProfessionalRole()`
    - Application de l'enrichissement lors de l'export CSV/Excel
 
@@ -52,6 +52,12 @@ Directeur·trice / Responsable en entreprise : ~9 réponses (entreprises privée
 - Analyse plus fine des perceptions selon le contexte professionnel
 - Distinction claire entre monde de l'entreprise et secteur socio-éducatif
 - Cohérence entre affichage et exports
+
+### 🚀 DÉPLOIEMENT
+- **Date :** 4 janvier 2026
+- **Commit :** `d1a17a7` - "feat: Distinction Directeurs/Responsables en entreprise vs institutions"
+- **Temps de déploiement :** ~1-2 minutes via Cloudflare Pages
+- **Statut :** ✅ **VÉRIFIÉ EN PRODUCTION** - Les changements sont visibles sur la page des résultats
 
 ---
 
