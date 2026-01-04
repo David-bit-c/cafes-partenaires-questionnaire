@@ -2,6 +2,41 @@
 // Support CSV et Excel avec anonymisation des emails et enrichissement institutionnel
 
 /**
+ * Liste des domaines d'entreprises privées (BTP, services, etc.)
+ * Utilisée pour distinguer les directeurs/responsables en entreprise
+ */
+const ENTREPRISES_DOMAINS = [
+  'groupe-serbeco.ch', 'fegpac.ch', 'berchten.ch', 'righi-sa.ch',
+  'menuiserie-legna.ch', 'entreprisemontefusco.ch', 'mazzoli.ch',
+  'belmontecarrelages.ch', 'storemania.ch', 'gatto-sa.ch', 'stormatic.ch',
+  'gri-sa.ch', 'macullo.ch', 'fragastores.ch', 'hts.swiss',
+  'menuiserie-fabbi.com', 'jfarina.ch', 'modulancy.ch', 'm-nobs.ch',
+  'piretti.ch', 'caragnano.ch', 'cuivretout.ch', 'bagattinisa.ch',
+  'gpisa.ch', 'nobile.ch', 'fretcargo.com', 'ch.dsv.com', 'posse.ch',
+  'cefibat.com'
+];
+
+/**
+ * Enrichit le rôle professionnel en distinguant les directeurs/responsables d'entreprises
+ * @param {string} role - Le rôle professionnel original
+ * @param {string} email - L'email pour déterminer le type d'institution
+ * @returns {string} - Le rôle enrichi si applicable
+ */
+function enrichProfessionalRole(role, email) {
+  if (!role || !email) return role;
+  
+  // Si le rôle est "Directeur·trice / Responsable de service" et l'email vient d'une entreprise
+  if (role === "Directeur·trice / Responsable de service") {
+    const domain = extractDomain(email);
+    if (domain && ENTREPRISES_DOMAINS.includes(domain)) {
+      return "Directeur·trice / Responsable en entreprise";
+    }
+  }
+  
+  return role;
+}
+
+/**
  * Point d'entrée principal pour l'export des données
  * Supporte les formats CSV et Excel
  * URL: /api/export?format=csv ou /api/export?format=excel
@@ -90,9 +125,12 @@ function enrichSubmissionsForExport(rawSubmissions) {
         
         // Données du questionnaire
         participation_cafes: parsedData.participatedInCafes,
-        role_professionnel: parsedData.professionalRole === 'Autre' ? 
-          parsedData.professionalRoleOther || 'Autre (non précisé)' : 
-          parsedData.professionalRole,
+        role_professionnel: enrichProfessionalRole(
+          parsedData.professionalRole === 'Autre' ? 
+            parsedData.professionalRoleOther || 'Autre (non précisé)' : 
+            parsedData.professionalRole,
+          parsedData.email
+        ),
         
         // Retours sur les cafés (si applicable)
         cafes_connaissance: parsedData.cafesKnowledge ? parsedData.cafesKnowledge.join(', ') : null,

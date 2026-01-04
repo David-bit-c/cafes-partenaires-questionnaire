@@ -1,3 +1,60 @@
+## 2026-01-04 - [EUREKA] 🏢 Distinction Directeurs/Responsables en Entreprise
+
+### 🎯 OBJECTIF
+Distinguer les "Directeur·trice / Responsable de service" venant d'**entreprises privées** (BTP, services) de ceux venant d'**institutions sociales/publiques** (fondations, associations, État).
+
+### 📊 ANALYSE DES DONNÉES
+- **16 réponses** avec le rôle "Directeur·trice / Responsable de service"
+- **~9 (56%)** proviennent d'entreprises privées (berchten.ch, entreprisemontefusco.ch, menuiserie-legna.ch, gatto-sa.ch, gri-sa.ch, cuivretout.ch, modulancy.ch, gpisa.ch, ch.dsv.com)
+- **~7 (44%)** proviennent d'institutions sociales/publiques
+
+### ✅ SOLUTION IMPLÉMENTÉE
+
+**Logique d'enrichissement :**
+- Si rôle = "Directeur·trice / Responsable de service" **ET** email vient d'une entreprise (liste de 31 domaines)
+- → Afficher "Directeur·trice / Responsable **en entreprise**"
+- Sinon → Conserver le rôle original
+
+**Fichiers modifiés :**
+
+1. **`functions/api/export.js`**
+   - Ajout de la liste `ENTREPRISES_DOMAINS` (31 domaines)
+   - Ajout de la fonction `enrichProfessionalRole()`
+   - Application de l'enrichissement lors de l'export CSV/Excel
+
+2. **`src/components/ResultsDashboard.tsx`**
+   - Ajout de la liste `ENTREPRISES_DOMAINS`
+   - Ajout des fonctions `extractDomainFromEmail()` et `enrichProfessionalRole()`
+   - Application de l'enrichissement dans :
+     - Extraction des rôles pour le filtre
+     - Filtrage des soumissions par rôle
+     - Agrégation pour le graphique des rôles
+
+### 🛡️ SÉCURITÉ
+- ✅ **Backup effectué** avant modification (backup_complet_2026-01-04.json)
+- ✅ **Données non modifiées** en base - enrichissement à la lecture uniquement
+- ✅ **100% réversible** - suppression du code = retour à l'original
+
+### 📈 RÉSULTAT ATTENDU
+
+**Avant :**
+```
+Directeur·trice / Responsable de service : 16 réponses
+```
+
+**Après :**
+```
+Directeur·trice / Responsable de service : ~7 réponses (institutions)
+Directeur·trice / Responsable en entreprise : ~9 réponses (entreprises privées)
+```
+
+### 💡 BÉNÉFICES
+- Analyse plus fine des perceptions selon le contexte professionnel
+- Distinction claire entre monde de l'entreprise et secteur socio-éducatif
+- Cohérence entre affichage et exports
+
+---
+
 ## 2025-11-27 - 🎨 Toggle Switch Moderne (iOS/Material Design)
 
 ### 🎯 OBJECTIF : Remplacer la checkbox par un toggle switch professionnel moderne

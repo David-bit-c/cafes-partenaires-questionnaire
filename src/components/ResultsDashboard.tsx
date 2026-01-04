@@ -30,6 +30,51 @@ const RADAR_FILL_COLOR = 'rgba(37, 99, 235, 0.6)';  // Bleu royal avec transpare
 
 const BAR_COLOR_2 = '#1E40AF';   // Bleu marine pour contraste
 
+/**
+ * Liste des domaines d'entreprises privées (BTP, services, etc.)
+ * Utilisée pour distinguer les directeurs/responsables en entreprise
+ */
+const ENTREPRISES_DOMAINS = [
+  'groupe-serbeco.ch', 'fegpac.ch', 'berchten.ch', 'righi-sa.ch',
+  'menuiserie-legna.ch', 'entreprisemontefusco.ch', 'mazzoli.ch',
+  'belmontecarrelages.ch', 'storemania.ch', 'gatto-sa.ch', 'stormatic.ch',
+  'gri-sa.ch', 'macullo.ch', 'fragastores.ch', 'hts.swiss',
+  'menuiserie-fabbi.com', 'jfarina.ch', 'modulancy.ch', 'm-nobs.ch',
+  'piretti.ch', 'caragnano.ch', 'cuivretout.ch', 'bagattinisa.ch',
+  'gpisa.ch', 'nobile.ch', 'fretcargo.com', 'ch.dsv.com', 'posse.ch',
+  'cefibat.com'
+];
+
+/**
+ * Extrait le domaine d'un email
+ */
+function extractDomainFromEmail(email: string): string | null {
+  if (!email || typeof email !== 'string') return null;
+  const atIndex = email.indexOf('@');
+  if (atIndex === -1) return null;
+  return email.substring(atIndex + 1).toLowerCase();
+}
+
+/**
+ * Enrichit le rôle professionnel en distinguant les directeurs/responsables d'entreprises
+ * @param role - Le rôle professionnel original
+ * @param email - L'email pour déterminer le type d'institution
+ * @returns Le rôle enrichi si applicable
+ */
+function enrichProfessionalRole(role: string, email?: string): string {
+  if (!role) return role;
+  
+  // Si le rôle est "Directeur·trice / Responsable de service" et l'email vient d'une entreprise
+  if (role === "Directeur·trice / Responsable de service" && email) {
+    const domain = extractDomainFromEmail(email);
+    if (domain && ENTREPRISES_DOMAINS.includes(domain)) {
+      return "Directeur·trice / Responsable en entreprise";
+    }
+  }
+  
+  return role;
+}
+
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
     return (
@@ -237,13 +282,15 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   // (Ancien système de blocage supprimé)
 
 
-  // 1. Extraire tous les rôles uniques pour le filtre
+  // 1. Extraire tous les rôles uniques pour le filtre (avec enrichissement entreprises)
   const allRoles = useMemo(() => {
     const roles = new Set<string>();
     submissions.forEach(s => {
-      const role = s.data.professionalRole === 'Autre' 
+      const baseRole = s.data.professionalRole === 'Autre' 
         ? s.data.professionalRoleOther || 'Autre (non précisé)' 
         : s.data.professionalRole || 'Rôle non spécifié';
+      // Enrichir le rôle pour distinguer directeurs/responsables en entreprise
+      const role = enrichProfessionalRole(baseRole, s.data.email);
       roles.add(role); // Inclure tous les rôles, même s'ils sont non spécifiés
     });
     return Array.from(roles);
@@ -495,11 +542,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
   };
 
   const data = useMemo(() => {
-    // 3. Filtrer les soumissions en fonction des rôles sélectionnés
+    // 3. Filtrer les soumissions en fonction des rôles sélectionnés (avec enrichissement)
     const filteredSubmissions = submissions.filter(s => {
-      const role = s.data.professionalRole === 'Autre' 
+      const baseRole = s.data.professionalRole === 'Autre' 
         ? s.data.professionalRoleOther || 'Autre (non précisé)' 
         : s.data.professionalRole || 'Rôle non spécifié';
+      // Enrichir le rôle pour distinguer directeurs/responsables en entreprise
+      const role = enrichProfessionalRole(baseRole, s.data.email);
       return selectedRoles.includes(role);
     });
       
@@ -597,8 +646,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ submissions, summar
     const aggravationRate = totalSubmissions > 0 ? Math.round((submissionsWithEmergence / totalSubmissions) * 100) : 0;
 
 
-    const professionalRoles = processedSubmissions.reduce((acc, s) => {
-        const role = s.professionalRole === 'Autre' ? s.professionalRoleOther || 'Autre (non précisé)' : s.professionalRole;
+    // Agrégation des rôles avec enrichissement pour distinguer directeurs/responsables en entreprise
+    const professionalRoles = filteredSubmissions.reduce((acc, s) => {
+        const baseRole = s.data.professionalRole === 'Autre' 
+          ? s.data.professionalRoleOther || 'Autre (non précisé)' 
+          : s.data.professionalRole;
+        // Enrichir le rôle pour distinguer directeurs/responsables en entreprise
+        const role = enrichProfessionalRole(baseRole, s.data.email);
         if (role) acc[role] = (acc[role] || 0) + 1;
         return acc;
     }, {} as Record<string, number>);
